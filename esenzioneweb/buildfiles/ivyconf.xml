@@ -1,0 +1,28 @@
+<ivysettings>	
+	<settings defaultResolver="chain">
+		<caches defaultCacheDir="${basedir}/build/cache" />
+	</settings>
+	<resolvers>
+	
+		<chain name="chain">
+	
+		<url name="myUrlResolver">
+			<artifact pattern="http://xyz.csi.it/java/[organisation]/[module]/[revision]/lib/[artifact].[type]" />
+			<artifact pattern="http://xyz.csi.it/java/[organisation]/[module]/[revision]/conf/[artifact].[type]" />
+
+			<artifact pattern="http://xyz.csi.it/java/[organisation]/[module]/lib/[artifact].[type]" />
+
+			<ivy pattern="http://xyz.csi.it/java/[organisation]/[module]/[revision]/ivy-[module].xml" />
+			<ivy pattern="http://xyz.csi.it/java/[organisation]/[module]/ivy-[module].xml" />
+		</url>
+		
+		<filesystem name="local">
+				<artifact
+					pattern="${basedir}/docs/xyz/java/[organisation]/[module]/[revision]/lib/[artifact].[type]" />
+				<ivy
+					pattern="${basedir}/docs/xyz/java/[organisation]/[module]/[revision]/ivy-[module].xml" />
+		</filesystem>
+		
+		</chain>
+	</resolvers>
+</ivysettings>
