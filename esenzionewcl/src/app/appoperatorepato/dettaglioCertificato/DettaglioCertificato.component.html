@@ -1,0 +1,214 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="row cardDemo7 noese rigabiancafontnero" [hidden]="hidden">
+	<div class="col-md-12 rigakoblocco bordo-esitokoblocco esitokoblocco infoRicercaAssistito"
+		[hidden]="hidden" id="esitoControllo" style="margin-bottom: 15px;">
+		<br>
+		<div class="row">
+			<div class="col-md-11" style="padding-left: 0px;">{{errorMessage}}</div>
+		</div>
+		<br>
+	</div>
+	<br />
+</div>
+<div class="row cardDemo7 noese rigabiancafontnero" *ngIf="!esenzioneCreata && !esenzioneCreataValidata">
+    <div class="col-md-1"></div>
+    <div class="col-md-10" style="padding-top: 15px;">
+
+        <div class="row">
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10" style="padding: 0px;">
+                <div class="row">
+                    <div class="col">
+                        <a nohref style="cursor: pointer; color: DodgerBlue; font-size: 14px;" (click)="returnHome()"> 
+                            <svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
+                                <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                            </svg>
+                            <u>Home</u>
+                        </a>	
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col title">
+                        Dettaglio Certificato
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row" id="dettaglio-certificato">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 rigabiancafontnero eleese" style="padding: 0px;">
+                <div class="row">
+                    <div class="col top-verde-certificato"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 left-col-certificato title">
+                        <br>
+                        <img src="assets/img/user/cert_logo.png" alt="certLogo">
+                        <br>
+                        Certificato per
+                        <br>
+                        {{ dettaglioCertificato.tipo_certificato }}
+                        <br>
+                        <br>
+                        <a nohref id="link" *ngIf="!dettaglioCertificato.utilizzabile"
+                            (click)="getDettaglioEsenzione()">
+                            <u>Vai all'esenzione</u>
+                        </a>
+                    </div>
+                    <div class="col" style="padding-top: 15px;">
+                        <div class="row">
+                            <div class="col">
+                                Beneficiario<br><strong>{{dettaglioCertificato.beneficiario.cognome +" "+ dettaglioCertificato.beneficiario.nome}}</strong>
+                            </div>
+                            <div class="col" style=" float: right;">
+                                Esenzione<br><strong>{{dettaglioCertificato.esenzione.codice +" "+ dettaglioCertificato.esenzione.descrizione}}</strong>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col" style=" font-size: 16px; vertical-align: middle;">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <img src="assets/img/user/data_pick.png" alt="certData">
+                                    </div>
+                                    <div class="col">
+                                        <div class="row"> Data emissione</div>
+                                        <div class="row"><strong>{{ dettaglioCertificato.data_emissione }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                Diagnosi <strong>{{dettaglioCertificato.diagnosi.codice}}</strong>
+                                <br>
+                                Definizione di diagnosi <strong>{{dettaglioCertificato.diagnosi.descrizione}}</strong>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" *ngIf="dettaglioCertificato.descrizione != ''">
+                            <div class="col">
+                                <strong>E' affetto dalla seguente patologia:</strong>
+                                <br>
+                                {{dettaglioCertificato.descrizione}}
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row buttons-certificato">
+                            <div class="col-auto" style="padding-bottom: 15px;">
+                                <button type="button" style="width: 180px; font-size: 14px; "
+                                    class="btn btn-primary operatore" (click)="scaricaCertificato()"
+                                    href="javascript:void(0);">
+                                    Scarica certificato
+                                </button>
+                            </div>
+                            <div class="col"></div>
+
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="padding-top: 15px;">
+                <button type="button" style="width: 180px; font-size: 14px; float: right;  margin-left: 20px;"
+                    *ngIf = "abilitatoRichiediValida && dettaglioCertificato.utilizzabile"
+                        data-toggle="tooltip" data-placement="bottom" title="Rilascia Attestato"
+                    class="btn btn-primary operatore" (click)="inviaRichiestaCreaValidaEsenzione()">
+                    Crea e Valida Esenzione
+                </button>
+                <button type="button" style="width: 180px; font-size: 14px; float: right;"
+                    *ngIf = "abilitatoRichiedi && dettaglioCertificato.utilizzabile"
+                    class="btn btn-primary operatore" (click)="inviaRichiestaEsenzione()">
+                    Richiedi Esenzione
+                </button>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+<div class="modal fade validacertificato" id ="validacertificato" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-dialog-centered" role="document"	style="max-width: 70%">
+		<div class="modal-content rigabiancafontblu ombramodal">
+			<div class="row" style="padding-top: 15px;padding-left: 0px;padding-right: 0px;font-size:1.2rem;">
+				<div class="col-md-1"></div>
+				<div class="col-md-1" style="padding-left: 0px;">
+				<strong><p>VALIDA</p></strong>
+				</div>
+				<div class="col-md-8"></div>
+				<div class="col-md-1" style="padding-left: 35px;padding-right: 0px;">
+					<button type="button" class="btn btn-cerca btn-circle" (click)="chiudiValida()" style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+						<img class="img-fluid" src="assets/img/user/u18.png">
+					</button>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			
+			<div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 rigagrigiafontnero">
+					<div class="col-md-12">
+						<div class="row" style="font-size:1.7rem;">
+							<p>
+							Sei sicuro di voler validare la pratica <b>{{ id_pratica_da_validare }}</b>?
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12" style="padding-top:15px;padding-bottom:15px;">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-block light"
+								(click)="chiudiValida()">NO</button>
+						</div>
+						<div class="col-md-2"></div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-block btn-primary"
+								(click)="procediApprovaEsenzione()">SI</button>
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row cardDemo7 noese rigabiancafontnero" *ngIf="esenzioneCreata">
+    <div class="col-md-2"></div>
+    <app-esen-creata class="col-md-8"></app-esen-creata>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row cardDemo7 noese rigabiancafontnero" *ngIf="esenzioneCreataValidata">
+    <div class="col-md-2"></div>
+    <app-esen-creata-validata class="col-md-8"></app-esen-creata-validata>
+    <div class="col-md-2"></div>
+</div>

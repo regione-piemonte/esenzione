@@ -1,0 +1,771 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+
+<div class="row cardDemo7 noese rigabiancafontnero">
+    <div class="col-md-1"></div>
+    <div class="col-md-10" style="padding-top: 15px;">
+
+        <div class="row">
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10" style="padding: 0px;">
+                <div class="row">
+                    <div class="col">
+                        <a nohref style="cursor: pointer; color: DodgerBlue; font-size: 14px;" (click)="returnHome()"> 
+                            <svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
+                                <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                            </svg>
+                            <u>Home</u>
+                        </a>	
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col title">
+                        Dettaglio esenzione
+                        <br><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="row">
+                            <div class="col-md-12 rigaok bordo-esitook esitoricercaok"
+                                style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                                <div class="row">
+                                    <div class="col-md-1" style="padding-right: 0px;">
+                                        <img class="img-fluid" src="assets/img/user/imgok.jpg">
+                                    </div>
+                                    <div class="col-md-11" style="padding-left: 0px;">
+                                        <strong>
+                                            <p id="messaggioesitoricercaok"></p>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="row">
+                            <div class="col-md-12 rigako bordo-esitoko esitoricercako"
+                                style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                                <div class="row">
+                                    <div class="col-md-1" style="padding-right: 0px;">
+                                        <img class="img-fluid" src="assets/img/user/negativoko.jpg">
+                                    </div>
+                                    <div class="col-md-11" style="padding-left: 0px;">
+                                        <strong>
+                                            <p id="messaggioesitoricercako"></p>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="row">
+                            <div class="col-md-12 rigagen bordo-esitogenerico esitoricercagenerico"
+                                style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                                <div class="row">
+                                    <div class="col-md-1" style="padding-right: 0px;">
+                                        <img class="img-fluid" src="assets/img/user/generico.jpg">
+                                    </div>
+                                    <div class="col-md-11" style="padding-left: 0px;">
+
+                                        <p id="messaggioesitoricercagenerico"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row" id="dettaglio-certificato">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 rigabiancafontnero eleese" style="padding: 0px;">
+                <div class="row">
+                    <div
+                        [className]="dettaglioEsenzione.stato.codice==='SCA' || dettaglioEsenzione.stato.codice==='ANN' || dettaglioEsenzione.stato.codice==='REV' || dettaglioEsenzione.stato.codice==='RES' ? 'col top-rosso-esenzione' : 'col top-verde-esenzione'">
+                        {{ dettaglioEsenzione.stato.descrizione }} 
+                        <span style="font-weight: normal;" *ngIf="dettaglioEsenzione.stato.codice==='ANN' || dettaglioEsenzione.stato.codice==='REV' || dettaglioEsenzione.stato.codice==='RES'">
+                             - {{ dettaglioEsenzione.stato.codice==='ANN' ? dettaglioEsenzione.motivazione_annullamento.descrizione : dettaglioEsenzione.stato.codice==='REV' ? dettaglioEsenzione.motivazione_revoca.descrizione : dettaglioEsenzione.motivazione.descrizione }}
+                        </span> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 left-col-certificato title">
+                        <br>
+                        <img src="assets/img/user/cert_logo.png" alt="certLogo">
+                        <br>
+                        Esenzione per
+                        <br>
+                        {{ dettaglioEsenzione.tipologia.descrizione }}
+                        <br>
+                        <br>
+                        <a nohref id="link" *ngIf="!utenteOperatoreAslDistretto && dettaglioEsenzione.certificato_id"
+                        (click)="getDettaglioCertificato()">
+                        <u>Vai al certificato</u>
+                    </a>
+                    </div>
+                    <div class="col" style="padding-top: 15px;">
+                        <div class="row">
+                            <div class="col">
+                                Beneficiario<br><strong>{{dettaglioEsenzione.beneficiario.cognome +" "+ dettaglioEsenzione.beneficiario.nome}}</strong>
+                            </div>
+                            <div class="col" style=" float: right;">
+                                Esenzione<br><strong>{{dettaglioEsenzione.codice.codice +" "+ dettaglioEsenzione.codice.descrizione}}</strong>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col" style=" font-size: 16px; vertical-align: middle;">
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="row">
+                                            <p>Stato esenzione:
+                                                <strong>{{ dettaglioEsenzione.stato.descrizione }}</strong></p>
+                                        </div>
+                                        <div class="row" *ngIf="dettaglioEsenzione.data_aggiornamento != null">
+                                            <p>Aggiornato al
+                                                <strong>{{ dettaglioEsenzione.data_aggiornamento }}</strong></p>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        *ngIf="statoPratica != 'SCA' && statoPratica != 'ANN' && statoPratica != 'REV' && statoPratica != 'RES'; then valida else scaduta">
+                                    </div>
+                                    <ng-template #valida>
+                                        <div class="col-auto"
+                                            *ngIf="dettaglioEsenzione.data_scadenza != null || dettaglioEsenzione.data_fine_validita != null">
+                                            <img src="assets/img/user/data_pick.png" alt="certData">
+                                        </div>
+                                        <div class="col" style="padding: 5px;" *ngIf="dettaglioEsenzione.data_scadenza != null || dettaglioEsenzione.data_fine_validita != null">
+
+                                                <div class="row">Disponibile fino al</div>
+                                                <div class="row">
+                                                    <strong>{{ dettaglioEsenzione.data_scadenza != null ? dettaglioEsenzione.data_scadenza : dettaglioEsenzione.data_fine_validita }}</strong>
+                                                </div>
+
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #scaduta>
+                                        <div class="col-auto"
+                                            *ngIf="dettaglioEsenzione.data_scadenza != null || dettaglioEsenzione.data_annullamento != null || dettaglioEsenzione.data_revoca != null">
+                                            <img src="assets/img/user/data_pick_scaduta.png" alt="certData">
+                                        </div>
+                                        <div class="col" id="scaduta">
+
+                                                <div class="row">{{ statoPratica == 'ANN' ? 'Annullata' : statoPratica == 'REV' ? 'Revocata' : 'Scaduta' }} il</div>
+                                                <div class="row">
+                                                    <strong>{{ statoPratica == 'ANN' ? dettaglioEsenzione.data_annullamento : statoPratica == 'REV' ? dettaglioEsenzione.data_revoca : dettaglioEsenzione.data_scadenza }}</strong>
+                                                </div>
+
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                Diagnosi <strong>{{dettaglioEsenzione.malattia.codice}}</strong>
+                                <br>
+                                Definizione di diagnosi <strong>{{dettaglioEsenzione.malattia.descrizione}}</strong>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row"
+                            *ngIf="dettaglioEsenzione.malattia != null && dettaglioEsenzione.malattia.prestazioni != null && dettaglioEsenzione.malattia.prestazioni.length != 0">
+                            <div class="col">
+                                <strong>Elenco prestazioni esenti</strong>
+                                <br>
+                                <table class="table table-responsive table-prestazioni" style="border: none;">
+                                    <tr *ngFor="let prest of dettaglioEsenzione.malattia.prestazioni">
+                                        <td valign="top">
+                                            <p>{{ prest.codice }}</p>
+                                        </td>
+                                        <td class="col-md-8"
+                                            style="text-align: left;  transition: max-height 0.2s ease-out;">
+                                            <p style="white-space: pre-line; font-size: 16px;">
+                                                {{ prest.descrizione | shorten: maxLength: '...'}}
+                                                <a class="read-more" *ngIf="estensibile && prest.descrizione.length > maxLength" 
+                                                    nohref (click)="showMore(prest)">Mostra tutto</a>
+                                                <a class="read-more" *ngIf="estensibile && prest.descrizione.length <= maxLength"
+                                                    nohref (click)="showLess(prest)">Nascondi</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-auto" style="padding-bottom: 15px;">
+                                <button type="button" class="btn btn-primary button-esenzione-up"
+                                    (click)="scaricaAllegati()"
+                                    *ngIf="(assistitoStoreService.abilitatoAdAzione('21')) && dettaglioEsenzione.zip && dettaglioEsenzione.id != null">
+                                    Scarica allegati
+                                </button>
+                            </div>
+                            <div class="col-auto" style="padding-bottom: 15px;">
+                                <button type="button" class="btn btn-primary button-esenzione-up"
+                                    (click)="scaricaCertificato()"
+                                    *ngIf="(assistitoStoreService.abilitatoAdAzione('5')) && dettaglioEsenzione.certificato_id != null && dettaglioEsenzione.id != null">
+                                    Scarica certificato
+                                </button>
+                            </div>
+                            <div class="col-auto" style="padding-bottom: 15px;">
+
+                                <div *ngIf="dettaglioEsenzione.id != null; then praticaEsenpat else praticaAura"></div>
+                                <ng-template #praticaEsenpat>
+                                    <button type="button" class="btn btn-primary button-esenzione-up" *ngIf="(assistitoStoreService.abilitatoAdAzione('7')) && 
+                                        (statoPratica == 'ANN' || statoPratica == 'VAL' || statoPratica == 'SCA' || 
+                                        statoPratica == 'REV' || statoPratica == 'REO' || statoPratica == 'REM')"
+                                        (click)="scaricaAttestato()">
+                                        Scarica promemoria esenzione<br>
+                                    </button>
+                                </ng-template>
+                                <ng-template #praticaAura>
+                                    <button type="button" class="btn btn-primary button-esenzione-up" *ngIf="(assistitoStoreService.abilitatoAdAzione('7'))"
+                                        (click)="scaricaAttestato()">
+                                        Scarica promemoria esenzione<br>
+                                    </button>
+                                </ng-template>
+                            </div>
+
+
+                            <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('7')) &&
+                            dettaglioEsenzione.id != null && statoPratica == 'VAL'">
+                                <button type="button" class="btn btn-primary button-esenzione-up"
+                                    (click)="scaricaAttestatoLegale()">
+                                    Scarica attestato di esenzione<br>
+                                </button>
+                            </div>
+
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row" *ngIf="dettaglioEsenzione.id != null && (utenteOperatoreAslDistretto || utenteAmministratoreCsi)">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 rigabiancafontnero eleese" style="padding: 15px;">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="color: dodgerblue;">Cronologia</h2>
+                    </div>
+                    <div class="modal-content rigabiancafontnero">
+                        <div class="tabellaricerca">
+                            <div class="table-responsive">
+                                <table id="ricercaCronologia" class="table" style="font-size: 12px; border: 0;">
+                                    <thead class="rigagrigiafontnero" style="font-weight: bold">
+                                        <tr style="border: 0px">
+                                            <th scope="col" style="border: 0px">Data e ora</th>
+                                            <th scope="col" style="border: 0px">Utente</th>
+                                            <th scope="col" style="border: 0px">Stato pratica</th>
+                                            <th scope="col" style="border: 0px">Nota Beneficiario</th>
+                                            <th scope="col" style="border: 0px">Nota Operatori</th>
+                                            <th scope="col" style="border: 0px">Nota Interna</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let storico of storicoEsenzione; let i=index">
+                                            <th class="celleTab" scope="row">{{storico.data_creazione}}</th>
+                                            <td class="celleTab">{{storico.utente.nome}} {{storico.utente.cognome}}</td>
+                                            <td class="celleTab">{{storico.nuovo_stato.descrizione}}</td>
+                                            <td class="celleTab">{{storico.notaBeneficiario}}</td>
+                                            <td class="celleTab">{{storico.nota}}</td>
+                                            <td class="celleTab">{{storico.notaInterna}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:15px;"
+                    *ngIf="(utenteOperatoreAslDistretto || utenteAmministratoreCsi) && (statoPratica != 'ANN' && statoPratica != 'REV' && statoPratica != 'RES')">
+                    <div class="col-md-1">
+                        <h2 style="color: dodgerblue;">Nota</h2>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="nota-beneficiario">Beneficiario</label>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <textarea id="nota-beneficiario" rows="2" cols="50" class="area-note"
+                                    name="nota-beneficiario"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row"
+                *ngIf="(utenteOperatoreAslDistretto || utenteAmministratoreCsi) && (statoPratica != 'ANN' && statoPratica != 'REV' && statoPratica != 'RES')">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="nota-servizio">Servizio</label>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <textarea rows="2" cols="50" class="area-note" name="nota-servizio"
+                                    id="nota-servizio"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                *ngIf="(utenteOperatoreAslDistretto || utenteAmministratoreCsi) && (statoPratica != 'ANN' && statoPratica != 'REV' && statoPratica != 'RES')">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="nota-interna">Interna</label>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <textarea rows="2" cols="50" class="area-note" name="nota-interna"
+                                    id="nota-interna"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row"
+            *ngIf="dettaglioEsenzione.id != null && (assistitoStoreService.abilitatoAdAzione('3')) && statoPratica == 'INM'">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 rigabiancafontnero eleese" style="padding: 0px;">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="color: dodgerblue;">Crea Nuovo Certificato</h2>
+                    </div>
+                </div>
+                <div class="row col-md-12" style="padding-top: 15px; padding-bottom:15px">
+                    <div class="col-md-12">
+                        <label>&Egrave; affetto dalla seguente patologia</label>
+                        <textarea class="form-control" id="patologia" name="patologia" rows="3"
+                            [(ngModel)]="patologia"></textarea>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 15px; padding-bottom:15px">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary button-esenzione-up" style="float: right;"
+                            (click)="creaCertificatoDaEsenzione()" *ngIf="statoPratica == 'INM'">
+                            Crea nuovo certificato
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="dettaglioEsenzione.id != null">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <br><br>
+                <div class="row">
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('14')) &&
+                        (statoPratica == 'INV' || statoPratica == 'VAL' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom" id="btn-red"
+                            (click)="prepareModal('ANNULLA')">
+ 
+                            Annulla esenzione
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('14')) &&
+                        statoPratica == 'VAL'">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom" id="btn-red"
+                            (click)="prepareModal('REVOCA')">
+>
+                            Revoca esenzione
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('13')) &&
+                        (statoPratica == 'INV' || statoPratica == 'DAV' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom" id="btn-red"
+                            (click)="prepareModal('RESPINGI')">
+
+                            Respingi esenzione
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('15')) &&
+                        (statoPratica == 'INS' || statoPratica == 'SCA')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom"
+                            (click)="ValidaCertificato('RINNOVA')">
+                            Rinnova esenzione
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('16')) &&
+                        (statoPratica == 'INV' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom" (click)="salvaInBozza()">
+                            Salva in bozza
+                        </button>
+                    </div>
+
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('11')) &&
+                        (statoPratica == 'INV' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom"
+                            (click)="verificaRettifica('REO')">
+                            Rettifica Beneficiario
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('12')) &&
+                        (statoPratica == 'INV' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom"
+                            (click)="verificaRettifica('REM')">
+                            Rettifica Medico ASL
+                        </button>
+                    </div>
+
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('23')) &&
+                        (statoPratica == 'INV' || statoPratica == 'LAV')">
+                        <button type="button" class="btn btn-primary button-esenzione-bottom"
+                            (click)="ValidaCertificato('APPROVA')">
+                            Approva esenzione
+                        </button>
+                    </div>
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('24')) &&
+                        (statoPratica == 'DAV' || statoPratica == 'LAV')">
+                        <button type="button" id="aprivalida" class="btn btn-primary button-esenzione-bottom aprivalida"
+                                data-toggle="tooltip" data-placement="right" title="Rilascia Attestato"
+                                (click)="ValidaCertificato('VALIDA')">
+                            Valida esenzione
+                        </button>
+                    </div>
+
+                    <div class="col-auto" style="padding-bottom: 15px;" *ngIf="(assistitoStoreService.abilitatoAdAzione('23') && assistitoStoreService.abilitatoAdAzione('24')) &&
+                        dettaglioEsenzione.id != null && statoPratica == 'INV'">
+                        <button type="button" class="btn btn-primary button-esenzione-up"
+                            (click)="ValidaCertificato('APPROVAEVALIDA')">
+                                Approva e valida esenzione
+                        </button>
+                    </div>
+                <!-- </div> -->
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+<div class="modal fade validacertificato" id="validacertificato" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%">
+        <div class="modal-content rigabiancafontblu ombramodal">
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 rigako bordo-esitoko esitoricercarinnovako"
+                    style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                    <div class="row">
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <img class="img-fluid" src="assets/img/user/negativoko.jpg">
+                        </div>
+                        <div class="col-md-11" style="padding-left: 0px;">
+                            <strong>
+                                <p id="messaggioesitoricercarinnovako"></p>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row" style="padding-top: 15px;padding-left: 0px;padding-right: 0px;font-size:1.2rem;">
+                <div class="col-md-1"></div>
+                <div class="col-md-2" style="padding-left: 0px;">
+                    <strong>
+                        <p id="statofasepratica"></p>
+                    </strong>
+                </div>
+                <div class="col-md-7"></div>
+                <div class="col-md-1" style="padding-left: 35px;padding-right: 0px;">
+                    <button type="button" class="btn btn-cerca btn-circle" (click)="ChiudiValida()"
+                        style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+                        <img class="img-fluid" src="assets/img/user/u18.png"></button></div>
+                <div class="col-md-1"></div>
+
+
+            </div>
+            <div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 rigagrigiafontnero">
+                    <div class="col-md-12">
+                        <label id="idaurabeneficiario" hidden></label>
+                        <label id="cfbeneficiario" hidden></label>
+                        <div class="row" style="font-size:1.7rem;">
+                            <label id="skpratica"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="operazione=='RINNOVA'">
+                        <app-documenti-rinnova-esen></app-documenti-rinnova-esen>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="col-md-12 nascondinota">
+                        <div class="row" style="font-size:1.3rem;color: #1154a2 !important;">
+                            <strong>
+                                <p>
+                                    Nota
+                                </p>
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="col-md-12 nascondinotaben">
+                        <div class="row" style="font-size:1.1rem;">
+                            <div class="col-md-4">
+                                <strong><label>Per Beneficiario</label></strong>
+                            </div>
+                            <div class="col-md-8" style="word-break: break-word;">
+                                <label id="notabeneficiario"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 nascondinotaser">
+                        <div class="row" style="font-size:1.1rem;">
+                            <div class="col-md-4">
+                                <strong><label>Per Servizio</label></strong>
+                            </div>
+                            <div class="col-md-8" style="word-break: break-word;">
+                                <label id="notaservizio"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 nascondinotaint">
+                        <div class="row" style="font-size:1.1rem;">
+                            <div class="col-md-4">
+                                <strong><label>Interne ASL/CAS</label></strong>
+                            </div>
+                            <div class="col-md-8" style="word-break: break-word;">
+                                <label id="notainterna"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding-top:15px;padding-bottom:15px;">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-block light" (click)="ChiudiValida()">NO</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-block btn-primary"
+                                    (click)="ProcediValidaCertificato(operazione)">SI</button></div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade annulla-revoca-respingi" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content rigabiancafontnero">
+            <div class="row" style="padding: 15px 0;">
+                <div class="col-md-6"
+                    style="float: left; text-align: left; color: dodgerblue; font-weight: bold; font-size: 24px;">
+                    {{sceltaModal}}
+                </div>
+                <div class="col-md-6" style="text-align: end;">
+                    <button type="button" class="btn btn-cerca btn-circle" (click)="chiudiModal()"
+                        style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+                        <img class="img-fluid" src="assets/img/user/u18.png">
+                    </button>
+                </div>
+            </div>
+            <div class="container rigagrigiafontnero" style="padding: 15px 30px;">
+                <div class="row">
+                    <div class="col" style="font-size: 20px; text-align: center;">
+                        <p>Sei sicuro di voler {{sceltaModalVerb}} la pratica {{dettaglioEsenzione.numero_pratica}}?</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="combo-motivazione" style="font-size: 20px; font-weight: bold; color: dodgerblue;">
+                            Motivazione
+                        </label>
+                    </div>
+                    <div class="col-auto">
+                        <select name="combo-motivazione" id="combo-motivazione" class="form-control form-control-sm">
+                            <option disabled selected>Seleziona motivazione</option>
+                            <option *ngFor="let motivazione of motivazioni" value="{{motivazione.descrizione}}">
+                                {{motivazione.descrizione}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 nascondinota">
+                    <div class="row" style="font-size:1.3rem;color: #1154a2 !important;">
+                        <strong>
+                            <p>
+                                Nota
+                            </p>
+                        </strong>
+                    </div>
+                </div>
+                <div class="col-md-12 nascondinotaben">
+                    <div class="row" style="font-size:1.1rem;">
+                        <div class="col-md-4">
+                            <strong><label>Per Beneficiario</label></strong>
+                        </div>
+                        <div class="col-md-8" style="word-break: break-word;">
+                            <label id="notabeneficiarior"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 nascondinotaser">
+                    <div class="row" style="font-size:1.1rem;">
+                        <div class="col-md-4">
+                            <strong><label>Per Servizio</label></strong>
+                        </div>
+                        <div class="col-md-8" style="word-break: break-word;">
+                            <label id="notaservizior"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 nascondinotaint">
+                    <div class="row" style="font-size:1.1rem;">
+                        <div class="col-md-4">
+                            <strong><label>Interne ASL/CAS</label></strong>
+                        </div>
+                        <div class="col-md-8" style="word-break: break-word;">
+                            <label id="notainternar"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block light" (click)="chiudiModal()">NO</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block btn-primary"
+                            (click)="procediAnnullaRevocaRespingi(sceltaModal)">SI</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modalSalvaInBozza" id="modalSalvaInBozza" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content rigabiancafontnero">
+            <div class="row" style="padding: 15px 0;">
+                <div class="col-md-6"
+                    style="float: left; text-align: left; color: dodgerblue; font-weight: bold; font-size: 24px;">
+                    Salva In Bozza
+                </div>
+                <div class="col-md-6" style="text-align: end;">
+                    <button type="button" class="btn btn-cerca btn-circle" (click)="chiudiModalSalvaInBozza()"
+                        style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+                        <img class="img-fluid" src="assets/img/user/u18.png">
+                    </button>
+                </div>
+            </div>
+            <div class="container rigagrigiafontnero" style="padding: 15px 30px;">
+                <div class="row">
+                    <div class="col" style="font-size: 20px; text-align: center;">
+                        <p>Sei sicuro di voler salvare in bozza la pratica?</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="font-size: 20px; font-weight: bold; color: dodgerblue;">
+                        Nota
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-ben" style="font-weight: bold; font-size: 16px;">Per Beneficiario</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-ben" id="nota-ben" *ngIf="notaBen !== null && notaBen !== ''; else notaBenVuota">
+                            {{ notaBen }}
+                        </p>
+                        <ng-template #notaBenVuota>
+                            <p name="nota-ben" id="nota-ben">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-ser" style="font-weight: bold; font-size: 16px;">Per Servizio</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-ser" id="nota-ser" *ngIf="notaSer !== null && notaSer !== ''; else notaSerVuota">
+                            {{ notaSer }}
+                        </p>
+                        <ng-template #notaSerVuota>
+                            <p name="nota-ser" id="nota-ser">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-int" style="font-weight: bold; font-size: 16px;">Interne ASL/CAS</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-int" id="nota-int" *ngIf="notaInt !== null && notaInt !== ''; else notaIntVuota">
+                            {{ notaInt }}
+                        </p>
+                        <ng-template #notaIntVuota>
+                            <p name="nota-int" id="nota-int">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block light"
+                            (click)="chiudiModalSalvaInBozza()">NO</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block btn-primary"
+                            (click)="procediSalvaInBozza()">SI</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

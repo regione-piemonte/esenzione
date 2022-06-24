@@ -1,0 +1,363 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<script>document.write('<base href="' + document.location + '" />');</script>
+<title>Elenco esenzioni</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/customCss.css">
+<link rel="stylesheet" type="text/css"
+	href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/ionicons.css">
+<link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css">
+
+</head>
+<body class="theme-exprivia-healthcare sidebar-cover fontgen">
+	<div class="layout-container container">
+
+		<main class="main-container">
+		<section class="section-container">
+
+			 <div id="barraTop1" class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 nomePazienteBarra larghezza-max" style="padding-left: 0px; padding-right:0px">
+					<div class="row">
+						<div class="col" style="padding-left: 0px;">
+							<a class="noLinkColor" target="_top" id="salute1"><img
+								class="img-fluid" src="assets/img/user/sp.jpg">Backoffice Sanità
+						</div>
+						
+					</div>
+				</div>
+	
+				<div class="col-md-1"></div>
+			</div>
+			<div id="signuppopup2" 
+				style="visibility: hidden" onclick="ApriServizi()">
+				<div id="barraTop2" class="row">
+					<div class="col-md-1" style="background-color: #006cb4"></div>
+					<div class="col-md-10 nomePazienteBarra larghezza-max" style="padding-left: 0px; padding-right:0px">
+						<div class="row">
+							<div class="col" style="padding-left: 0px;">
+								<a class="noLinkColor" target="_top" id="salute"><img
+									class="img-fluid" src="assets/img/user/sp.jpg">la
+									mia <strong>Salute</strong></a>
+							</div>
+							<div class="col-auto row" id="menuservizi"
+								style="padding-top: 5px; padding-left: 0px; padding-right: 0px; text-align: right;">
+								<div id="tuttiServizio" style="padding-right:5px">Tutti i servizi</div>
+								<div>
+									<i style="cursor: pointer; padding-right: 5px"
+										class="fa fa-navicon fa-lg" onclick="ApriServizi()"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1" style="background-color: #006cb4"></div>
+				</div>
+				<div id="tuttiServiziMobile" class="tuttiServizi">
+				
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor"  target="_top" id="referti1">
+						<img class="img-fluid" src="assets/img/user/ritiro_referti.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Ritiro referti</a>
+					</div>
+				
+						<div class="row" class="rowPadding" style="padding-bottom: 5px;">
+						<a class="noLinkColor" target="_top" id="deleghe1">
+						<img class="img-fluid" src="assets/img/user/ico_deleghe.png" style="padding-right: 5px;width:23px;height:20px;border:0;">>
+							Servizio Deleghe</a>
+					</div>
+
+				</div>
+				
+				<div id="tuttiServizi" class="tuttiServizi">
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+							<a class="noLinkColor"  target="_top" id="prenotazioni">
+							<img class="img-fluid" src="assets/img/user/prenotazioni_visite.png" style="padding-right: 5px;width:23px;height:23px;border:0;">
+							Prenotazioni
+							visite ed esami</a>
+							 
+					</div>
+					<div class="row"  class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor"  target="_top" id="ticket">
+						<img class="img-fluid" src="assets/img/user/pagamenti_ticket.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Pagamento ticket</a>
+					</div>
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor"  target="_top" id="referti">
+						<img class="img-fluid" src="assets/img/user/ritiro_referti.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Ritiro referti</a>
+					</div>
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor"  target="_top" id="fascicolos">
+						<img class="img-fluid" src="assets/img/user/fascicolo.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Fascicolo sanitario</a>
+					</div>
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor" target="_top" id="fascicolof">
+						<img class="img-fluid" src="assets/img/user/fascicolo_finanziario.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Fascicolo
+							finanziario</a>
+					</div>
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor" target="_top" id="screening">
+						<img class="img-fluid" src="assets/img/user/screening.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Screening
+							tumori femminili</a>
+					</div>
+					<div class="row" class="rowPadding" style="padding-bottom: 10px;">
+						<a class="noLinkColor" target="_top" id="cambiomedico">
+						<img class="img-fluid" src="assets/img/user/cambio_medico.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Cambio
+							medico di famiglia</a>
+					</div>
+						<div class="row" class="rowPadding" style="padding-bottom: 5px;">
+						<a class="noLinkColor" target="_top" id="deleghe">
+						<img class="img-fluid" src="assets/img/user/ico_deleghe.png" style="padding-right: 5px;width:23px;height:20px;border:0;">
+							Servizio Deleghe</a>
+					</div>
+
+				</div>
+			</div> 
+
+			<app-root>Loading...</app-root>
+
+
+
+			<div class="row assistenza"
+				style="padding-top: 15px; padding-bottom: 15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 larghezza-max">
+					<div class="row">
+						<div class="col-md-4">
+							<img class="img-fluid"
+								src="assets/img/user/logo_regionepiemonte.png">
+						</div>
+						<div class="col-md-8" style="text-align: right;">
+							<strong><label class="font-17">ASSISTENZA</label></strong><br>
+							<label class="font-14"><strong>Hai bisogno di
+									aiuto?</strong><br>Scrivi a <strong id="mailassistenza"></strong>
+								specificando:<br> <strong>il tuo recapito
+									telefonico - il codice fiscale - il problema che hai rilevato</strong></label>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+			<div class="row sistpiemonte"
+				style="padding-top: 15px; padding-bottom: 15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 larghezza-max">
+					<div class="row">
+						<div class="col-md-4" style="padding-left: 0px;">
+							<strong><label class="font-17">Sistemapiemonte</label></strong><br>
+							<label class="font-9">Un servizio a cura della Regione
+								Piemonte<br>P.Iva-CF 80087670016
+							</label>
+						</div>
+						<div class="col-md-4">
+							<img style="float: right;" class="img-fluid"
+								src="assets/img/user/logo_csi.png">
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+
+		</section>
+		</main>
+
+	</div>
+	<script type='text/javascript' src="assets/js/jquery.js"></script>
+	<script type='text/javascript' src="assets/js/jquery.cookie.js"></script>
+	<script type='text/javascript' src="assets/js/popper.min.js"></script>
+	<script type='text/javascript' src="assets/js/bootstrap.js"></script>
+	<script type='text/javascript' src="assets/js/datatables.min.js"></script>
+	<script type='text/javascript' src="assets/js/bootstrap-datepicker.js"></script>
+
+	<script type='text/javascript'>
+	
+	 function isMobile(){
+		 var isMobile = false;
+		 if(window.navigator.userAgent.match(/Mobile/i)
+				  || window.navigator.userAgent.match(/iPhone/i)
+				  || window.navigator.userAgent.match(/iPod/i)
+				  || window.navigator.userAgent.match(/IEMobile/i)
+				  || window.navigator.userAgent.match(/Windows Phone/i)
+				  || window.navigator.userAgent.match(/Android/i)
+				  || window.navigator.userAgent.match(/BlackBerry/i)
+				  || window.navigator.userAgent.match(/webOS/i)
+				  || window.navigator.userAgent.match(/Tablet/i)
+				  || window.navigator.userAgent.match(/iPad/i)
+				  || window.navigator.userAgent.match(/Nexus 7/i)
+				  || window.navigator.userAgent.match(/Nexus 10/i)
+				  || window.navigator.userAgent.match(/KFAPWI/i)) {
+					  isMobile = true;
+				  } 
+			return isMobile;
+		 };
+	function ApriServizi() {
+
+		 if (isMobile()) {
+				if ($('#tuttiServiziMobile').css('visibility') == 'hidden') {
+					$('#tuttiServiziMobile').css({
+						"visibility" : "visible"
+					});
+					$('#tuttiServizi').css({
+						"visibility" : "hidden"
+					});
+					$('#signuppopup2').css({
+						"visibility" : "visible"
+					});
+					$('#barraTop1').css({
+						"visibility" : "hidden"
+					});
+
+				} else {
+					$('#tuttiServiziMobile').css({
+						"visibility" : "hidden"
+					});
+					$('#tuttiServizi').css({
+						"visibility" : "hidden"
+					});
+					$('#signuppopup2').css({
+						"visibility" : "hidden"
+					});
+					$('#barraTop1').css({
+						"visibility" : "visible"
+					});
+				}
+		 }
+		 else
+			{
+			if ($('#tuttiServizi').css('visibility') == 'hidden') {
+				$('#tuttiServizi').css({
+					"visibility" : "visible"
+				});
+				$('#tuttiServiziMobile').css({
+					"visibility" : "hidden"
+				});
+				$('#signuppopup2').css({
+					"visibility" : "visible"
+				});
+				$('#barraTop1').css({
+					"visibility" : "hidden"
+				});
+
+			} else {
+				$('#tuttiServizi').css({
+					"visibility" : "hidden"
+				});
+				$('#tuttiServiziMobile').css({
+					"visibility" : "hidden"
+				});
+				$('#signuppopup2').css({
+					"visibility" : "hidden"
+				});
+				$('#barraTop1').css({
+					"visibility" : "visible"
+				});
+			}
+	}
+
+		};
+		function apritab(codice) {
+
+			if (codice == "perme") {
+				$(".sfondopagini").hide();
+				$(".pagina2").hide();
+				$(".pagina1").hide();
+				$(".eleese").hide();
+				$(".esito").hide();
+				$(".esitorevoca").hide();
+				$(".revese").hide();
+				$(".besitoko").show();
+				$(".insnuovaese").show();
+				$(".esitoko").hide();
+				$( ".NoTitolare" ).hide();
+				$( ".titperme" ).show();
+				$( ".titperfam" ).hide();				
+				$("#prodTabs a:first").tab('show');
+				$(window).scrollTop(0);
+			} else if (codice == "perfam") {
+				$(".sfondopagini").hide();
+				$(".pagina2").hide();
+				$(".pagina1").hide();
+				$(".eleese").hide();
+				$(".besitoko").show();
+				$(".esito").hide();
+				$(".esitorevoca").hide();
+				$(".revese").hide();
+				$(".insnuovaese").show();
+				$(".esitoko").hide();
+				$( ".NoTitolare" ).hide();
+				$( ".titperme" ).hide();
+				$( ".titperfam" ).show();
+				$("#prodTabs a:last").tab('show');
+				$(window).scrollTop(0);
+			} else if (codice == "perasl") {
+				$("#prodTabsben a:first").tab('show');
+				$("#prodTabsdic a:first").tab('show');
+			}
+		};
+
+		!function(a) {
+			a.fn.datepicker.dates.it = {
+				days : [ "Domenica", "Lunedì", "Martedì", "Mercoledì",
+						"Giovedì", "Venerdì", "Sabato" ],
+				daysShort : [ "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab" ],
+				daysMin : [ "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa" ],
+				months : [ "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio",
+						"Giugno", "Luglio", "Agosto", "Settembre", "Ottobre",
+						"Novembre", "Dicembre" ],
+				monthsShort : [ "Gen", "Feb", "Mar", "Apr", "Mag", "Giu",
+						"Lug", "Ago", "Set", "Ott", "Nov", "Dic" ],
+				today : "Oggi",
+				monthsTitle : "Mesi",
+				clear : "Cancella",
+				weekStart : 1,
+				format : "dd/mm/yyyy"	
+			}
+		}(jQuery);
+
+	$(document).ready(
+				
+				
+				function() {		
+
+					$("ul.nav-Tabs-principale li").click(
+							function() {
+
+								$("#prodTabs a:first").tab('show');
+
+								$("ul.nav-Tabs-principale li").removeClass(
+										"active"); 
+								$("ul.nav-Tabs-principale li").find("a")
+										.removeClass("active");
+								$(this).addClass("active"); 
+								$(this).find("a").addClass("active"); 
+
+								$(".tab-pane").hide(); 
+
+								var activeTab = $(this).find("a").attr("href"); 
+								
+								$(activeTab).fadeIn();
+
+								return false;
+							});
+
+
+					$(window).scrollTop(0);
+				});
+	</script>
+</body>
+</html>

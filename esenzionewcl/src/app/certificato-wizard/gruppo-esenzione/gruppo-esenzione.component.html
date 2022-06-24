@@ -1,0 +1,19 @@
+<form #gruppoEsenzioneForm="ngForm" class="editForm" novalidate>
+	<div class="row">
+		<div class="tab-content"
+			style="width: 100%; font-size: 12px; background: white; margin-bottom: 15px; margin-top:30px">
+
+			<div class="row"  style="margin-bottom: 40px;">
+				<div class="col-md-4">
+					<button class="btn btn-default btn-lg btn-block btn-huge" (click)="goToNext('MC')" [disabled]="!assistitoStoreService.abilitatoAdAzione('18')">Per malattia cronica</button>
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-default btn-lg btn-block btn-huge" (click)="goToNext('MR')" [disabled]="!assistitoStoreService.abilitatoAdAzione('19')">Per malattia rara</button>
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-default btn-lg btn-block btn-huge" (click)="goToNext('IN')" [disabled]="!assistitoStoreService.abilitatoAdAzione('20')">Per invalidit&agrave;</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

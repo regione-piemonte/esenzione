@@ -1,0 +1,165 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px;">
+				
+		<div class="row col-md-12"  style="margin-bottom: 15px;">
+			<div class="col-md-3">
+				<span>Riepilogo dati certificato</span>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+			
+				<div class="row col-md-12" style="padding-top: 15px;">
+					<div class="col-md-11">
+						<span>Dati beneficiario</span>
+					</div>
+					<div class="col-md-1" *ngIf="!workFlowService.isFromEsenzioni()">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Nome</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.nome }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Cognome</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.cognome }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Data di nascita</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.dataNascita }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Codice fiscale</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.codFiscale }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px; padding-bottom: 15px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Comune di nascita</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.comuneNascita }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Sesso</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.codSesso }}</span>
+						</div>
+					</div>
+				</div>				
+			</div>	
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+				<div class="row col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
+					<div class="col-md-11">
+						<div class="row" >
+							<span>Tipo esenzione</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ formDataService.getGruppoEsenzione().gruppoEsenzione }}</span>
+						</div>
+					</div>
+					<div class="col-md-1" *ngIf="!workFlowService.isFromEsenzioni()">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToGruppoEsenzione()">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+				<div class="row col-md-12" style="padding-top: 15px;">
+					<div class="col-md-11">
+						<div class="row" >
+							<span>Patologia</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ formDataService.getTipologiaCert().diagnosi.codice_diagnosi }} - {{ formDataService.getTipologiaCert().diagnosi.descrizione_diagnosi }}</span>
+						</div>
+					</div>
+					<div class="col-md-1" *ngIf="!workFlowService.isFromEsenzioni()">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToDiagnosi()">
+						</div>
+					</div>					
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;">
+					<div class="col-md-12">
+						<div class="row" >
+							<span>Codice Esenzione</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ formDataService.getTipologiaCert().esenzione.codice_esenzione }} - {{ formDataService.getTipologiaCert().esenzione.descrizione_esenzione }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px; padding-bottom: 15px;">
+					<div class="col-md-12">
+						<div class="row" >
+							<span>&Egrave; affetto dalla seguente patologia</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ formDataService.getTipologiaCert().patologia }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+					
+		<div class="row col-md-12" style="padding-top:15px; padding-bottom: 15px;">
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block" style="float: right" 
+					*ngIf="!workFlowService.isFromEsenzioni()"
+					(click)="goToBack()">Indietro</button>
+			</div>
+			<div class="col-md-2">				
+				<button type="button" class="btn btn-primary btn-block" style="float: right" (click)="submit()">Conferma</button>
+			</div>
+		</div>
+</div>
+	

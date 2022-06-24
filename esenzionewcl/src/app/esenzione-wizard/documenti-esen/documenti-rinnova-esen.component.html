@@ -1,0 +1,183 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">
+	<form #docAllegatoForm="ngForm" class="editForm" novalidate>
+
+		<div class="row rigabiancafontnero eleese">
+
+			<div class="row col-md-12" style="padding-top: 15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Documenti da allegare</label>
+						<ng-container>
+							<div class="form-group">
+							    <input type="file"
+							    	   #inputFile
+							           id="document_to_upload"
+							           (change)="handleFileInput($event.target.files)"
+							           name="fileToUplad"
+							           accept="application/pdf">
+							</div>
+						</ng-container>
+					</div>
+				</div>
+
+				<!-- modal form helper -->
+				<div class="col-md-6">
+					<!-- modal helper su documentazione da caricare -->
+					<a nohref data-toggle="modal" data-target="#helperDocModal" 
+						style="color: dodgerblue; text-decoration: underline; font-weight: normal; cursor: pointer;">
+						Quali documenti posso allegare?
+					</a>
+
+					<!-- Modal -->
+					<div class="modal fade helperDocModal" id="helperDocModal" tabindex="-1" role="dialog" aria-labelledby="helperTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="helperTitle">Che documenti posso caricare</h5>
+					        <button type="button" class="btn btn-cerca btn-circle" (click)="ChiudiHelper()" style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+						<img class="img-fluid" src="assets/img/user/u18.png"></button>
+					      </div>
+						  <div class="modal-body" style="font-size: 12px">
+					        Per il rilascio dell&rsquo;attestato di esenzione, deve essere allegato <b>uno dei seguenti documenti</b>:
+					        <ul>
+					          <li>
+					            <b>certificazione</b> rilasciata da <b>specialisti di struttura sanitaria
+					            pubblica o di istituti ed enti</b> di cui all&sbquo;art. 4, comma 2, del decreto
+					            legislativo n. 502/92 o da istituzioni sanitarie pubbliche di paesi
+					            appartenenti all&sbquo;Unione Europea;
+					          </li>
+					          <li>
+					            <b>cartella clinica</b> rilasciata dalle <b>strutture sanitarie</b> di cui al punto precedente;
+					          </li>
+					          <li>
+					            <b>cartella clinica</b> rilasciata dalle <b>Case di Cura private accreditate</b>, previa valutazione del Medico del Distretto;
+					          </li>
+					          <li>
+					            <b>verbale di invalidit&agrave;</b> contenente la <b>diagnosi</b> rilasciato dalla <b>Commissione di Invalidit&agrave;</b>, corredato da eventuale     documentazione sanitaria;
+					          </li>
+					          <li>
+					            <b>documentazione</b> rilasciata dal <b>centro della &quot;Rete Interregionale per le Malattie Rare&quot;</b>
+					          </li>
+					        </ul>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-block light" (click)="ChiudiHelper()">Chiudi</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row col-md-12">
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					<div class="form-group">
+						<label>Tipo documento</label>
+						<ng-container>
+							<select name="tipoDocumento" id="tipo_documento" class="form-control form-control-sm comboese"
+								#tipoDocumento="ngModel"
+								[(ngModel)]="tipoDocumentoSel"
+								required>
+								<option></option>
+								<option *ngFor="let tipo of initEsenFields.tipi_documento" [ngValue]="tipo">{{ tipo.descrizione }}</option>
+							</select>
+						</ng-container>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-1"></div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Data  rilascio</label>
+						<div class="input-group input-append date" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span>
+							<input type="text" class="form-control"
+								name="dataRilascio" id="dataRilascio"
+								#dataRilascio
+								readonly
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;"
+							>
+						</div>
+						<span *ngIf="!isDataRilascioValid" style="font-size:12px; color:red;">Inserisci una data di rilascio valida</span>
+					</div>
+				</div>
+				<div class="col-md-8"></div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-1"></div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Data  fine validit&agrave;</label>
+						<div class="input-group input-append date" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span>
+							<input type="text" class="form-control"
+								name="dataValidita" id="dataValidita"
+								#dataValidita
+								readonly
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;"
+							>
+						</div>
+						<span *ngIf="!isDataValiditaValid" style="font-size:12px; color:red;">Inserisci una data di validit&agrave; valida</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-6"></div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block" style="float: right"
+						[disabled]="!docAllegatoForm.valid || !fileSelected"
+						(click)="addDocumento()">
+						Aggiungi
+						</button>
+				</div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="table-responsive">
+						<table id="ricerca" class="table table-bordered" style="width: 100%">
+							<tr>
+								<th>Nome Documento</th>
+								<th>Tipo Documento</th>
+								<th>Data Rilascio</th>
+								<th>Data Validit&agrave;</th>
+								<th>Elimina</th>
+							</tr>
+
+							<tr *ngFor="let documento of lista_documenti; let i = index">
+								<td>{{documento.filename}}</td>
+								<td>{{documento.descrizione}}</td>
+								<td>{{documento.dataRilascio}}</td>
+								<td>{{documento.dataFineValidita}}</td>
+								<td>
+									<img id="imgDelete" class="img-fluid" src="assets/img/user/elimina.jpg"
+										style="cursor: pointer;" alt="Delete"
+										(click)="removeDocument(i)">
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+
+		<br>
+
+	</form>
+</div>

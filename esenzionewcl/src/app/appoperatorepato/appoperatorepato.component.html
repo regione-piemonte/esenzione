@@ -1,0 +1,65 @@
+
+<div class="container">
+	<ngx-loading [show]="loading"
+		[config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="row cardDemo7">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max" id="mediaHeader"
+		style="padding-left: 5px; padding-right: 5px">
+		<div class="row">
+			<div class="col" style="padding-left: 0px; padding-top: 6px;">
+				<a nohref style="color: white; cursor: pointer;" class="pageleese" (click)="goToHome()">Esenzioni per patologie e invalidit&agrave;</a>
+			</div>
+
+			<div class="col-auto"
+				style="padding-top: 0px; padding-bottom: 3px; padding-right: 0px; width: max-content;">
+				<ng-container *ngFor="let assistito of listaAssistiti">
+
+				<button type="button" id="bottonePC"
+					class="btn btn-servizi dropdown-toggle" data-toggle="dropdown"
+					style="float: right; padding-left: 0px; box-shadow: 0 0 0 0;">
+					<img class="img-fluid" src="assets/img/user/icona_profilo.png">&emsp;{{assistito.nome}}
+					{{assistito.cognome}}
+				</button>
+				<button type="button" id="bottoneSM"
+					class="btn btn-servizi dropdown-toggle" data-toggle="dropdown"
+					style="float: right; padding-left: 0px; box-shadow: 0 0 0 0; padding-top: 5px; padding-bottom: 5px;">
+					<img id="imgSM" class="img-fluid" data-toggle="dropdown"
+						src="assets/img/user/icona_profilo.png">
+				</button>
+				<div class="dropdown-menu" id="dropMenuSM"
+					style="padding-right: 15px">
+					<div class="row">
+						<div class="col" style="padding-left: 0px; padding-right: 0px">
+							<a class="dropdown-item color-tendina-esci"
+								(click)="paginaPersonale()" style="cursor: pointer;">Profilo
+								personale</a>
+						</div>
+						<div class="col-auto"
+							style="padding-left: 0px; padding-right: 0px">
+							<i class="fa fa-gear"></i>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col" style="padding-left: 0px; padding-right: 0px">
+							<a class="dropdown-item color-tendina-esci"
+								(click)="escilogout()" style="cursor: pointer;">Esci</a>
+						</div>
+						<div class="col-auto"
+							style="padding-left: 0px; padding-right: 0px">
+							<i class="fa fa-external-link"></i>
+						</div>
+					</div>
+
+
+				</div>
+
+			 </ng-container>
+			</div>
+		</div>
+	</div>
+</div>
+
+<router-outlet></router-outlet>

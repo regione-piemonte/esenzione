@@ -1,0 +1,514 @@
+<div class="container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px;">
+  <app-esen-creata-validata class="col-md-8" *ngIf="esenzioneCreata"></app-esen-creata-validata>
+                <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="row">
+                        <div class="col-md-12 rigaok bordo-esitook esitoricercaok"
+                            style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                            <div class="row">
+                                <div class="col-md-1" style="padding-right: 0px;">
+                                    <img class="img-fluid" src="assets/img/user/imgok.jpg">
+                                </div>
+                                <div class="col-md-11" style="padding-left: 0px;">
+                                    <strong>
+                                        <p id="messaggioesitoricercaok"></p>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="row">
+                        <div class="col-md-12 rigako bordo-esitoko esitoricercako"
+                            style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                            <div class="row">
+                                <div class="col-md-1" style="padding-right: 0px;">
+                                    <img class="img-fluid" src="assets/img/user/negativoko.jpg">
+                                </div>
+                                <div class="col-md-11" style="padding-left: 0px;">
+                                    <strong>
+                                        <p id="messaggioesitoricercako"></p>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="row">
+                        <div class="col-md-12 rigagen bordo-esitogenerico esitoricercagenerico"
+                            style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+                            <div class="row">
+                                <div class="col-md-1" style="padding-right: 0px;">
+                                    <img class="img-fluid" src="assets/img/user/generico.jpg">
+                                </div>
+                                <div class="col-md-11" style="padding-left: 0px;">
+
+                                        <p id="messaggioesitoricercagenerico"></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+		<div class="row col-md-12"  style="margin-bottom: 15px;" *ngIf="!esenzioneCreata">
+			<div class="col-md-3">
+				<span>Certificato creato</span>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px" *ngIf="!esenzioneCreata">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:15px">
+
+				<div class="row col-md-12" style="padding-top: 15px;">
+					<div class="col-md-1"></div>
+					<div class="col-md-10" style="padding-bottom:50px; padding-top:50px;">
+						<span>&Egrave; stato creato un nuovo certificato con n. <b>{{ numeroCertificato }}</b></span>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+  <div class="row" *ngIf="firmato && workFlowService.isFromEsenzioni()">
+    <div class="col-md-12 rigabiancafontnero eleese">
+      <div class="row" style="padding-top:15px;">
+        <div class="col-md-2">
+          <h2 style="color: dodgerblue;">Nota</h2>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="nota-beneficiario">Beneficiario</label>
+            </div>
+            <div class="col-md-10">
+              <textarea id="nota-beneficiario" rows="2" cols="50" class="area-note" name="nota-beneficiario"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="nota-servizio">Servizio</label>
+            </div>
+            <div class="col-md-10">
+              <textarea rows="2" cols="50" class="area-note" name="nota-servizio" id="nota-servizio"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="nota-interna">Interna</label>
+            </div>
+            <div class="col-md-10">
+              <textarea rows="2" cols="50" class="area-note" name="nota-interna" id="nota-interna"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+		<div class="row col-md-12" style="padding-top:15px; padding-bottom: 15px;" *ngIf="!esenzioneCreata">
+			<div class="col-md-3"></div>
+			<div class="col-md-3">
+				<button type="button" *ngIf="firmato" class="btn btn-primary btn-block" style="float: right" (click)="goToHome()">Torna alla Home</button>
+			</div>
+			<div class="col-md-3" *ngIf="workFlowService.isFromEsenzioni()">
+				<button type="button" class="btn btn-primary btn-block" style="float: right"
+					(click)="rimandaAdOperatore('INVIATA')"
+					[disabled]="!firmato">Rimanda ad Operatore</button>
+			</div>
+			<div class="col-md-3" *ngIf="!firmato">
+				<button type="button" class ="btn btn-primary btn-block" style="float: right" (click)="firmaCertificato()">Firma Certificato</button>
+			</div>
+			<div class="col-md-3" *ngIf="firmato">
+             <button type="button" class="btn btn-primary btn-block"
+              (click)="scaricaCertificato()"
+               *ngIf="assistitoStoreService.abilitatoAdAzione('5')">
+                 Scarica certificato
+                  </button>
+             </div>
+             <div class="col-md-3" *ngIf="firmato && !workFlowService.isFromEsenzioni()">
+             <button type="button" class="btn btn-primary btn-block"
+                     data-toggle="tooltip" data-placement="bottom" title="Rilascia Attestato"
+              (click)="inviaRichiestaEsenzione()"
+               *ngIf="assistitoStoreService.abilitatoAdAzione('27')">
+                 Crea e valida esenzione
+                  </button>
+             </div>
+
+		</div>
+
+</div>
+
+
+
+
+
+<div class="modal fade rettifica-esenzione" id="rettifica-esenzione" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content rigabiancafontnero">
+            <div class="row" style="padding: 15px 0;">
+                <div class="col-md-6" style="float: left; text-align: left; color: dodgerblue; font-weight: bold; font-size: 24px;">
+                    RETTIFICA ESENZIONE
+                </div>
+                <div class="col-md-6" style="text-align: end;">
+                    <button type="button" class="btn btn-cerca btn-circle" (click)="chiudiModal()"
+                        style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+                        <img class="img-fluid" src="assets/img/user/u18.png">
+                    </button>
+                </div>
+            </div>
+            <div class="container rigagrigiafontnero" style="padding: 15px 30px;">
+                <div class="row">
+                    <div class="col" style="font-size: 20px; text-align: center;">
+                        <p>Sei sicuro di voler rettificare la pratica {{numeroCertificato}}?</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="combo-motivazione" style="font-size: 20px; font-weight: bold; color: dodgerblue;">
+                            Motivazione
+                        </label>
+                    </div>
+                    <div class="col-auto">
+                        <select name="combo-motivazione" id="combo-motivazione"
+							class="form-control form-control-sm">
+							<option disabled selected>Seleziona motivazione</option>
+    						<option *ngFor="let motivazione of motivazioni"
+								value="{{motivazione.descrizione}}">
+								{{motivazione.descrizione}}
+							</option>
+						</select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="font-size: 20px; font-weight: bold; color: dodgerblue;">
+                        Note
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-ben" style="font-weight: bold; font-size: 16px;">Per Beneficiario</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-ben" id="nota-ben"
+                            *ngIf="notaBeneficiario !== null && notaBeneficiario !== ''; else notaBenVuota">
+                            {{ notaBeneficiario }}
+                        </p>
+                        <ng-template #notaBenVuota>
+                            <p name="nota-ben" id="nota-ben">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-ser" style="font-weight: bold; font-size: 16px;">Per Servizio</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-ser" id="nota-ser"
+                            *ngIf="notaServizio !== null && notaServizio !== ''; else notaSerVuota">
+                            {{ notaServizio }}
+                        </p>
+                        <ng-template #notaSerVuota>
+                            <p name="nota-ser" id="nota-ser">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nota-int" style="font-weight: bold; font-size: 16px;">Interne ASL/CAS</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p name="nota-int" id="nota-int"
+                            *ngIf="notaInterna !== null && notaInterna !== ''; else notaIntVuota">
+                            {{ notaInterna }}
+                        </p>
+                        <ng-template #notaIntVuota>
+                            <p name="nota-int" id="nota-int">Non compilata</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block light"
+		                    (click)="chiudiModal()">NO</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-block btn-primary"
+                        (click)="procediRettificaEsenzione()">SI</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Valida-->
+<div class="modal fade firmacertificato" id="firmacertificato" role="dialog"
+     aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document"
+       style="max-width: 60%">
+    <div class="modal-content rigabiancafontblu ombramodal">
+      <div class="row"><p></p>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 rigako bordo-esitoko esitoricercafirmako"
+             style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+          <div class="row">
+            <div class="col-md-1" style="padding-right: 0px;">
+              <img class="img-fluid" src="assets/img/user/negativoko.jpg">
+            </div>
+            <div class="col-md-11" style="padding-left: 0px;">
+              <strong>
+                <p id="messaggioesitoricercafirmako"></p>
+              </strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 rigaok bordo-esitook esitoricercafirmaok"
+             style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+          <div class="row">
+            <div class="col-md-1" style="padding-right: 0px;">
+              <img class="img-fluid" src="assets/img/user/imgok.jpg">
+            </div>
+            <div class="col-md-11" style="padding-left: 0px;">
+              <strong>
+                <p id="messaggioesitoricercafirmaok"></p>
+              </strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+
+      <div class="row"
+           style="padding-top: 15px;padding-bottom: 15px;padding-left: 0px;padding-right: 0px;font-size:1.2rem;">
+        <div class="col-md-1"></div>
+        <div class="col-md-9" style="padding-left: 0px;">
+          <strong><p id="testofirma"></p></strong>
+        </div>
+        <div class="col-md-1" style="padding-left: 35px;padding-right: 0px;">
+          <button type="button" class="btn btn-cerca btn-circle" (click)="ChiudiFirma()"
+                  style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+            <img class="img-fluid"
+                 src="assets/img/user/u18.png"></button>
+        </div>
+        <div class="col-md-1"></div>
+
+
+      </div>
+      <div class="row"
+           style="padding-top: 15px; padding-bottom: 15px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 rigagrigiafontnero">
+
+          <div class="row"><p></p></div>
+
+          <div class="col-md-12" style="padding-bottom: 15px;">
+            <div class="row" style="font-size:1.1rem;">
+              <div class="col-md-4">
+                <strong><label>Provider di firma</label></strong>
+              </div>
+              <div class="col-md-8" style="word-break: break-word;">
+                <select name="combo-ca" id="combo-ca" [(ngModel)]="selectedCa"
+                        class="form-control form-control-sm" (ngModelChange)="selectedOtpType = null; isValidForm()">
+                  <option [ngValue]="null">Seleziona...</option>
+                  <option *ngFor="let ca of listaCa" [ngValue]="ca">
+                    {{ca.descrizione}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 alias" style="padding-bottom: 15px;">
+            <div class="row" style="font-size:1.1rem;">
+              <div class="col-md-4">
+                <strong><label>Alias</label></strong>
+              </div>
+              <div class="col-md-8" style="word-break: break-word;">
+                <input class="form-control" id="inpalias" name="inpalias" [(ngModel)]="alias"
+                       style="height: 30px;" [ngClass]="{'valid': !firstAlias && validAlias(),
+                       'not-valid': !firstAlias && !validAlias()}" (ngModelChange)="isValidForm()">
+                <span *ngIf="!firstAlias && !validAlias()" style="color: red;font-size: 12px;font-weight: normal;">Campo obbligatorio</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 pin" style="padding-bottom: 15px;">
+            <div class="row" style="font-size:1.1rem;">
+              <div class="col-md-4">
+                <strong><label>Pin</label></strong>
+              </div>
+              <div class="col-md-8" style="word-break: break-word;">
+                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" id="inppin" name="inppin" [(ngModel)]="pin"
+                       style="height: 30px;" [ngClass]="{'valid': !firstPin && validPin(),
+                       'not-valid': !firstPin && !validPin()}" (ngModelChange)="isValidForm()">
+                <i id="togglePassword" class="fa" [ngClass]="{ 'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()" ></i>
+                <span *ngIf="!firstPin && !validPin()" style="color: red;font-size: 12px;font-weight: normal;">Campo obbligatorio (deve essere un numerico di 8 cifre)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 otp" style="padding-bottom: 15px;">
+            <div class="row" style="font-size:1.1rem;">
+              <div class="col-md-4">
+                <strong><label>Otp</label></strong>
+              </div>
+              <div class="col-md-8" style="word-break: break-word;">
+                <input class="form-control" id="inpotp" name="inpotp"
+                       style="height: 30px;">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="otp-section">
+
+            <fieldset class="scheduler-border">
+              <legend class="scheduler-border"><label>
+                <input id="check-otp" name="check-otp" type="checkbox"
+                  name="colorCheckbox" [(ngModel)]="toggleOtp"
+                  [ngModelOptions]="{standalone: true}"> Richiedi OTP</label></legend>
+              <div class="control-group otp-box" *ngIf="toggleOtp" >
+
+                <div class="col-md-12" style="padding-bottom: 15px;">
+                  <div class="row" style="font-size:1.1rem;">
+                    <div class="col-md-4">
+                      <strong><label>Modalità di trasmissione OTP</label></strong>
+                    </div>
+                    <div class="col-md-8" style="word-break: break-word;">
+                      <select name="combo-otp-type" id="combo-otp-type" [(ngModel)]="selectedOtpType"
+                              class="form-control form-control-sm" (ngModelChange)="isValidForm()">
+                        <option [ngValue]="null">Seleziona...</option>
+                        <option *ngFor="let typeOtp of selectedCa?.tipiOtp"
+                        [ngValue]="typeOtp">
+                          {{typeOtp.descrizione}}
+                        </option>
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-md-12 " style="padding-bottom: 5px;">
+                  <div class="row" style="font-size:1.1rem;">
+                    <div class="col-md-12 offset-md-12" style="text-align: center;">
+                    <button type="button" class="btn btn-primary" [disabled]="!validFormOtp"
+                            (click)="richiestaOtpFirma()">Richiedi OTP
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+
+          <div class="col-md-12" style="padding-top:15px;padding-bottom:15px;">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-block light"
+                        (click)="ChiudiFirma()">Esci
+                </button>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-primary" [disabled]="!validFormFirma"
+                        (click)="firmaDocumentoDigitale()">Firma Documento
+                </button>
+              </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Valida-->
+<div class="modal fade validacertificato" id ="validacertificato" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-dialog-centered" role="document"	style="max-width: 70%">
+		<div class="modal-content rigabiancafontblu ombramodal">
+			<div class="row" style="padding-top: 15px;padding-left: 0px;padding-right: 0px;font-size:1.2rem;">
+				<div class="col-md-1"></div>
+				<div class="col-md-1" style="padding-left: 0px;">
+				<strong><p>VALIDA</p></strong>
+				</div>
+				<div class="col-md-8"></div>
+				<div class="col-md-1" style="padding-left: 35px;padding-right: 0px;">
+					<button type="button" class="btn btn-cerca btn-circle" (click)="chiudiValida()" style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+						<img class="img-fluid" src="assets/img/user/u18.png">
+					</button>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+			<div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 rigagrigiafontnero">
+					<div class="col-md-12">
+						<div class="row" style="font-size:1.7rem;">
+							<p>
+							Sei sicuro di voler validare la pratica <b>{{ num_pratica_da_validare }}</b>?
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12" style="padding-top:15px;padding-bottom:15px;">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-block light"
+								(click)="chiudiValida()">NO</button>
+						</div>
+						<div class="col-md-2"></div>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-block btn-primary"
+								(click)="procediApprovaEsenzione()">SI</button>
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+</div>

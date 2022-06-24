@@ -1,0 +1,90 @@
+<div class="container">
+	<ngx-loading [show]="loading"
+		[config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<router-outlet></router-outlet>
+
+<div id="home">
+	<div class="row cardDemo7">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 larghezza-max" id="mediaHeader"
+			style="padding-left: 5px; padding-right: 5px">
+			<div class="row">
+				<div class="col" style="padding-left: 0px; padding-top: 6px;">
+					<a nohref style="color: white; cursor: pointer;" class="pageleese">Home</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+
+
+	<div class="row cardDemo7 noese rigabiancafontnero"
+		style="background: white; padding-top: 5px; padding-bottom: 5px">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 larghezza-max" style="padding: 50px">
+			<div class="row" style="margin-top: 20px">
+
+				<div class="col-md-4">
+					<div class="row">
+					<div class="col-md-4"></div>
+					<table class="home-table table-bordered">
+						<thead>
+						<tr>
+							<td>Esenzioni per patologie e invalidit&agrave;</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<p id="home-descr">Il servizio permette di inserire e/o gestire la domanda per l'esenzione dal ticket sanitario per <strong>patologia/invalidit&agrave;/malattia rara</strong> per conto dei cittadini che ne fanno richiesta.</p>
+							<button type="button"  class="btn btn-primary home-button" (click)="ApriHome()">ACCEDI</button>
+							<br>
+						</tr>
+					</tbody>
+					</table>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="row">
+					<div class="col-md-4"></div>
+					<table class="home-table table-bordered">
+						<thead>
+						<tr>
+							<td>Esenzione per reddito</td>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<p id="home-descr">Il servizio permette di inserire e/o gestire la domanda per l'esenzione dal ticket sanitario <strong>per motivi di reddito </strong>per conto dei cittadini che ne fanno richiesta.                 <br><br></p>
+							<button type="button" class="btn btn-primary home-button" (click)="ApriEsenred()">ACCEDI</button>
+						</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+
+
+
+	<div class="row cardDemo7 sitrova rigabiancafontnero"
+		style="display: none; background: white; padding-top: 15px; padding-bottom: 15px">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 larghezza-max">
+			<div class="row">
+				<div class="col-md-12" style="color: black; padding-left: 0px;">Hai
+					bisogno di aiuto?</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+
+
+</div>
+

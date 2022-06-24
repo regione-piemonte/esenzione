@@ -1,0 +1,1007 @@
+
+<div class="container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+
+<div class="row rigagrigianobordo" style="padding-top: 0px; padding-bottom: 0px">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max"
+		style="padding-left: 5px; padding-right: 5px">
+		<div class="row">
+			<div class="col" id="mediaHeader"
+				style="color: black; padding-left: 0px;"></div>
+			<div id="filtriSM" class="col-auto" style="padding-right: 0px;">
+				<button class="btn btn-cerca btn-circle fa fa-search aprifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important; display: none"
+					(click)="ApriFiltroOp()"></button>
+				<button class="btn btn-cerca btn-circle fa fa-close chiudifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important;"
+					(click)="ChiudiFiltroOp()"></button>
+				<button  id="operatore" type="button"
+					style="float: right; width: 150px; font-size: 12px;"
+					class="btn btn-default btn-circle fa fa-plus-circle fa-lg"
+					href="#"
+					style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;"
+					*ngIf = "assistitoStoreService.abilitatoAdAzione('3') && tabService.getCurrentTab()=='certificati'"
+					(click)="navigateToRicerca()"></button>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-1"></div>
+</div>
+
+<div class="row rigagrigianobordo" id="home-id"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max">
+	<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigaok bordo-esitook esitoricercaok"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/imgok.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong><p id="messaggioesitoricercaok"></p></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigako bordo-esitoko esitoricercako"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong><p id="messaggioesitoricercako"></p></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div
+					class="col-md-12 rigagen bordo-esitogenerico esitoricercagenerico"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/generico.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<p id="messaggioesitoricercagenerico"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+				<div class="row rigabiancafontnero eleese">
+
+			<div class="col-md-12 divFiltri"
+				style="padding-top: 15px; font-weight: bold">
+
+				<br>
+
+
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group statofiltroc" *ngIf="tabService.getCurrentTab()=='certificati'">
+							<label>Stato</label>
+							 <ng-container> <select name="statofiltro"
+								id="statofiltro" class="form-control form-control-sm comboese">
+								<option *ngFor="let statodocumento of statodocumentoStoreService.listaStatoDocumento"
+									value="{{statodocumento.codStato}}">
+									{{statodocumento.descStato}}</option>
+							</select> </ng-container>
+						</div>
+						<div class="form-group statofiltrop" *ngIf="tabService.getCurrentTab()=='esenzioni'">
+							<label>Stato</label>
+							<ng-container> <select name="statofiltrop"
+								id="statofiltrop" class="form-control form-control-sm comboese">
+								<option>TUTTE</option>
+								<option *ngFor="let statodocumento of statodocumentoStoreService.listaStatoPratica"
+									value="{{statodocumento.codStato}}">
+									{{statodocumento.descStato}}</option>
+							</select> </ng-container>
+						</div>
+						<div class="form-group statofiltror" *ngIf="tabService.getCurrentTab()=='ricercarichiestacertificati'">
+							<label>Stato</label>
+							<ng-container> <select name="statofiltror"
+								id="statofiltror" class="form-control form-control-sm comboese">
+								<option *ngFor="let statodocumento of statodocumentoStoreService.listaStatoPraticaRicerca"
+									value="{{statodocumento.codStato}}">
+									{{statodocumento.descStato}}</option>
+							</select> </ng-container>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Codice esenzione patologia/malattia rara</label>
+							<ngx-select-dropdown 
+								name="codEsenzionePatologiafiltro"
+								id="codEsenzionePatologiafiltro" 
+								class="form-control form-control-sm combo-patologia-home"
+								[(ngModel)] = "selectedPatologia"
+								groupBy="gruppoEsenzione"
+								[config]="configPatologia" [options]="esenzioneStoreService.listacodiceesenzionepatologia">
+							</ngx-select-dropdown>
+
+
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label id="labelvalidada" *ngIf="tabService.getCurrentTab()!='ricercarichiestacertificati'">Validit&agrave; da</label>
+						<label id="labeldataricda" *ngIf="tabService.getCurrentTab()=='ricercarichiestacertificati'">Data Richiesta da</label>
+						<div class="input-group input-append date" id="startdateda"
+							name="startdateda" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text"
+								class="form-control" name="validada" id="validada"
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+					</div>
+					<div class="col-md-2">
+
+						<label id="labelvalidaa" *ngIf="tabService.getCurrentTab()!='ricercarichiestacertificati'">Validit&agrave; a</label>
+						<label id="labeldatarica" *ngIf="tabService.getCurrentTab()=='ricercarichiestacertificati'">Data Richiesta a</label>
+						<div class="input-group input-append date" id="startdatea"
+							name="startdatea" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text"
+								class="form-control" name="validaa" id="validaa"
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+					</div>
+				</div>
+				<br>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+
+						<input class="form-control" type="text" hidden
+							name="idassistitobenric" id="idassistitobenric">
+						<div class="form-group">
+							<label>Cognome Beneficiario</label> <input class="form-control"
+								type="text" name="cognomebenfiltro" id="cognomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Nome Beneficiario</label> <input class="form-control"
+								type="text" name="nomebenfiltro" id="nomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Codice fiscale Beneficiario</label> <input
+								class="form-control" type="text" name="codfiscbenfiltro"
+								id="codfiscbenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+				<div class="col-md-8">
+				                <p id="gdprDisclaimer">
+				                    Ai sensi del GDPR i tuoi accessi verranno tracciati e comunicati eventualmente al cittadino
+				                </p>
+				            </div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"
+						style="padding-left: 0px; padding-right: 0px position: absolute; bottom: 0;">
+							<button id="cerca" class='cerca' type="button" class="btn btn-primary btn-block"
+							style="float: right" href="#"
+						(click)="Cerca()">Cerca</button>
+					</div>
+				</div>
+
+				<br>
+
+				<br>
+				<div class="card-content mesric">
+					<label class="messaggiokoricerca" id="messaggioricerca"></label>
+				</div>
+			</div>
+		</div>
+
+	<div class="eleassistiti" style="color: black; padding-top: 30px"
+			id="tuttoRicercaAssititi">
+									<div class="row">
+									<div class="col-md-1"></div>
+				                        <div class="col-md-7">
+				                           <strong> <p style="color: DodgerBlue;">Hai cercato: <label id="datiassistito"></label></p></strong>
+				                        </div>
+
+				                        <div class="col-md-4">
+				                            <a nohref style="cursor: pointer; color: DodgerBlue;"
+				                                (click)="resetCercaBeneficiario()">
+				                                <strong>Annulla ricerca</strong>
+				                                <i class="fa fa-close"></i>
+				                            </a>
+				                        </div>
+
+				                    </div>
+				                    <div class="row" style="color: DodgerBlue;padding-bottom:15px;">
+				                    <div class="col-md-1"></div>
+				                        <div class="col-md-4"><strong>Risultati trovati: <label id="numtrovati"></label></strong></div>
+				                        <div class="col-md-6">Scegli un nominativo e seleziona conferma</div>
+				                        <div class="col-md-1"></div>
+				                    </div>
+					            <div class="row">
+				                <div class="col-md-1"></div>
+				                <div class="col-md-10 rigabiancafontnero" style="padding-top: 15px;">
+
+				                    <div class="table-responsive">
+				                        <table id="ricercaAssistitoTable" class="table table-bordered">
+				                            <thead>
+				                                <tr>
+				                                    <th scope="col">Cognome</th>
+				                                    <th scope="col">Nome</th>
+				                                    <th scope="col">Codice Fiscale</th>
+				                                    <th scope="col">Sesso</th>
+				                                    <th scope="col">Data di nascita</th>
+				                                    <th scope="col">Comune di nascita</th>
+				                                </tr>
+				                            </thead>
+				                            <tbody style="font-weight: normal;">
+				                                <tr *ngFor="let assistito of assistito; let i=index"
+				                                    (click)="selectBeneficiario(i)" [class.active]="i == selectedBeneficiario" style="cursor: pointer;">
+				                                    <td>{{assistito.cognome}}</td>
+				                                    <td>{{assistito.nome}}</td>
+				                                    <td>{{assistito.codFiscale}}</td>
+				                                    <td>{{assistito.codSesso}}</td>
+				                                    <td>{{assistito.dataNascita}}</td>
+				                                    <td>{{assistito.comuneNascita}}</td>
+				                                </tr>
+
+				                            </tbody>
+				                        </table>
+				                    </div>
+				                    <div class="row">
+				                <div class="col-md-4"></div>
+				                <div class="col-md-4"></div>
+				                <div class="col-md-4">
+				                    <button type="button" class="btn btn-primary btn-block" style="float: right"
+				                        (click)="ScegliCittadino()" [disabled]="selectedBeneficiario === null">Conferma</button>
+				                        <br>
+				                </div>
+				                <br><br>
+				            </div>
+				                </div>
+				                <div class="col-md-1"> </div>
+				            </div>
+
+	</div>
+
+
+		</div>
+
+		</div>
+<div class="tab-content">
+<div class="tab-pane fade show active rigabiancafontnero"
+							id="ricercarichiestacertificati" role="tabpanel">
+
+<div class="row rigagrigianobordo"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+<div class="elericcertris" style="color: black; padding-top: 30px"
+			id="tuttoRicerca">
+			<div class="row">
+				<div class="col" style="padding-left: 0px;color: DodgerBlue;">
+					<strong><label id="componitesto"></label></strong>
+				</div>
+
+				<div class="row col-auto"
+					style="color: DodgerBlue; padding-top: 15px; cursor: pointer;">
+					<a (click)="AnnullaRicerca()"><strong>Azzera Ricerca </strong><i
+						class="fa fa-close"></i></a>
+				</div>
+			</div>
+			<div class="row" style="color: DodgerBlue;">
+				<strong>Risultati trovati: <label id="numricercacertificatitrovati"></label></strong>
+			</div>
+			<div class="table-responsive">
+				<table id="ricerca" class="table table-bordered" style="width: 100%">
+					<div *ngIf="lunghezzaarray!=1; then piupagina else unapagina"></div>
+					<ng-template #unapagina>
+					<thead class="rigagrigiafontnero" style="font-size: 12px;text-align: center;">
+						<tr>
+							<th width="10%" nohref style="cursor: pointer; max-width: 100px"
+								(click)="sort1('numero_pratica')">N. Pratica <span
+								class="fa fa-2x" *ngIf="key =='numero_pratica'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort1('asl')">ASL<span
+								class="fa fa-2x" *ngIf="key =='asl'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort1('beneficiario.cognome')">Beneficiario<span
+								class="fa fa-2x" *ngIf="key =='beneficiario.cognome'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref>Compilatore
+							</th>
+							<th width="9%" nohref>Stato pratica
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('data_richiesta')">Data Richiesta <span
+								class="fa fa-2x" *ngIf="key =='data_richiesta'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('valida_dal')">Esenzione valida da<span
+								class="fa fa-2x" *ngIf="key =='valida_dal'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('data_scadenza')">Data scadenza<span
+								class="fa fa-2x" *ngIf="key =='data_scadenza'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="11%">Azioni</th>
+						</tr>
+					</thead>
+					<tbody class="rigabiancafontnero"
+						style="font-size: 12px; text-align: center">
+
+						<tr
+							*ngFor="let esenzionericerca of listaesenzioni ; let i = index">
+							<th>
+							{{esenzionericerca.numero_pratica}}
+							</th>
+							<th>
+							{{esenzionericerca.asl}}
+							</th>
+							<td>{{esenzionericerca.beneficiario.nome}}
+								{{esenzionericerca.beneficiario.cognome}}<br>{{esenzionericerca.beneficiario.codice_fiscale}}
+							</td>
+							<td>{{esenzionericerca.compilatore}}</td>
+							<td>
+							<a role="button"
+							(click)="getDettaglioEsenzione(i)"
+							style="color:dodgerblue; cursor: pointer; font-weight: bold;">
+							{{esenzionericerca.stato_pratica}}
+							</a>
+							</td>
+							<td>{{esenzionericerca.data_richiesta}}</td>
+							<td>{{esenzionericerca.valida_dal}}</td>
+							<td>{{esenzionericerca.data_scadenza}}</td>
+							<label hidden id="codfiscstampa">{{esenzionericerca.codFiscaleBeneficiario}}</label>
+							<td>
+								<div class="row">
+									 <div id="bottonecronologia">
+									<img class="img-fluid" src="assets/img/user/u189.png" *ngIf="esenzionericerca.sk_pratica_esenzione != null"
+									style="float: right; cursor: pointer;" alt="info" data-target=".cronologia" data-toggle="modal"
+									(click)="ApriCronologia(i)">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+					</ng-template>
+					<ng-template #piupagina>
+					<thead class="rigagrigiafontnero" style="font-size: 12px;text-align: center;">
+					<tr>
+							<th width="10%" nohref style="cursor: pointer; max-width: 100px"
+								(click)="sort('numero_pratica')">N. Pratica <span
+								class="fa fa-2x" *ngIf="key =='numero_pratica'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort('asl')">ASL<span
+								class="fa fa-2x" *ngIf="key =='asl'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort('beneficiario.cognome')">Beneficiario<span
+								class="fa fa-2x" *ngIf="key =='beneficiario.cognome'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref>Compilatore
+							</th>
+							<th width="9%" nohref>Stato pratica
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort('data_richiesta')">Data Richiesta <span
+								class="fa fa-2x" *ngIf="key =='data_richiesta'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort('valida_dal')">Esenzione valida da<span
+								class="fa fa-2x" *ngIf="key =='valida_dal'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort('data_scadenza')">Data scadenza<span
+								class="fa fa-2x" *ngIf="key =='data_scadenza'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="11%">Azioni</th>
+						</tr>
+					</thead>
+					<tbody class="rigabiancafontnero"
+						style="font-size: 12px; text-align: center">
+						<tr *ngFor="let esenzionericerca of listaesenzioni ; let i = index">
+						<th>
+							{{esenzionericerca.numero_pratica}}
+							</th>
+							<th>
+							{{esenzionericerca.asl}}
+							</th>
+							<td>{{esenzionericerca.beneficiario.nome}}
+								{{esenzionericerca.beneficiario.cognome}}<br>{{esenzionericerca.beneficiario.codice_fiscale}}
+							</td>
+							<td>{{esenzionericerca.compilatore}}</td>
+							<td>{{esenzionericerca.stato_pratica}}</td>
+							<td>{{esenzionericerca.data_richiesta}}</td>
+							<td>{{esenzionericerca.valida_dal}}</td>
+							<td>{{esenzionericerca.data_scadenza}}</td>
+							<label hidden id="codfiscstampa">{{esenzionericerca.codFiscaleBeneficiario}}</label>
+							<td>
+								<div class="row">
+									 <div id="bottonecronologia" >
+									<img class="img-fluid" src="assets/img/user/u189.png" *ngIf="esenzionericerca.sk_pratica_esenzione != null"
+									style="float: right; cursor: pointer;" alt="info" data-target=".cronologia" data-toggle="modal"
+									(click)="ApriCronologia(i)">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+					</ng-template>
+				</table>
+
+				<hr>
+				<div style="justify-content: center; display: flex;">
+					<ul class="nav nav-pills">
+						<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+							[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+							*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)"
+							class="nav-link" href="" (click)="SetPage(i,$event)"
+							[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+							*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+					</ul>
+				</div>
+			</div>
+
+
+		</div>
+			</div>
+			<div class="col-md-1"></div>
+</div>
+</div>
+<div class="tab-pane fade rigabiancafontnero"
+							id="certificati" role="tabpanel">
+
+<div class="row rigagrigianobordo"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+<div class="elecertris" style="color: black; padding-top: 30px"
+			id="tuttoRicerca">
+			<div class="row">
+				<div class="col" style="padding-left: 0px;color: DodgerBlue;">
+					<strong><label id="componitesto"></label></strong>
+				</div>
+
+				<div class="row col-auto"
+					style="color: DodgerBlue; padding-top: 15px; cursor: pointer;">
+					<a (click)="AnnullaRicerca()"><strong>Azzera Ricerca </strong><i
+						class="fa fa-close"></i></a>
+				</div>
+			</div>
+			<div class="row" style="color: DodgerBlue;">
+				<strong>Risultati trovati: <label id="numcertificatitrovati"></label></strong>
+			</div>
+			<ng-container  *ngFor="let certificato of listacertificati ; let i = index">
+			<div class="table-responsive">
+					<div *ngIf="verificauguale(i, listacertificati); then sibordo else nobordo"></div>
+					<ng-template #nobordo>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==0;">
+					</div>
+					<div class="row rigabiancafontnerotrattnobordo">
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					<div class="col-md-10" style="padding-bottom: 10px;">
+					<div class="row rigabiancafontnerohidden" *ngIf="verificauguale(i, listacertificati) || i==0">
+					<div class="col-md-12" style="padding-top: 10px;text-transform: uppercase;">
+					<p>Beneficiario <strong>{{certificato.beneficiario.cognome}} {{certificato.beneficiario.nome}}</strong></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerotopg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<img class="img-fluid" src="assets/img/user/cert_logo.png" style="padding-top: 10px;">
+					</div>
+					<div class="col-md-7 rigabiancafontnerotop" style="padding-left: 10px;">
+					<label id="skdocumento" hidden>{{certificato.sk_documento}}</label>
+					<label>Esenzione</label><br>
+					<strong><p>{{certificato.codice_esenzione}} {{certificato.desc_esenzione}}</p></strong>
+					</div>
+					<div class="col-md-2 rigabiancafontnerotop rigabiancafontneroright" style="padding-top: 10px;">
+					<p></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<label>Certificato per </label><br>
+					<strong><p>{{certificato.desc_gruppo}}</p></strong>
+					</div>
+					<div class="col-md-5" style="padding-left: 10px;">
+					<label>Diagnosi</label><br>
+					<strong><p>{{certificato.cod_diagnosi}} {{certificato.diagnosi}}</p></strong>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/agenda.png">
+					</div>
+					<div class="col-md-3 rigabiancafontneroright" style="padding-left: 0px;">
+					<label>Data emissione</label><br>
+					<strong><p>{{certificato.data_inserimento}}</p></strong>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerobottomg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<p></p>
+					</div>
+					<div class="col-md-7 rigabiancafontnerobottom" style="padding-left: 10px;">
+					<p></p>
+					</div>
+					<div class="col-md-2 rigabiancafontnerobottom rigabiancafontneroright" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-primary apricertificato"
+					id="bottone" type="button" (click)="getDettaglioCertificato(i)">
+					Gestisci
+					</button>
+					</div>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					</div>
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordot" *ngIf="i==listacertificati.length-1;">
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==listacertificati.length-1;">
+					</div>
+					</ng-template>
+					<ng-template #sibordo>
+					<div class="row rigagrigiafontnerotrattnobordot" *ngIf="i!=0;">
+					<p></p>
+					</div>
+					<div class="row rigabiancafontnerotratt">
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					<div class="col-md-10" style="padding-bottom: 10px;">
+					<div class="row rigabiancafontnerohidden" *ngIf="verificauguale(i, listacertificati)">
+					<div class="col-md-12" style="padding-top: 10px;text-transform: uppercase;">
+					<p>Beneficiario <strong>{{certificato.beneficiario.cognome}} {{certificato.beneficiario.nome}}</strong></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerotopg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<img class="img-fluid" src="assets/img/user/cert_logo.png" style="padding-top: 10px;">
+					</div>
+					<div class="col-md-7 rigabiancafontnerotop" style="padding-left: 10px;">
+					<label id="skdocumento" hidden>{{certificato.sk_documento}}</label>
+					<label>Esenzione</label><br>
+					<strong><p>{{certificato.codice_esenzione}} {{certificato.desc_esenzione}}</p></strong>
+					</div>
+					<div class="col-md-2 rigabiancafontnerotop rigabiancafontneroright" style="padding-top: 10px;">
+					<p></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<label>Certificato per </label><br>
+					<strong><p>{{certificato.desc_gruppo}}</p></strong>
+					</div>
+					<div class="col-md-5" style="padding-left: 10px;">
+					<label>Diagnosi</label><br>
+					<strong><p>{{certificato.cod_diagnosi}} {{certificato.diagnosi}}</p></strong>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/agenda.png">
+					</div>
+					<div class="col-md-3 rigabiancafontneroright" style="padding-left: 0px;">
+					<label>Data emissione</label><br>
+					<strong><p>{{certificato.data_inserimento}}</p></strong>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerobottomg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<p></p>
+					</div>
+					<div class="col-md-7 rigabiancafontnerobottom" style="padding-left: 10px">
+					<p></p>
+					</div>
+					<div class="col-md-2 rigabiancafontnerobottom rigabiancafontneroright" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-primary apricertificato"
+					id="bottone" type="button" (click)="getDettaglioCertificato(i)">
+					Gestisci
+					</button>
+					</div>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					</div>
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==listacertificati.length-1;">
+					</div>
+					</ng-template>
+			</div>
+			</ng-container>
+			<hr>
+				<div style="justify-content: center; display: flex;">
+					<ul class="nav nav-pills">
+						<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+							[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+							*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)"
+							class="nav-link" href="" (click)="SetPage(i,$event)"
+							[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+							*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+					</ul>
+				</div>
+		</div>
+			</div>
+			<div class="col-md-1"></div>
+</div>
+</div>
+<div class="tab-pane fade rigabiancafontnero"
+							id="esenzioni" role="tabpanel">
+<div class="row rigagrigianobordo"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+<div class="eleeseris" style="color: black; padding-top: 30px"
+			id="tuttoRicerca">
+			<div class="row">
+				<div class="col" style="padding-left: 0px;color: DodgerBlue;">
+					<strong><label id="componitesto"></label></strong>
+				</div>
+
+				<div class="row col-auto"
+					style="color: DodgerBlue; padding-top: 15px; cursor: pointer;">
+					<a (click)="AnnullaRicerca()"><strong>Azzera Ricerca </strong><i
+						class="fa fa-close"></i></a>
+				</div>
+			</div>
+			<div class="row" style="color: DodgerBlue;">
+				<strong>Risultati trovati: <label id="numesentionitrovate"></label></strong>
+			</div>
+			<ng-container  *ngFor="let esenzione of listaesenzioni ; let i = index">
+			<div class="table-responsive">
+					<div *ngIf="verificauguale(i, listaesenzioni); then sibordo else nobordo"></div>
+					<ng-template #nobordo>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==0;">
+					</div>
+					<div class="row rigabiancafontnerotrattnobordo">
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					<div class="col-md-10" style="padding-bottom: 10px;">
+					<div class="row rigabiancafontnerohidden" *ngIf="verificauguale(i, listaesenzioni) || i==0">
+					<div class="col-md-8" style="padding-top: 10px;">
+					<p>Beneficiario <strong>{{esenzione.beneficiario.cognome}} {{esenzione.beneficiario.nome}}</strong></p>
+					</div>
+					<div class="col-md-4" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-attestato scaricaattestato" *ngIf="assistitoStoreService.abilitatoAdAzione('7')"
+					id="bottone" type="button" (click)="ApriAttestato(i)">
+					<strong>scarica attestato esenzione</strong>
+					<br>
+
+					</button>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerotopg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<img class="img-fluid" src="assets/img/user/cert_logo.png" style="padding-top: 10px;">
+					</div>
+					<div class="col-md-7 rigabiancafontnerotop" style="padding-left: 10px;">
+					<label id="skpraticaesenzione" hidden>{{esenzione.sk_pratica_esenzione}}</label>
+					<label>Esenzione</label><br>
+					<strong><p>{{esenzione.codice_esenzione}} {{esenzione.desc_esenzione}}</p></strong>
+					</div>
+					<div class="col-md-2 rigabiancafontnerotop rigabiancafontneroright" style="padding-top: 10px;" >
+					<img class="img-fluid" src="assets/img/user/u189.png" *ngIf="esenzione.sk_pratica_esenzione != null"
+					style="float: right; cursor: pointer;" alt="info" data-target=".cronologia" data-toggle="modal"
+					(click)="ApriCronologia(i)">
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<label>Esenzione per </label><br>
+					<strong><p>{{esenzione.desc_gruppo}}</p></strong>
+					</div>
+					<div class="col-md-5" style="padding-left: 10px;">
+					<label>Diagnosi</label><br>
+					<strong><p>{{esenzione.cod_diagnosi}} {{esenzione.diagnosi}}</p></strong>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;" *ngIf="esenzione.data_scadenza!=null;" >
+					<img class="img-fluid" src="assets/img/user/agenda.png">
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;" *ngIf="esenzione.data_scadenza===null;" >
+					<p></p>
+					</div>
+					<div class="col-md-3 rigabiancafontneroright"  *ngIf="esenzione.data_scadenza!=null;" style="padding-left: 0px;">
+					<label>Disponibile fino al</label><br>
+					<strong><p>{{esenzione.data_scadenza}}</p></strong>
+					</div>
+					<div class="col-md-3 rigabiancafontneroright"  *ngIf="esenzione.data_scadenza===null;" style="padding-left: 0px;">
+					<p></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerobottomg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<p></p>
+					</div>
+					<div class="col-md-7 rigabiancafontnerobottom" style="padding-left: 10px;">
+					<p>Stato: <strong>{{esenzione.stato_pratica}}</strong></p>
+					</div>
+					<div class="col-md-2 rigabiancafontnerobottom rigabiancafontneroright" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-primary apriesenzione"
+					id="bottone" type="button" (click)="getDettaglioEsenzione(i)">
+					Gestisci
+					</button>
+					</div>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					</div>
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordot" *ngIf="i==listaesenzioni.length-1;">
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==listaesenzioni.length-1;">
+					</div>
+					</ng-template>
+					<ng-template #sibordo>
+					<div class="row rigagrigiafontnerotrattnobordot" *ngIf="i!=0;">
+					<p></p>
+					</div>
+					<div class="row rigabiancafontnerotratt">
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					<div class="col-md-10" style="padding-bottom: 10px;">
+					<div class="row rigabiancafontnerohidden" *ngIf="verificauguale(i, listaesenzioni)">
+					<div class="col-md-8" style="padding-top: 10px;">
+					<p>Beneficiario <strong>{{esenzione.beneficiario.cognome}} {{esenzione.beneficiario.nome}}</strong></p>
+					</div>
+					<div class="col-md-4" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-attestato scaricaattestato" *ngIf="assistitoStoreService.abilitatoAdAzione('7')"
+					id="bottone" type="button" (click)="ApriAttestato(i)">
+					<strong>scarica attestato esenzione</strong>
+					<br>
+
+					</button>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerotopg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<img class="img-fluid" src="assets/img/user/cert_logo.png" style="padding-top: 10px;">
+					</div>
+					<div class="col-md-7 rigabiancafontnerotop" style="padding-left: 10px;">
+					<label id="skdocumento" hidden>{{esenzione.sk_pratica_esenzione}}</label>
+					<label>Esenzione</label><br>
+					<strong><p>{{esenzione.codice_esenzione}} {{esenzione.desc_esenzione}}</p></strong>
+					</div>
+					<div class="col-md-2 rigabiancafontnerotop rigabiancafontneroright" style="padding-top: 10px;">
+					<img class="img-fluid" src="assets/img/user/u189.png" *ngIf="esenzione.sk_pratica_esenzione != null"
+					style="float: right; cursor: pointer;" alt="info" data-target=".cronologia" data-toggle="modal"
+					(click)="ApriCronologia(i)">
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<label>Esenzione per </label><br>
+					<strong><p>{{esenzione.desc_gruppo}}</p></strong>
+					</div>
+					<div class="col-md-5" style="padding-left: 10px;">
+					<label>Diagnosi</label><br>
+					<strong><p>{{esenzione.cod_diagnosi}} {{esenzione.diagnosi}}</p></strong>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;" *ngIf="esenzione.data_scadenza!=null;" >
+					<img class="img-fluid" src="assets/img/user/agenda.png">
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;" *ngIf="esenzione.data_scadenza===null;" >
+					<p></p>
+					</div>
+					<div class="col-md-3 rigabiancafontneroright"  *ngIf="esenzione.data_scadenza!=null;" style="padding-left: 0px;">
+					<label>Disponibile fino al</label><br>
+					<strong><p>{{esenzione.data_scadenza}}</p></strong>
+					</div>
+					<div class="col-md-3 rigabiancafontneroright"  *ngIf="esenzione.data_scadenza===null;" style="padding-left: 0px;">
+					<p></p>
+					</div>
+					</div>
+					<div class="row rigabiancafontnerohidden">
+					<div class="col-md-3 rigabiancafontnerobottomg rigabiancafontneroleftg" style="background : #cccccc;" align="center" valign="center">
+					<p></p>
+					</div>
+					<div class="col-md-7 rigabiancafontnerobottom" style="padding-left: 10px;">
+					<p>Stato: <strong>{{esenzione.stato_pratica}}</strong></p>
+					</div>
+					<div class="col-md-2 rigabiancafontnerobottom rigabiancafontneroright" style="padding-top: 10px;padding-bottom: 10px;">
+					<button class="btn btn-block btn-primary apriesenzione"
+					id="bottone" type="button" (click)="getDettaglioEsenzione(i)">
+					Gestisci
+					</button>
+					</div>
+					</div>
+					<div class="col-md-1" style="padding-right: 0px;"></div>
+					</div>
+					</div>
+					<div class="row rigagrigiafontnerotrattnobordob" *ngIf="i==listaesenzioni.length-1;">
+					</div>
+					</ng-template>
+			</div>
+			</ng-container>
+			<hr>
+				<div style="justify-content: center; display: flex;">
+					<ul class="nav nav-pills">
+						<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+							[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+							*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)"
+							class="nav-link" href="" (click)="SetPage(i,$event)"
+							[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+							*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+					</ul>
+				</div>
+		</div>
+			</div>
+			<div class="col-md-1"></div>
+</div>
+</div>
+</div>
+
+<div class="modal fade beneficiario" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" tabindex="-1" role="document">
+		<div class="modal-content rigabiancafontnero">
+			<div class="modal-header bordo-top" style="border: 0px">
+				<button class="close" id="chiudimodalricerca" type="button"
+					data-dismiss="modal" aria-label="Close">
+					<span>&times;</span>
+				</button>
+			</div>
+
+			<div class="tabellaricerca">
+				<div class="row" style="width: 100%; padding: 15px">
+					<div class="bs-callout bs-callout-primary"
+						style="width: 100%; padding: 15px; font-size: 12px">
+						<strong>Sono stati trovati <label id="numtrovati"></label>
+							assistiti con le caratteristiche impostate.
+						</strong><br> Seleziona l'utente che intendi inserire nella richiesta
+					</div>
+				</div>
+
+				<div class="table-responsive">
+
+					<table id="ricerca" class="table"
+						style="font-size: 12px; border: 0;">
+						<thead class="rigagrigiafontnero" style="font-weight: bold">
+							<tr style="border: 0px">
+								<th scope="col" style="border: 0px">Codice Fiscale</th>
+								<th scope="col" style="border: 0px">Cognome</th>
+								<th scope="col" style="border: 0px">Nome</th>
+								<th scope="col" style="border: 0px">Sesso</th>
+								<th scope="col" style="border: 0px">Data di nascita</th>
+								<th scope="col" style="border: 0px">Comune o Stato estero
+									di nascita</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr *ngFor="let assistito of assistito; let i=index">
+								<th class="celleTab" scope="row">{{assistito.codFiscale}}</th>
+								<td class="celleTab">{{assistito.cognome}}</td>
+								<td class="celleTab">{{assistito.nome}}</td>
+								<td class="celleTab">{{assistito.codSesso}}</td>
+								<td class="celleTab">{{assistito.dataNascita}}</td>
+								<td class="celleTab">{{assistito.comuneNascita}}</td>
+								<td class="celleTab">
+									<button type="button" class="btn btn-outline-primary"
+										(click)="ScegliCittadino(i)">Scegli</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+
+
+			<br>
+
+			<div class="modal-body table-responsive tabellaricercames">
+				<div class=row>
+
+					<div class="col-md-12">
+						<table id="ricerca">
+							<tbody>
+								<tr>
+									<th><label class="messaggiokoricerca"
+										id="messaggioricercatabella"></label></th>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade cronologia" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" tabindex="-1" role="document">
+		<div class="modal-content rigabiancafontnero">
+      <div class="modal-header-cronologia">
+        <div class="row">
+          <div class="col-md-6 modal-title-cronologia">
+            CRONOLOGIA
+          </div>
+          <div class="col-md-6 modal-button-close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      </div>
+			<div class="tabellaricerca">
+				<div class="table-responsive">
+
+					<table id="ricercaCronologia" class="table"
+						style="font-size: 12px; border: 0;">
+						<thead class="rigagrigiafontnero" style="font-weight: bold">
+							<tr style="border: 0px">
+								<th scope="col" style="border: 0px">Data e ora</th>
+								<th scope="col" style="border: 0px">Utente</th>
+								<th scope="col" style="border: 0px">Stato pratica</th>
+								<th scope="col" style="border: 0px">Nota Beneficiario</th>
+								<th scope="col" style="border: 0px">Nota Operatori</th>
+								<th scope="col" style="border: 0px">Nota Interna</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr *ngFor="let storico of storicoEsenzione; let i=index">
+								<th class="celleTab" scope="row">{{storico.data_creazione}}</th>
+								<td class="celleTab">{{storico.utente.nome}} {{storico.utente.cognome}}</td>
+								<td class="celleTab">{{storico.nuovo_stato.descrizione}}</td>
+								<td class="celleTab">{{storico.notaBeneficiario}}</td>
+								<td class="celleTab">{{storico.nota}}</td>
+								<td class="celleTab">{{storico.notaInterna}}</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+</div>

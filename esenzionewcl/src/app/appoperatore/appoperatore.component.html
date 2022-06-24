@@ -1,0 +1,3164 @@
+<div class="container">
+	<ngx-loading [show]="loading"
+		[config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+
+<div class="row cardDemo7">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max" id="mediaHeader"
+		style="padding-left: 5px; padding-right: 5px">
+		<div class="row">
+			<div class="col" style="padding-left: 0px; padding-top: 6px;">
+				<a nohref style="color: white; cursor: pointer;" class="pageleese"
+					(click)="ApriElencoEse()">Esenzioni per reddito</a>
+			</div>
+			<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+				<img id="imgHelp" class="img-fluid" src="assets/img/user/info.jpg"
+					style="float: right; cursor: pointer;" alt="info"
+					(click)="ApriInfo()">
+			</div>
+			<div class="col-auto" style="padding-top: 4px; padding-right: 0px;"
+				id="ricalcola" (click)="LeggiNotifiche()">
+
+
+
+
+				<img id="imgNotifiche" class="img-fluid"
+					src="assets/img/user/notifica.jpg" style="cursor: pointer;">
+				<div id="nascico"
+					style="visibility: hidden; position: absolute; top: 10px; left: 18px; font-size: 11px;">
+					<a nohref style="cursor: pointer;" id="bottonenotifiche"
+						(click)="ApriNotifiche()">
+						<div id="circle"
+							style="position: absolute; top: -8px; text-align: center;">
+
+							<strong id="conta"></strong>
+						</div>
+
+					</a>
+				</div>
+
+			</div>
+			<div class="col-auto"
+				style="padding-top: 0px; padding-bottom: 3px; padding-right: 0px; width: max-content;">
+				<ng-container *ngFor="let assistito of listaAssistiti">
+
+				<button type="button" id="bottonePC"
+					class="btn btn-servizi dropdown-toggle" data-toggle="dropdown"
+					style="float: right; padding-left: 0px; box-shadow: 0 0 0 0;">
+					<img class="img-fluid" src="assets/img/user/icona_profilo.png">&emsp;{{assistito.nome}}
+					{{assistito.cognome}}
+				</button>
+				<button type="button" id="bottoneSM"
+					class="btn btn-servizi dropdown-toggle" data-toggle="dropdown"
+					style="float: right; padding-left: 0px; box-shadow: 0 0 0 0; padding-top: 5px; padding-bottom: 5px;">
+					<img id="imgSM" class="img-fluid" data-toggle="dropdown"
+						src="assets/img/user/icona_profilo.png">
+				</button>
+				<div class="dropdown-menu" id="dropMenuSM"
+					style="padding-right: 15px">
+					<div class="row">
+						<div class="col" style="padding-left: 0px; padding-right: 0px">
+							<a class="dropdown-item color-tendina-esci"
+								(click)="paginaPersonale()" style="cursor: pointer;">Profilo
+								personale</a>
+						</div>
+						<div class="col-auto"
+							style="padding-left: 0px; padding-right: 0px">
+							<i class="fa fa-gear"></i>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col" style="padding-left: 0px; padding-right: 0px">
+							<a class="dropdown-item color-tendina-esci"
+								(click)="escilogout()" style="cursor: pointer;">Esci</a>
+						</div>
+						<div class="col-auto"
+							style="padding-left: 0px; padding-right: 0px">
+							<i class="fa fa-external-link"></i>
+						</div>
+					</div>
+
+
+				</div>
+</ng-container>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<div class="notifica rigabiancafontnero fumetto" id="boxsopra">
+	<label id="aperto" hidden></label>
+	<div id="divnotifica" style="visibility: visible;"
+		class="modal-body table-responsive">
+		<div class="row" id="nuovanot" style="display: inherit;">
+			<strong><label class="modal-title notifica">Nuova
+					Notifica</label></strong>
+		</div>
+		<ng-container *ngFor="let notifica of notifica;  let i=index">
+
+		<div class="row">
+
+			<div class="col" style="padding-left: 0px;"
+				*ngIf="notifica.consultata===false">
+				<label>{{notifica.dataNotifica}}</label> <br> <strong><label
+					style="word-wrap: break-word; cursor: pointer;" id="notnew"
+					(click)="UpdateNotifica(i)">{{notifica.descNotifica}}</label></strong>
+			</div>
+			<div class="col-auto" *ngIf="notifica.consultata===false"
+				style="padding-left: 40px;">
+
+				<a nohref style="cursor: pointer;" id="Elmina"
+					(click)="EliminaNotifica(i)"><img class="img-fluid"
+					src="assets/img/user/elimina.jpg"></a>
+			</div>
+
+		</div>
+		</ng-container>
+		<label id="mesnotifica"
+			style="visibility: hidden; text-align: center;">
+			{{messaggio}}</label>
+
+		<div class="row" id="precnot" style="display: inherit;">
+			<strong><label class="modal-title notifica">Notifica
+					Precedente</label></strong>
+		</div>
+
+		<ng-container *ngFor="let notifica of notifica; let i=index">
+		<div class="row">
+
+			<div class="col" style="padding-left: 0px;"
+				*ngIf="notifica.consultata===true">
+				<label>{{notifica.dataNotifica}}</label> <br> <label
+					style="word-wrap: break-word;" id="notold">{{notifica.descNotifica}}</label>
+
+			</div>
+			<div class="col-auto" *ngIf="notifica.consultata===true"
+				style="padding-left: 40px;">
+
+				<a nohref style="cursor: pointer;" id="Elmina"
+					(click)="EliminaNotifica(i)"><img class="img-fluid"
+					src="assets/img/user/elimina.jpg"></a>
+			</div>
+		</div>
+		</ng-container>
+	</div>
+
+
+</div>
+
+
+<div class="row cardDemo7 noese rigabiancafontnero"
+	style="background: white; padding-top: 5px; padding-bottom: 5px">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max"
+		style="padding-left: 5px; padding-right: 5px">
+		<div class="row">
+			<div class="col" id="mediaHeader"
+				style="color: black; padding-left: 0px;">Elenco Esenzioni</div>
+			<div id="filtriPC" class="col-auto" style="padding-right: 0px;">
+				<button class="btn btn-cerca aprifiltroOp"
+					style="background: url('assets/img/user/lente.jpg') no-repeat; text-align: left; border-right-width: 1px; padding-right: 12px; background-position: right 10px center; width: 150px; font-size: 12px; float: right; margin-left: 8px; display: none"
+					(click)="ApriFiltroOp()">Filtri</button>
+				<button class="btn btn-cerca chiudifiltroOp"
+					style="float: right; margin-left: 8px; background: url('assets/img/user/chiudifiltro.jpg') no-repeat; text-align: left; border-right-width: 1px; padding-right: 12px; background-position: right 10px center; font-size: 12px; width: 150px;"
+					(click)="ChiudiFiltroOp()">Filtri</button>
+				<button type="button"
+					style="float: right; width: 150px; font-size: 12px;"
+					class="btn btn-primary operatore" (click)="NuovaEsenzione()"
+					href="javascript:void(0);" onclick="apritab('perasl')">NUOVA
+					ESENZIONE</button>
+			</div>
+			<div id="filtriSM" class="col-auto" style="padding-right: 0px;">
+				<button class="btn btn-cerca btn-circle fa fa-search aprifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important; display: none"
+					(click)="ApriFiltroOp()"></button>
+				<button class="btn btn-cerca btn-circle fa fa-close chiudifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important;"
+					(click)="ChiudiFiltroOp()"></button>
+				<button type="button"
+					style="float: right; width: 150px; font-size: 12px;"
+					class="btn btn-default btn-circle fa fa-plus-circle fa-lg operatore"
+					href="#"
+					style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;"
+					(click)="NuovaEsenzione()"></button>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<div class="row cardDemo7 sitrova rigabiancafontnero"
+	style="display: none; background: white; padding-top: 15px; padding-bottom: 15px">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max">
+		<div class="row">
+			<div class="col-md-12" style="color: black;padding-left: 0px;">Hai bisogno di aiuto?</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<div class="row cardDemo7 siese rigabiancafontnero"
+	style="display: none; background: white; padding-top: 15px; padding-bottom: 15px">
+	<label id="provenienza" hidden></label>
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max">
+		<div class="row">
+			<div class="col-md-12" style="color: black">Nuova Esenzione</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<label id="newEsenzione" hidden></label>
+<div class="row rigagrigianobordo"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max">
+
+
+		<div class="col-md-12 rigako bordo-esitoko esitoko"
+			style="display: none; margin-bottom: 15px;">
+			<br>
+			<div class="row">
+				<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+				</div>
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong><p id="messaggioko"></p></strong>
+				</div>
+
+			</div>
+
+			<br>
+		</div>
+
+
+		<div class="insnuovaese rigagrigianobordo">
+			<div class="row" style="padding-bottom: 0px;">
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 15px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 575px">
+						<div style="width: 100%; font-size: 12px; padding-bottom: 10px">
+							Titolo
+							<ng-container> <select name="codtit" id="codtit"
+								class="form-control form-control-sm comboese"
+								style="height: 30px"
+								ng-options="x for (x, y) in ListaTitoloDich">
+
+								<option class="comboese"
+									*ngFor="let titolodich of listaTitoloDich"
+									value="{{titolodich.codTitolo}}">
+									{{titolodich.descTitolo}}</option>
+							</select> </ng-container>
+
+						</div>
+						<div id="dichPanel">
+							<div class="row" style="padding-bottom: 5px">
+								<strong>Dichiarante</strong>
+							</div>
+							<div class="row" style="padding-bottom: 0px; font-size: 12px">
+								<strong>Cerca il dichiarante tramite Codice Fiscale o
+									Cognome e nome dell'assistito</strong>
+							</div>
+
+							<div class="row" style="margin-top: 15px; font-size: 12px">
+
+								<ul class="nav nav-tabs nav-Tabs-principale nav-justified"
+									style="width: 100%;" role="tablist" id="prodTabsdic">
+
+
+									<li class="nav-item active text-center rigagrigianobordo"
+										role="presentation"><a class="nav-link active"
+										href="#codicefiscale" aria-controls="codicefiscale" role="tab"
+										data-toggle="tab" (click)="resetForm('#cognomenome')"> <img
+											class="img-fluid" src="assets/img/user/iconauomo.png"><br>
+											<strong>Codice Fiscale</strong></a></li>
+
+
+									<li class="nav-item text-center rigagrigianobordo"
+										role="presentation"><a class="nav-link"
+										href="#cognomenome" aria-controls="cognomenome" role="tab"
+										data-toggle="tab" (click)="resetForm('#codicefiscale')"> <img
+											class="img-fluid" src="assets/img/user/iconauomo.png"><br>
+											<strong>Cognome e nome</strong></a></li>
+								</ul>
+							</div>
+							<div class="row">
+								<div class="tab-content"
+									style="width: 100%; font-size: 12px; background: white; margin-bottom: 15px">
+									<div class="tab-pane fade show active pt-4" id="codicefiscale"
+										role="tabpanel"
+										style="width: 100%; background: white !important">
+										<div class="row">
+											<label class="control-label"> Codice fiscale</label>
+
+
+										</div>
+										<div class="row">
+											<input class="form-control" id="codFiscaledic"
+												name="codFiscaledic"
+												style="height: 30px; text-transform: uppercase;">
+
+
+										</div>
+									</div>
+									<div class="tab-pane pt-4 " id="cognomenome" role="tabpanel"
+										style="width: 100%; background: white">
+										<div class="row">
+
+											<label class="control-label" for="cognome">Cognome</label>
+
+										</div>
+										<div class="row" style="padding-top: 5px">
+											<input class="form-control" id="cognomedic" name="cognomedic"
+												style="height: 30px; margin-bottom: 0px;text-transform: uppercase;">
+
+										</div>
+										<div class="row" style="padding-top: 5px">
+
+											<label class="control-label" for="nome">Nome</label>
+
+										</div>
+										<div class="row" style="width: 100%">
+											<input class="form-control" id="nomedic" name="nomedic"
+												style="height: 30px;text-transform: uppercase;">
+										</div>
+
+										<div class="row" style="padding-top: 5px">
+
+											<label class="control-label" for="nome">Data di
+												Nascita</label>
+
+										</div>
+										<div class="row" style="width: 100%">
+											<div class="input-group input-append date"
+												data-provide="datepicker">
+												<span class="input-group-addon add-on"></span> <input
+													type="text" class="form-control" name="datanasDic"
+													id="datanasDic" placeholder="gg/mm/aaaa"
+													style="background: url('assets/img/user/calendario.png') no-repeat;
+	/* padding-right: 12px; */ border-right-width: 1px;
+	/* margin-right: 0px; */ padding-right: 12px; background-position: right 10px center;">
+											</div>
+										</div>
+
+
+
+									</div>
+
+								</div>
+								<div class="row"
+									style="width: 100%; bottom: 0; padding-bottom: 5px;">
+									<div class="col-md-6"></div>
+									<div class="col-md-6">
+										<button type="button" class="btn btn-primary btn-block"
+											style="float: right" data-toggle="modal"
+											data-target=".beneficiario"
+											(click)="ApriBeneficiario('Dichiarante')">Cerca</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div id="dichPanelShow" style="font-size: 12px">
+							<div class="row" style="padding-bottom: 5px;font-size: 16px">
+								<strong>Dichiarante</strong>
+							</div>
+
+							<div>
+								<label class="control-label"> Codice fiscale</label>
+							</div>
+							<div>
+								<strong><label class="control-label"
+									id="codFiscalediclabel" name="codFiscalediclabel"></label></strong>
+							</div>
+
+							<div>
+								<label class="control-label" for="cognome">Cognome</label>
+							</div>
+							<div>
+								<strong><label class="control-label"
+									id="cognomediclabel" name="cognomediclabel"></label></strong>
+							</div>
+							<div>
+								<label class="control-label" for="nome">Nome</label>
+							</div>
+							<div>
+								<strong><label class="control-label" id="nomediclabel"
+									name="nomediclabel"></label></strong>
+							</div>
+							<div>
+								<label class="control-label">Sesso</label>
+							</div>
+							<div>
+								<strong><label class="control-label"
+									name="sessoDiclabel" id="sessoDiclabel"></label></strong>
+							</div>
+							<div>
+								<label class="control-label">Data di nascita</label>
+							</div>
+							<div>
+								<strong><label class="control-label"
+									name="datanasDiclabel" id="datanasDiclabel"></label></strong>
+							</div>
+							<div>
+								<label class="control-label">Comune di nascita</label>
+							</div>
+							<div>
+								<strong><label class="control-label"
+									name="comuneDiclabel" id="comuneDiclabel"></label> <label
+									class="form-control" name="provinciaDiclabel"
+									id="provinciaDiclabel" hidden></label></strong>
+							</div>
+							<label id="idassistitodic" hidden></label>
+							<div class="row"
+								style="width: 100%; bottom: 0; padding-bottom: 35px;">
+
+								<div class="col-md-6"></div>
+								<div class="col-md-6">
+									<button type="button" class="btn btn-primary btn-block"
+										(click)="RipristinaDati('Dichiarante')">Modifica</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 15px; font-size: 12px">
+					<div id="benPanel" class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 575px">
+						<div class="row" style="padding-bottom: 5px">
+							<strong style="font-size: 16px;">Beneficiario</strong>
+						</div>
+
+						<div class="row" style="font-size: 12px">
+							Se i dati sono uguali al dichiarante clicca sul pulsante
+							sottostante. <label style="" id="copiadatidic"></label>
+							<div class="col-md-6"
+								style="padding-left: 0px; padding-right: 0px; padding-top: 4px">
+								<button type="button" class="btn btn-outline-primary btn-block"
+									style="border: 2px solid #1154a2 !important; height: 30px; display: inline-flex;"
+									(click)="RecuperaDatiDic()" id="recuperadati">
+									<strong style="color: #1154a2; font-size: 12px">Recupera
+										dati dichiarante </strong>
+								</button>
+							</div>
+							<div class="col-md-6"></div>
+						</div>
+						<div class="row" style="padding-top: 8px">
+							<strong>Cerca il dichiarante tramite Codice Fiscale o
+								Cognome e nome dell'assistito.</strong>
+						</div>
+						<div class="row" style="margin-top: 15px; font-size: 12px">
+
+							<ul class="nav nav-tabs nav-Tabs-principales nav-justified"
+								style="width: 100%" role="tablist" id="prodTabsben">
+
+								<li class="nav-item text-center rigagrigianobordo active"
+								role="presentation"><a role="tab" class="nav-link active" data-toggle="tab"
+									href="#codfiscben" (click)="resetForm('#cognnomben')"> <img class="img-fluid"
+										src="assets/img/user/iconauomo.png"> <br> <strong>Codice
+											Fiscale</strong></a>
+								</li>
+								<li class="nav-item text-center rigagrigianobordo" role="presentation"><a
+									role="tab" class="nav-link" data-toggle="tab"
+									href="#cognnomben" (click)="resetForm('#codfiscben')"><img class="img-fluid"
+										src="assets/img/user/iconauomo.png"><br> <strong>Cognome
+											e nome</strong></a></li>
+							</ul>
+							<div class="row" style="width: 100%">
+								<div class="tab-content"
+									style="width: 100%; background: white; margin-bottom: 15px">
+									<div class="tab-pane pt-4 active" id="codfiscben"
+										role="tabpanel" style="width: 100%; background: white">
+										<label class="control-label" for="codfisc"> Codice
+											fiscale</label> <input class="form-control" type="text"
+											style="height: 30px; text-transform: uppercase;"
+											id="codFiscaleben" name="codFiscaleben">
+									</div>
+									<div id="cognnomben" class="tab-pane pt-4" role="tabpanel"
+										style="width: 100%; background: white">
+										<div class="row" style="padding-top: 5px">
+											<label class="control-label" for="cognome">Cognome</label> <input
+												type="text" class="form-control" id="cognomeben"
+												style="height: 30px;text-transform: uppercase;" name="cognomeben">
+										</div>
+
+										<div class="row" style="padding-top: 5px">
+											<label class="control-label" for="nome">Nome</label> <input
+												type="text" style="margin-ottom: 8px; height: 30px;text-transform: uppercase;"
+												class="form-control" id="nomeben" name="nomeben">
+										</div>
+										<div class="row" style="padding-top: 5px">
+
+											<label class="control-label" for="nome">Data di
+												Nascita</label>
+
+										</div>
+										<div class="row" style="width: 100%">
+											<div class="input-group input-append date"
+												data-provide="datepicker">
+												<span class="input-group-addon add-on"></span> <input
+													type="text" class="form-control" name="datanasBen"
+													id="datanasBen" placeholder="gg/mm/aaaa"
+													style="background: url('assets/img/user/calendario.png') no-repeat;
+	/* padding-right: 12px; */ border-right-width: 1px;
+	/* margin-right: 0px; */ padding-right: 12px; background-position: right 10px center;">
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="row"
+								style="width: 100%; bottom: 0; padding-bottom: 0px;">
+								<div class="col-md-6"></div>
+								<div class="col-md-6"
+									style="padding-left: 0px; padding-right: 0px">
+									<button type="button" class="btn btn-primary btn-block"
+										href="#" data-toggle="modal" data-target=".beneficiario"
+										(click)="ApriBeneficiario('Beneficiario')">Cerca</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="benPanelShow"
+						class="tondo ombragenerale rigabiancafontnero"
+						style="font-size: 12px; display: none; padding: 15px; min-height: 575px">
+                       <div class="row" style="padding-bottom: 5px">
+							<strong style="font-size: 16px;">Beneficiario</strong>
+						</div>
+
+						<div>
+							<label class="control-label"> Codice fiscale</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								id="codFiscalebenlabel" name="codFiscalebenlabel"></label></strong>
+						</div>
+
+						<div>
+							<label class="control-label" for="cognome">Cognome</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								id="cognomebenlabel" name="cognomebenlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label" for="nome">Nome</label>
+						</div>
+						<div>
+							<strong><label class="control-label" id="nomebenlabel"
+								name="nomebenlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Sesso</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="sessobenlabel" id="sessobenlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Data di nascita</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="datanasbenlabel" id="datanasbenlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Comune o Stato estero di
+								nascita</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="comunebenlabel" id="comunebenlabel"></label> <label
+								class="form-control" name="provinciabenlabel"
+								id="provinciabenlabel" hidden></label></strong>
+						</div>
+						<label id="idassistitoben" hidden></label>
+						<div class="row"
+							style="width: 100%; bottom: 0; padding-bottom: 35px;">
+
+							<div class="col-md-6"></div>
+							<div class="col-md-6">
+								<button type="button" class="btn btn-primary btn-block"
+									(click)="RipristinaDati('Beneficiario')">Modifica</button>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row" style="padding-bottom: 0px;">
+					<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 15px; font-size: 12px">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px;">
+						<div class="rowpad" style="padding-bottom: 5px">
+							<strong style="font-size: 16px;">Titolare</strong>
+						</div>
+						<div class="rowpad" style="margin-top: 15px;">
+									<div class="col-md-8" style="padding-left:0px;">Il titolare corrisponde a:</div>
+									<div class="col-md-4">
+
+									</div>
+									</div>
+									<div class="rowpad" style="margin-top: 15px;">
+										<div class="col-md-4 radio radio-danger form-check-inline"
+											style="margin-right: 0px;padding-right: 0px;padding-left: 10px;">
+											<input id="etitolareSif"
+												name="etitolaref" type="radio" value="si"
+												ng-reflect-name="etitolaref"
+												ng-reflect-form-control-name="etitolaref"
+												ng-reflect-value="si"
+												class="ng-untouched ng-pristine ng-valid" (click)="NascondiTit('SIF')"> <label
+												for="etitolareSif"> Dichiarante </label>
+										</div>
+										<div class="col-md-4 radio radio-danger form-check-inline"
+											style="margin-right: 0px;padding-right: 0px;padding-left: 10px;">
+											<input id="etitolareSib"
+												name="etitolaref" type="radio" value="sib"
+												ng-reflect-name="etitolaref"
+												ng-reflect-form-control-name="etitolaref"
+												ng-reflect-value="sib"
+												class="ng-untouched ng-pristine ng-valid" (click)="NascondiTit('SIB')"> <label
+												for="etitolareSib"> Beneficiario </label>
+										</div>
+											<div class="col-md-4 radio radio-danger form-check-inline"
+											style="margin-right: 0px;padding-right: 0px;padding-left: 10px;">
+											<input id="etitolareNof"
+												name="etitolaref" type="radio" value="no"
+												ng-reflect-name="etitolaref"
+												ng-reflect-form-control-name="etitolaref"
+												ng-reflect-value="no"
+												class="ng-untouched ng-pristine ng-valid" (click)="NascondiTit('NOF')"> <label
+												for="etitolareNof"> Altra persona </label>
+										</div>
+									</div>
+												
+				 <div class="row NoTitolare" style="padding-bottom: 0px;">
+
+					<div id="titPanel" style="padding: 15px;">
+
+							<div class="row" style="padding-top: 8px">
+							<strong>Cerca il titolare tramite Codice Fiscale o
+								Cognome e nome dell'assistito.</strong>
+						</div>
+						<div class="row" style="margin-top: 15px; font-size: 12px">
+
+							<ul class="nav nav-tabs nav-Tabs-principales nav-justified"
+								style="width: 100%" role="tablist" id="prodTabstit">
+
+								<li class="nav-item text-center rigagrigianobordo active" role="presentation">
+									<a role="tab" class="nav-link active" data-toggle="tab"
+									href="#codfisctit" (click)="resetForm('#cognnomtit')"> <img class="img-fluid"
+										src="assets/img/user/iconauomo.png"> <br> <strong>Codice
+											Fiscale</strong></a>
+								</li>
+								<li class="nav-item text-center rigagrigianobordo" role="presentation"><a
+									role="tab" class="nav-link" data-toggle="tab"
+									href="#cognnomtit" (click)="resetForm('#codfisctit')"><img class="img-fluid"
+										src="assets/img/user/iconauomo.png"><br> <strong>Cognome
+											e nome</strong></a></li>
+							</ul>
+							<div class="row" style="width: 100%">
+								<div class="tab-content"
+									style="width: 100%; background: white; margin-bottom: 15px">
+									<div class="tab-pane pt-4 active" id="codfisctit"
+										role="tabpanel" style="width: 100%; background: white">
+										<label class="control-label" for="codfisc"> Codice
+											fiscale</label> <input class="form-control" type="text"
+											style="height: 30px; text-transform: uppercase;"
+											id="codFiscaletit" name="codFiscaletit">
+									</div>
+									<div id="cognnomtit" class="tab-pane pt-4" role="tabpanel"
+										style="width: 100%; background: white">
+										<div class="row" style="padding-top: 5px">
+											<label class="control-label" for="cognome">Cognome</label> <input
+												type="text" class="form-control" id="cognometit"
+												style="height: 30px;text-transform: uppercase;" name="cognometit">
+										</div>
+
+										<div class="row" style="padding-top: 5px">
+											<label class="control-label" for="nome">Nome</label> <input
+												type="text" style="margin-ottom: 8px; height: 30px;text-transform: uppercase;"
+												class="form-control" id="nometit" name="nometit">
+										</div>
+										<div class="row" style="padding-top: 5px">
+
+											<label class="control-label" for="nome">Data di
+												Nascita</label>
+
+										</div>
+										<div class="row" style="width: 100%">
+											<div class="input-group input-append date" id="datanastit"
+												data-provide="datepicker">
+												<span class="input-group-addon add-on"></span> <input
+													type="text" class="form-control" name="datanasTit"
+													id="datanasTit" placeholder="gg/mm/aaaa"
+													style="background: url('assets/img/user/calendario.png') no-repeat;
+	/* padding-right: 12px; */ border-right-width: 1px;
+	/* margin-right: 0px; */ padding-right: 12px; background-position: right 10px center;">
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="row"
+								style="width: 100%; bottom: 0; padding-bottom: 0px;">
+								<div class="col-md-6"></div>
+								<div class="col-md-6"
+									style="padding-left: 0px; padding-right: 0px">
+									<button type="button" class="btn btn-primary btn-block"
+										href="#" data-toggle="modal" data-target=".beneficiario"
+										(click)="ApriBeneficiario('Titolare')">Cerca</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="titPanelShow"
+						style="font-size: 12px; display: none;padding: 15px;width: 100%;">
+
+
+						<div>
+							<label class="control-label"> Codice fiscale</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								id="codFiscaletitlabel" name="codFiscaletitlabel"></label></strong>
+						</div>
+
+						<div>
+							<label class="control-label" for="cognome">Cognome</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								id="cognometitlabel" name="cognometitlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label" for="nome">Nome</label>
+						</div>
+						<div>
+							<strong><label class="control-label" id="nometitlabel"
+								name="nometitlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Sesso</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="sessotitlabel" id="sessotitlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Data di nascita</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="datanastitlabel" id="datanastitlabel"></label></strong>
+						</div>
+						<div>
+							<label class="control-label">Comune o Stato estero di
+								nascita</label>
+						</div>
+						<div>
+							<strong><label class="control-label"
+								name="comunetitlabel" id="comunetitlabel"></label> <label
+								class="form-control" name="provinciatitlabel"
+								id="provinciatitlabel" hidden></label></strong>
+						</div>
+						<label id="idassistitotit" hidden></label>
+						<div class="row"
+							style="width: 100%; bottom: 0; padding-bottom: 35px;">
+
+							<div class="col-md-6"></div>
+							<div class="col-md-6">
+								<button type="button" class="btn btn-primary btn-block"
+									(click)="RipristinaDati('Titolare')">Modifica</button>
+							</div>
+						</div>
+
+					</div>
+
+
+			</div>
+
+					</div>
+
+
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 15px; font-size: 12px">
+					
+					<div class="tondo ombragenerale rigagrigiafontnero"
+						style="padding: 15px; width: 100%;font-size:16px;min-height: 575px">
+						<div class="row">
+							<div class="row" style="width: 100%">
+								<strong style="font-size: 16px">Esenzione</strong>
+							</div>
+
+							<div class="row" style="padding-top: 10px">
+								<div class="col-md-12" style="padding: 0px">
+									<label>Codice</label> <select style="width: 100%" name="codEsenzioneFam"
+										id="codEsenzioneFam"
+										class="form-control form-control-sm comboese"
+										(change)="selectchangefam($event)"
+										ng-options="x for (x, y, z) in listaEsenzioni">
+										<ng-container *ngFor="let esenzione of listaEsenzioni">
+										<option *ngIf="esenzione.flagInseribile"
+											value="{{esenzione.codEsenzione}}">
+											{{esenzione.codEsenzione}}: {{esenzione.descEsenzione}}</option>
+											</ng-container>
+									</select>		
+								</div>
+									</div>
+						<div class="row" style="width: 100%;padding-top:10px;">
+						Motivo
+						</div>
+						<div>
+							<strong><p id="descesefam"></p></strong>
+						</div>
+										<ng-container *ngFor="let datarich of datarich">
+
+										<div class="row" style="width: 100%;padding-top:10px;">
+											Data Richiesta
+										
+											<div class="row" style="width: 100%;padding-top:10px;" id="dataRic">
+												<strong>{{datarich.dataRichiesta}}</strong>
+											</div>
+										</div>
+										<div class="row" style="width: 100%;padding-top:10px;">
+											Inizio validit&agrave;
+											
+											<div class="row" style="width: 100%;padding-top:10px;" id="iniVal">
+												<strong>{{datarich.inizioValidita}}</strong>
+											</div>
+										</div>
+										<div class="row" style="width: 100%;padding-top:10px;">
+											Scadenza<br>
+											<div class="row" style="padding-left:0px;width: 100%">
+											<div class="input-group input-append date"
+												data-provide="datepicker">
+												<span class="input-group-addon add-on"></span> <input
+													type="text" class="form-control" name="fineVal"
+													id="fineVal" placeholder="gg/mm/aaaa" value={{datarich.fineValidita}}
+													style="background: url('assets/img/user/calendario.png') no-repeat;
+	/* padding-right: 12px; */ border-right-width: 1px;padding-left: 1px;
+	/* margin-right: 0px; */ padding-right: 12px; background-position: right 10px center;background-color: #fff" [disabled]=!isDisable>
+											</div>
+										</div>
+										</div>
+										<label id="fineVal1" hidden>{{datarich.fineValidita}}</label>
+										</ng-container>	
+										<label id="dataSSNdic" hidden></label>
+										<div class="row" style="width: 100%;padding-top:10px;display: none;" id="nascdataSSN">
+											Scadenza SSN
+											<div class="row" style="width: 100%;padding-top:10px;">
+											<strong><label id="dataSSN" name="dataSSN"></label></strong>
+										</div>
+										</div>
+									
+						</div>
+						
+
+
+
+						<div class="row"></div>
+						<div class="row" style="width: 100%;padding-top:10px;">
+							<textarea class="form-control" rows="3" id="notaint"
+								placeholder="Nota ad uso interno"></textarea>
+								<label id="flagconferma" style="display:none;"></label>
+						</div>
+
+					</div>
+				
+				</div>
+
+			</div>
+
+
+			
+
+			 <div class="row rigagrigianobordo">
+
+
+				<div class="row" style="width: 100%">
+					<form id="formEsenzionefam" [formGroup]="registraEsenzioneFormFam"
+						(ngSubmit)="onregistraEsenzioneFormSubmitFam()"
+						style="width: 100%">
+						<div>
+							<section>
+								<div class="row" style="margin-top: 15px">
+									<div class="col-md-4" style="padding: 0px">
+										<button type="reset" class="btn btn-outline-primary btn-block"
+											(click)="ApriElencoEse()">Indietro</button>
+
+									</div>
+									<div class="col-md-4" style="padding: 0px"></div>
+									<div class="col-md-4" style="padding: 0px">
+										<button class="btn btn-primary btn-block" type="submit">CONFERMA</button>
+
+									</div>
+								</div>
+								<br>
+							</section>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+<div class="trova rigagrigianobordo" style="margin-bottom:-15px;">
+			<div class="row" style="padding-bottom: 5px;">
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 250px">
+									<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'FAQ_I'"></div>
+											   </ng-container>	
+												
+												
+											</div>
+											<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;font-size: 14px"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'FAQ'"></div>
+											   </ng-container>		
+												
+											</div>
+											<div class="row" style="padding-top: 5px;font-size: 14px">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'FAQ_T'"></div>
+											   </ng-container>		
+												
+											</div>	
+
+					</div>
+
+
+
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height:250px">
+						<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHIAMA_I'"></div>
+											   </ng-container>	
+												
+												
+											</div>
+											<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;font-size: 14px"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHIAMA'"></div>
+											   </ng-container>		
+												
+											</div>
+											<div class="row" style="padding-top: 5px;font-size: 14px">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;margin-right: -5px;margin-left: -5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHIAMA_T'"></div>
+											   </ng-container>		
+												
+											</div>	
+						
+					</div>
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 250px">
+						<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'SCRIVI_I'"></div>
+											   </ng-container>	
+												
+												
+											</div>
+											<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;padding-top:15px;font-size: 14px"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'SCRIVI'"></div>
+											   </ng-container>		
+												
+											</div>
+											<div class="row" style="padding-top: 5px;font-size: 14px">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'SCRIVI_TO'"></div>
+											   </ng-container>		
+												
+											</div>	
+						
+						
+						</div>
+						
+						</div>
+			</div>
+			<div class="row" style="padding-bottom: 5px;">
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 250px">
+									<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'GUARDA_I'"></div>
+											   </ng-container>	
+												
+												
+											</div>
+											<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;padding-top:30px;font-size: 14px"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'GUARDA'"></div>
+											   </ng-container>		
+												
+											</div>
+											<div class="row" style="padding-top: 5px;font-size: 14px">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'GUARDA_T'"></div>
+											   </ng-container>		
+												
+											</div>	
+						
+					</div>
+
+
+
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+					<div class="tondo ombragenerale rigabiancafontnero"
+						style="padding: 15px; min-height: 250px">
+						<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHAT_I'"></div>
+											   </ng-container>	
+												
+												
+											</div>
+											<div class="row" style="padding-top: 5px;justify-content: center;align-items: center;">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;font-size: 14px"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHAT'"></div>
+											   </ng-container>		
+												
+											</div>
+											<div class="row" style="padding-top: 5px;font-size: 14px">
+												<ng-container *ngFor="let parametro of listaParametri">
+													<div class="row" style="margin-bottom:5px;margin-top:5px;"
+													[innerHTML]="parametro.valoreParametro" 
+													*ngIf="parametro.codParametro === 'CHAT_T'"></div>
+											   </ng-container>		
+												
+											</div>	
+						
+					</div>
+				</div>
+				<div class="col"
+					style="min-width: 350px; padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 5px;">
+				
+						
+						</div>
+			</div>
+			<div class="row rigagrigianobordo">
+				<div class="row" style="width: 100%">
+					
+						<div style="width: 100%">
+							<section>
+								<div class="row" style="margin-top: 5px">
+									<div class="col-md-4" style="padding: 0px">
+										<button type="reset" class="btn btn-outline-primary btn-block"
+											(click)="ApriElencoEse()">Torna alla home</button>
+										
+									</div>
+									<div class="col-md-4" style="padding: 0px"></div>
+									<div class="col-md-4" style="padding: 0px">
+
+									</div>
+								</div>
+								<br>
+							</section>
+						</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigaok bordo-esitook esitoricercaok"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/imgok.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong><p id="messaggioesitoricercaok"></p></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigako bordo-esitoko esitoricercako"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong><p id="messaggioesitoricercako"></p></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max"
+			style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div
+					class="col-md-12 rigagen bordo-esitogenerico esitoricercagenerico"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/generico.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong><p id="messaggioesitoricercagenerico"></p></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-12 rigakoblocco bordo-esitokoblocco esitokoblocco" id="esitobloccoKo"
+			style="display: none; margin-bottom: 15px;">
+			<br>
+			<div class="row">				
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong>Errore durante lo sblocco dell'esenzione</strong>
+				</div>
+
+			</div>
+
+			<br>
+		</div>
+		<div class="col-md-12 rigaokblocco bordo-esitookblocco esitookblocco" id="esitobloccoOk"
+			style="display: none; margin-bottom: 15px;">
+			<br>
+			<div class="row">
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong>Esenzione sbloccata con successo</strong>
+				</div>
+
+			</div>
+
+			<br>
+		</div>
+		<div class="row rigabiancafontnero eleese">
+
+			<div class="col-md-12 divFiltri"
+				style="padding-top: 15px; font-weight: bold">
+
+				<div class="row">
+
+					<div class="row">
+
+
+						<div class="row" *ngFor="let assistito of listaAssistiti">
+							<div class="col-md-10">
+								<div class="form-group">
+									<label>Ricerca esenzioni per</label>
+
+									<ng-container> <select name="operatorefiltro"
+										id="operatorefiltro"
+										class="form-control form-control-sm comboese">
+										<option selected="selected"></option>
+										<option>COMPILAZIONE ONLINE</option>
+
+										<option *ngFor="let getoperatore of esenzioneasl"
+											value="{{getoperatore.idAura}}">
+											{{getoperatore.cognome}} {{getoperatore.nome}}</option>
+									</select> </ng-container>
+								</div>
+							</div>
+						</div>
+                    <div class="col-md-2 form-group" style="padding-left: 0px; padding-bottom: 15px; padding-right: 5px;">
+						<label>Storico</label><br>
+						<input id="storico" name="storico" value="No" type="checkbox" style="padding-left: 15px;margin-left: 20px;"> 
+					</div>
+					</div>
+				</div>
+				<br>
+
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Stato</label>
+
+							<ng-container> <select name="statofiltro"
+								id="statofiltro" class="form-control form-control-sm comboese">
+								<option></option>
+								<option *ngFor="let parametro of parametro"
+									value="{{parametro.codParametro}}">
+									{{parametro.valoreParametro}}</option>
+							</select> </ng-container>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Tipologia Esenzione</label>
+							<ng-container> <select name="codEsenzionefiltro"
+								id="codEsenzionefiltro"
+								class="form-control form-control-sm comboese">
+								<option></option>
+								<option *ngFor="let esenzione of listaEsenzioni"
+									value="{{esenzione.codEsenzione}}">
+									{{esenzione.codEsenzione}}: {{esenzione.descEsenzione}}</option>
+							</select> </ng-container>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label>Validit&agrave; dal</label>
+						<div class="input-group input-append date" id="startdateda"
+							name="startdateda" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text"
+								class="form-control" name="validada" id="validada"
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+
+					</div>
+					<div class="col-md-2">
+
+						<label>Validit&agrave; al</label>
+						<div class="input-group input-append date" id="startdatea"
+							name="startdatea" data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text"
+								class="form-control" name="validaa" id="validaa"
+								placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+
+					</div>
+
+
+				</div>
+				<br>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+
+
+						<input class="form-control" type="text" hidden
+							name="idassistitobenric" id="idassistitobenric">
+						<div class="form-group">
+							<label>Cognome Beneficiario</label> <input class="form-control"
+								type="text" name="cognomebenfiltro" id="cognomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Nome Beneficiario</label> <input class="form-control"
+								type="text" name="nomebenfiltro" id="nomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Data di Nascita Beneficiario</label>
+							<div class="input-group input-append date" id="datanascbenfiltrod"
+								data-provide="datepicker">
+								<span class="input-group-addon add-on"></span> <input
+									type="text" class="form-control" name="datanascbenfiltro"
+									id="datanascbenfiltro" placeholder="gg/mm/aaaa"
+									style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Codice fiscale Beneficiario</label> <input
+								class="form-control" type="text" name="codfiscbenfiltro"
+								id="codfiscbenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-md-10"></div>
+					<div class="col-md-2"
+						style="padding-left: 0px; padding-right: 0px position: absolute; bottom: 0;">
+						<button type="button" class="btn btn-primary btn-block"
+							style="float: right" data-toggle="modal"
+							data-target=".beneficiario"
+							(click)="ApriBeneficiario('BeneficiarioRicerca')">Cerca</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<input class="form-control" type="text" hidden
+							name="idassistitodicric" id="idassistitodicric">
+						<div class="form-group">
+							<label>Cognome Dichiarante</label> <input class="form-control"
+								type="text" name="cognomedicfiltro" id="cognomedicfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Nome Dichiarante</label> <input class="form-control"
+								type="text" name="nomedicfiltro" id="nomedicfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Data di Nascita Dichiarante</label>
+							<div class="input-group input-append date" id="datanascdicfiltrod"
+								data-provide="datepicker">
+								<span class="input-group-addon add-on"></span> <input
+									type="text" class="form-control" name="datanascdicfiltro"
+									id="datanascdicfiltro" placeholder="gg/mm/aaaa"
+									style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Codice fiscale Dichiarante</label> <input
+								class="form-control" type="text" name="codfiscdicfiltro"
+								id="codfiscdicfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-md-10"></div>
+					<div class="col-md-2"
+						style="padding-left: 0px; padding-right: 0px position: absolute; bottom: 0;">
+						<button type="button" class="btn btn-primary btn-block"
+							style="float: right" data-toggle="modal"
+							data-target=".beneficiario"
+							(click)="ApriBeneficiario('DichiaranteRicerca')">Cerca</button>
+					</div>
+				</div>
+
+				
+					<div class="row">
+					<div class="col-md-3">
+
+						<input class="form-control" type="text" hidden
+							name="idassistitotitric" id="idassistitotitric">
+						<div class="form-group">
+							<label>Cognome Titolare</label> <input class="form-control"
+								type="text" name="cognometitfiltro" id="cognometitfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Nome titolare</label> <input class="form-control"
+								type="text" name="nometitfiltro" id="nometitfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Data di Nascita Titolare</label>
+							<div class="input-group input-append date" id="datanasctitfiltrod"
+								data-provide="datepicker">
+								<span class="input-group-addon add-on"></span> <input
+									type="text" class="form-control" name="datanasctitfiltro"
+									id="datanasctitfiltro" placeholder="gg/mm/aaaa"
+									style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Codice fiscale Titolare</label> <input
+								class="form-control" type="text" name="codfisctitfiltro"
+								id="codfisctitfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-md-10"></div>
+					<div class="col-md-2"
+						style="padding-left: 0px; padding-right: 0px position: absolute; bottom: 0;">
+						<button type="button" class="btn btn-primary btn-block"
+							style="float: right" data-toggle="modal"
+							data-target=".beneficiario"
+							(click)="ApriBeneficiario('TitolareRicerca')">Cerca</button>
+					</div>
+				</div>
+				
+				<div class="col">
+
+					<button type="button" style="float: right; margin-bottom: 15px;"
+						class="btn btn-primary" href="#"
+						(click)="ApplicaFiltroOperatoreFirst()">Conferma</button>
+				</div>
+				<br>
+				<div class="card-content mesric">
+					<label class="messaggiokoricerca" id="messaggioricerca"></label>
+				</div>
+			</div>
+
+
+		</div>
+
+		<div class="eleeseris" style="color: black; padding-top: 30px"
+			id="tuttoRicerca">
+			<div class="row">
+				<div class="col" style="padding-left: 0px">
+					<strong><label id="componitesto"></label></strong>
+				</div>
+
+				<div class="row col-auto"
+					style="color: black; padding-top: 15px; cursor: pointer;">
+					<a (click)="AnnullaRicerca()">Azzera Ricerca <i
+						class="fa fa-close"></i></a>
+				</div>
+
+			</div>
+			<div class="row">
+				Risultati trovati: <label id="numesentionitrovate"></label>
+			</div>
+			<div class="table-responsive">
+				<table id="ricerca" class="table table-bordered" style="width: 100%">
+					<div *ngIf="lunghezzaarray!=1; then piupagina else unapagina"></div>
+					<ng-template #unapagina>
+					<thead class="rigagrigiafontnero" style="font-size: 12px;text-align: center;">
+						<tr>
+							<th width="10%" nohref style="cursor: pointer; max-width: 100px"
+								(click)="sort1('idEsenzione')">N. Protocollo <span
+								class="fa fa-2x" *ngIf="key =='idEsenzione'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort1('cognomeBeneficiario')">Beneficiario<span
+								class="fa fa-2x" *ngIf="key =='cognomeBeneficiario'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('codEsenzione')">Codice esenzione <span
+								class="fa fa-2x" *ngIf="key =='codEsenzione'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="22%" nohref style="cursor: pointer;" (click)="sort1('stato')">Stato
+								pratica <span class="fa fa-2x" *ngIf="key =='stato'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('dataRichiesta')">Data Richiesta <span
+								class="fa fa-2x" *ngIf="key =='dataRichiesta'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('inizioValidita')">Inizio Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='inizioValidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('fineValidita')">Fine Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='fineValidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('dataRevoca')">Data Revoca <span
+								class="fa fa-2x" *ngIf="key =='dataRevoca'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="11%">Azioni</th>
+						</tr>
+					</thead>
+					<tbody class="rigabiancafontnero"
+						style="font-size: 12px; text-align: center">
+
+						<tr
+							*ngFor="let esenzioneoperatore of listaEsenzioneOperatore | orderBy: key : reverse ; let i = index">
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='R'">
+							{{esenzioneoperatore.attestato}}
+							<div style="color:blue;font-size: 10px;">
+							Revocata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.numProtocolloSogei!=null && esenzioneoperatore.numProtocolloSogei!='' && esenzioneoperatore.numProtocolloSogei!='null' && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							<div style="color:red;font-size: 10px;">
+							Autocertificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="(esenzioneoperatore.numProtocolloSogei==null || esenzioneoperatore.numProtocolloSogei=='' || esenzioneoperatore.numProtocolloSogei=='null') && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.attestato==0 ? null : esenzioneoperatore.attestato==0}}
+							<div style="color:green;font-size: 10px;">
+							Certificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							</th>
+							<td>{{esenzioneoperatore.nomeBeneficiario}}
+								{{esenzioneoperatore.cognomeBeneficiario}}<br>{{esenzioneoperatore.codFiscaleBeneficiario}}
+							</td>
+							<td>{{esenzioneoperatore.codEsenzione}}</td>
+							<td>{{esenzioneoperatore.stato}}<br>{{esenzioneoperatore.motivo_nonvalida}}</td>
+							<td>{{esenzioneoperatore.dataRichiesta}}</td>
+							<td>{{esenzioneoperatore.inizioValidita}}</td>
+							<td>{{esenzioneoperatore.fineValidita}}</td>
+							<td>{{esenzioneoperatore.dataRevoca}}</td>
+							<label hidden id="codfiscstampa">{{esenzioneoperatore.codFiscaleBeneficiario}}</label>
+							<td>
+								<div class="row">
+									<div
+										*ngIf="esenzioneoperatore.stampabile==true && esenzioneoperatore.codStato=='V'; then stampasi else stampano"></div>
+									<ng-template #stampasi>
+									<div id="bottonestampa" (click)="stampa(i)"
+										style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-print fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #stampano>
+									<div id="bottonestampa" (click)="VisualizzaEsenzione(i)" style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-print fa-lg"></i>
+									</div>
+									</ng-template>
+									<div *ngIf="esenzioneoperatore.revocabile==true && esenzioneoperatore.idUserInsert!='99999998'; then revocasi else revocano"></div>
+									<ng-template #revocasi>
+									<div id="bottonerevoca" (click)="RevocaEsenzione(i)"
+										style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-remove fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #revocano>
+									<div id="bottonerevoca" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-remove fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+									
+									<div *ngIf="esenzioneoperatore.nota; then notasi else notano"></div>
+									<ng-template #notasi>
+									<div id="bottonenota" (click)="Aprinota(i)"
+										style="padding-right: 5px">
+										<i data-toggle="modal" data-target=".NotainternaModal" nohref
+											style="cursor: pointer; color: blue" aria-hidden="true"
+											class="fa fa-sticky-note-o fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #notano>
+									<div id="bottonenota" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-sticky-note-o fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+									<div *ngIf="esenzioneoperatore.codStato==='B'; then sbloccasi else sbloccano"></div>
+									<ng-template #sbloccasi>
+									<div id="bottonesblocca"
+										(click)="sbloccaEsenzioneModal(esenzioneoperatore.idEsenzione)"
+										style="padding-right: 5px;"
+										data-toggle="modal" data-target="#sbloccoModal">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-unlock-alt fa-lg"></i>
+									</div>
+									</ng-template>
+										<ng-template #sbloccano>
+									<div id="bottonesblocca" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-unlock-alt fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+
+									 <div id="bottonevisualizzarev"
+										(click)="getEsenzioniTitolareRevoca(i)">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-eraser fa-sm"></i>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+					</ng-template>
+					<ng-template #piupagina>
+					<thead class="rigagrigiafontnero" style="font-size: 12px;text-align: center;">
+						<tr>
+							<th width="10%" nohref style="cursor: pointer; max-width: 100px"
+								(click)="sort('protocollo')">N. Protocollo <span
+								class="fa fa-2x" *ngIf="key =='protocollo'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort('beneficiario')">Beneficiario<span
+								class="fa fa-2x" *ngIf="key =='beneficiario'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort('codesenzione')">Codice esenzione <span
+								class="fa fa-2x" *ngIf="key =='codesenzione'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="22%" nohref style="cursor: pointer;" (click)="sort('stato')">Stato
+								pratica <span class="fa fa-2x" *ngIf="key =='stato'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort('datarichiesta')">Data Richiesta <span
+								class="fa fa-2x" *ngIf="key =='datarichiesta'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort('iniziovalidita')">Inizio Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='iniziovalidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort('finevalidita')">Fine Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='finevalidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort('datarevoca')">Data Revoca <span
+								class="fa fa-2x" *ngIf="key =='datarevoca'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="11%">Azioni</th>
+						</tr>
+					</thead>
+					<tbody class="rigabiancafontnero"
+						style="font-size: 12px; text-align: center">
+
+						<tr
+							*ngFor="let esenzioneoperatore of listaEsenzioneOperatore ; let i = index">
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='R'">
+							{{esenzioneoperatore.attestato}}
+							<div style="color:blue;font-size: 10px;">
+							Revocata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.numProtocolloSogei!=null && esenzioneoperatore.numProtocolloSogei!='' && esenzioneoperatore.numProtocolloSogei!='null' && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							<div style="color:red;font-size: 10px;">
+							Autocertificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="(esenzioneoperatore.numProtocolloSogei==null || esenzioneoperatore.numProtocolloSogei=='' || esenzioneoperatore.numProtocolloSogei=='null') && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.attestato==0 ? null : esenzioneoperatore.attestato==0}}
+							<div style="color:green;font-size: 10px;">
+							Certificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							</th>
+							<td>{{esenzioneoperatore.nomeBeneficiario}}
+								{{esenzioneoperatore.cognomeBeneficiario}}<br>{{esenzioneoperatore.codFiscaleBeneficiario}}
+							</td>
+							<td>{{esenzioneoperatore.codEsenzione}}</td>
+							<td>{{esenzioneoperatore.stato}}<br>{{esenzioneoperatore.motivo_nonvalida}}</td>
+							<td>{{esenzioneoperatore.dataRichiesta}}</td>
+							<td>{{esenzioneoperatore.inizioValidita}}</td>
+							<td>{{esenzioneoperatore.fineValidita}}</td>
+							<td>{{esenzioneoperatore.dataRevoca}}</td>							
+							<label hidden id="codfiscstampa">{{esenzioneoperatore.codFiscaleBeneficiario}}</label>
+							<td>
+								<div class="row">
+									<div
+										*ngIf="esenzioneoperatore.stampabile==true && esenzioneoperatore.codStato=='V'; then stampasi else stampano"></div>
+									<ng-template #stampasi>
+									<div id="bottonestampa" (click)="stampa(i)"
+										style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-print fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #stampano>
+									<div id="bottonestampa" (click)="VisualizzaEsenzione(i)" style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-print fa-lg"></i>
+									</div>
+									</ng-template>
+
+
+									<div
+										*ngIf="esenzioneoperatore.revocabile==true && esenzioneoperatore.idUserInsert!='99999998'; then revocasi else revocano"></div>
+									<ng-template #revocasi>
+									<div id="bottonerevoca" (click)="RevocaEsenzione(i)"
+										style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-remove fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #revocano>
+									<div id="bottonerevoca" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-remove fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+				
+									<div *ngIf="esenzioneoperatore.nota; then notasi else notano"></div>
+									<ng-template #notasi>
+									<div id="bottonenota" (click)="Aprinota(i)" style="padding-right: 5px">
+										<i data-toggle="modal" data-target=".NotainternaModal" nohref
+											style="cursor: pointer; color: blue" aria-hidden="true"
+											class="fa fa-sticky-note-o fa-lg"></i>
+									</div>
+									</ng-template>
+									<ng-template #notano>
+									<div id="bottonenota" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-sticky-note-o fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+									<div *ngIf="esenzioneoperatore.codStato==='B'; then sbloccasi else sbloccano"></div>
+									<ng-template #sbloccasi>
+									<div id="bottonesblocca" style="padding-right: 5px"
+										(click)="sbloccaEsenzioneModal(esenzioneoperatore.idEsenzione)"
+										data-toggle="modal" data-target="#sbloccoModal"
+										style="padding-right: 5px">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-unlock-alt fa-lg"></i>
+									</div>
+									</ng-template>
+										<ng-template #sbloccano>
+									<div id="bottonesblocca" style="padding-right: 5px">
+										<i aria-hidden="true" class="fa fa-unlock-alt fa-lg"
+											style="opacity: 0.5 disabled; color: steelblue"></i>
+									</div>
+									</ng-template>
+								 <div id="bottonevisualizzarev"
+										(click)="getEsenzioniTitolareRevoca(i)">
+										<i nohref style="cursor: pointer; color: blue"
+											aria-hidden="true" class="fa fa-eraser fa-sm"></i>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+					</ng-template>
+
+
+
+
+				</table>
+
+				<hr>
+				<div style="justify-content: center; display: flex;">
+					<ul class="nav nav-pills">
+						<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+							[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+							*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)"
+							class="nav-link" href="" (click)="SetPage(i,$event)"
+							[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+							*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<div class="esito rigagrigianobordo">
+
+
+	<div class="row rigagrigianobordo">
+		<p></p>
+	</div>
+
+	<div class="row rigagrigianobordo esitook">
+
+		
+		<div class="col-md-12 rigaok bordo-esitook larghezza-max"
+			style="padding-left: 0px; margin-left: 0px;">
+			<br>
+			<div class="row">
+				<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/imgok.jpg">
+				</div>
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong><p id="messaggiook"></p></strong>
+				</div>
+
+			</div>
+			<br>
+		</div>
+
+	</div>
+
+	<div class="row rigagrigianobordo esitover">
+
+		<div class="col-md-12 rigaver bordo-esitover larghezza-max"
+			style="padding-left: 0px; margin-left: 0px;">
+			<br>
+			<div class="row">
+				<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/verifica.jpg">
+				</div>
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong><p id="messaggiover"></p></strong>
+				</div>
+
+			</div>
+
+
+			<br>
+		</div>
+
+	</div>
+
+	<div class="row rigagrigianobordo esitogenerico">
+
+		<div class="col-md-12 rigagen bordo-esitogenerico larghezza-max"
+			id="esitogenerico" style="padding-left: 0px;; margin-left: 0px;">
+			<br>
+			<div class="row">
+				<div class="col-md-1" style="padding-right: 0px;">
+					<img class="img-fluid" src="assets/img/user/generico.jpg">
+				</div>
+				<div class="col-md-11" style="padding-left: 0px;">
+					<strong><p id="messaggiogenerico"></p></strong>
+				</div>
+
+			</div>
+			<br>
+		</div>
+
+	</div>
+
+	<div class="row rigagrigianobordo">
+		<p></p>
+	</div>
+
+			
+			<br>
+
+
+
+			<div class="row">
+				<div class="col-md-6"
+					style="padding-left: 0px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px;">
+					<div class="rigaesenzione tondo ombragenerale">
+						<div class="rowpad" style="padding-top: 5px;">Codice
+							Esenzione:</div>
+						<div class="rowpad">
+							<strong><label id="codesemes"></label></strong>
+
+						</div>
+						<div class="rowpad">Descrizione esenzione:</div>
+						<div class="rowpad">
+							<strong><label id="descesemes"></label></strong>
+
+						</div>
+						<div class="row">
+							<div class="col-md-6">Inizio validit&agrave;:</div>
+							<div class="col-md-6">Scadenza:</div>
+
+
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<strong><label id="datainimes"></label></strong>
+							</div>
+							<div class="col-md-6">
+								<strong><label id="datafinemes"></label></strong>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-6 rigabiancafontnero tondo ombragenerale"
+					style="padding-left: 0px; padding-right: 0px">
+					<div class="rowpad" style="padding-top: 5px;">Codice fiscale:
+					</div>
+					<div class="rowpad">
+						<strong><label id="codicefiscbenmes"></label></strong>
+					</div>
+					<div class="row">
+						<div class="col-md-6">Cognome:</div>
+						<div class="col-md-6">Nome:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<strong><label id="cognomebenmes"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="nomebenmes"></label></strong>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6">Sesso:</div>
+						<div class="col-md-6">Data di nascita:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<strong><label id="sessobenmes"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="datanasbenmes"></label></strong>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">Comune o Stato estero di nascita:</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><label id="comunenasbenmes"></label></strong>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-1"></div>
+			</div>
+			
+<div class="row rigagrigianobordo">
+		<p></p>
+	</div>
+
+	<div class="row besitook rigagrigianobordo">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 larghezza-max">
+			<div class="row">
+				<div class="col-md-6"></div>
+				<div class="col-md-3">
+
+					<button class="btn btn-block btn-dettaglio pageleese" id="bottone"
+						type="button" (click)="ApriElencoEse()">
+						<strong>Torna alla home</strong>
+					</button>
+				</div>
+
+				<div class="col-md-3">
+					<div class="dropdown">
+
+						<button (click)="stampa(-1)"
+							class="btn btn-block btn-primary btn-xs btn-circle float-left">
+							<i nohref style="cursor: pointer;" class="fa fa-print"
+								aria-hidden="true"></i><strong>&emsp;Stampa</strong>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+
+	<div class="row besitover rigagrigianobordo">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 larghezza-max">
+			<div class="row">
+				<div class="col-md-6"></div>
+				<div class="col-md-1"></div>
+				<div class="col-md-4">
+
+					<button class="btn btn-block btn-dettaglio pageleese" id="bottone"
+						type="button" (click)="ApriElencoEse()">
+						<strong>Torna alla home</strong>
+					</button>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+			
+			<div class="row rigagrigianobordo">
+		<p></p>
+	</div>	
+			
+		
+
+		</div>
+
+		
+
+
+		<div class="revese rigagrigianobordo">
+
+			<div class="row rigabiancafontnero"
+				style="padding-top: 20px; padding-bottom: 20px;">
+				<p id="idrevoca" hidden>{{parametro.valoreParametro}}
+				<div hidden class="col-md-12 h5 text-center">
+					<strong><p class="h5" id="headrevoca"></p></strong>
+				</div>
+
+				<div class="col-md-12 fonttitolibold larghezza-max">Revoca</div>
+
+			</div>
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+			<div class="row esitorevoca rigagrigianobordo">
+				<div class="row rigagrigianobordo">
+					<p></p>
+				</div>
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-12 rigaok bordo-esitook esitorevocaok"
+							style="padding-top: 15px; padding-bottom: 15px;">
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/imgok.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocaok"></p></strong>
+								</div>
+							</div>
+						</div>
+		
+						<div class="col-md-12 rigako bordo-esitoko esitorevocako"
+							style="padding-top: 15px; padding-bottom: 15px;">
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocako"></p></strong>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 rigaver bordo-esitover esitorevocaver"
+							style="padding-top: 15px; padding-bottom: 15px;">
+
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/verifica.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocaver"></p></strong>
+								</div>
+							</div>
+						</div>
+						<div
+							class="col-md-12 rigagen bordo-esitogenerico esitorevocagenerico"
+							style="padding-top: 15px; padding-bottom: 15px;">
+
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/generico.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocagenerico"></p></strong>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row rigagrigianobordo revocaBlock"
+				style="padding-bottom: 5px; padding-top: 15px;">
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;" >
+					<p style="font-size: 16px; color: #000000" innerHtml="{{messaggio}}"></p>
+				</div>
+
+			</div>
+
+			<div class="row rigagrigianobordo revocaBlock" style="padding-bottom: 15px;">
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row rigabiancafontnero tondo ombragenerale"
+						style="padding: 15px;">
+						<div class="col-md-2">
+							Motivo della revoca<br>(obbligatorio)
+						</div>
+						<div class="col-md-10">
+							<textarea class="form-control" rows="3" id="motrev"
+								placeholder="Inserire il motivo della revoca"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="row rigagrigianobordo revocaBlock" style="padding-bottom: 15px;">
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row rigabiancafontnero tondo ombragenerale"
+						style="padding: 15px;">
+						<div class="col-md-2">
+							Revoca con blocco<br>
+						</div>
+						<div class="col-md-10">
+							<input type="checkbox" id="id-name--1" name="set-name"
+								class="switch-input"> <label for="id-name--1"
+								class="switch-label"><span class="toggle--on">ATTIVO</span><span
+								class="toggle--off">DISATTIVATO</span></label>
+							<p id="testoBlocco"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row rigagrigianobordo fonttitolibold">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"
+							style="color: black; padding-left: 0px; padding-right: 0px;">Esenzione</div>
+						<div class="col-md-6"
+							style="color: black; padding-left: 0px; padding-right: 0px;">Beneficiario</div>
+					</div>
+				</div>
+			</div>
+			<div class="row rigagrigianobordo" id="disabiltatasti">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"
+							style="padding-left: 0px; padding-right: 5px;">
+							<div class="rigaesenzione tondo ombragenerale"
+								style="padding-left: 15px; padding-right: 0px">
+
+								<div class="row" style="padding-top: 5px;">Codice
+									Esenzione:</div>
+								<div class="row">
+									<strong><label id="codeserev"></label></strong>
+
+								</div>
+								<br>
+								<div class="row">Descrizione esenzione:</div>
+								<div class="row">
+									<strong><label id="desceserev"></label></strong>
+
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-6" style="padding-left: 0px;">Inizio
+										validit&agrave;:</div>
+									<div class="col-md-6">Scadenza:</div>
+
+
+								</div>
+								<div class="row">
+									<div class="col-md-6" style="padding-left: 0px;">
+										<strong><label id="datainirev"></label></strong>
+									</div>
+									<div class="col-md-6">
+										<strong><label id="datascadrev"></label></strong>
+									</div>
+
+								</div>
+
+
+							</div>
+
+					
+					<div class="row rigagrigianobordo fonttitolibold sititolarerev">
+					<div class="row">
+							<div style="color: black;">Titolare</div>	
+						</div>		
+				</div>
+					<div class="col-md-12 rigabiancafontnero tondo ombragenerale sititolarerev" style="padding-left: 15px; padding-right: 0px">
+					
+					<div class="row" style="padding-top: 5px;">Codice fiscale:</div>
+					<div class="row">
+						<strong><label id="codfiscrevt"></label></strong>
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Cognome:</div>
+						<div class="col-md-6">Nome:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="cognomerevt"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="nomerevt"></label></strong>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Sesso:</div>
+						<div class="col-md-6">Data di nascita:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="sessorevt"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="datanasrevt"></label></strong>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">Comune o
+							Stato estero di nascita:</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">
+							<strong><label id="comunenasrevt"></label></strong>
+						</div>
+					</div>
+					</div>
+
+							
+							
+						</div>
+
+						<div class="col-md-6 rigabiancafontnero tondo ombragenerale"
+							style="padding-left: 15px; padding-right: 0px">
+
+							<div class="row" style="padding-top: 5px;">Codice fiscale:</div>
+							<div class="row">
+								<strong><label id="codfiscrev"></label></strong>
+							</div>
+							<br>
+
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">Cognome:</div>
+								<div class="col-md-6">Nome:</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">
+									<strong><label id="cognomerev"></label></strong>
+								</div>
+								<div class="col-md-6">
+									<strong><label id="nomerev"></label></strong>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">Sesso:</div>
+								<div class="col-md-6">Data di nascita:</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">
+									<strong><label id="sessorev"></label></strong>
+								</div>
+								<div class="col-md-6">
+									<strong><label id="datanasrev"></label></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding-left: 0px;">Comune o
+									Stato estero di nascita:</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding-left: 0px;">
+									<strong><label id="comunenasrev"></label></strong>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+					<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+		<div class="row rigagrigianobordo" style="padding-bottom: 15px;">
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row rigabiancafontnero tondo ombragenerale"
+						style="padding: 15px;">
+						<div class="col-md-2">
+							Nota ad uso interno<br>(non obbligatorio)
+						</div>
+						<div class="col-md-10">
+							<textarea class="form-control" rows="3" id="notaintrev"
+								placeholder="Nota ad uso interno"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+			<div class="row besitorev rigagrigianobordo" id="besitorev">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+
+						<div class="col-md-6"></div>
+						<div class="col-md-3">
+							<button class="btn btn-block btn-dettaglio pageleese"
+								id="bottone" type="button" (click)="ApriElencoEse()">
+								<strong>Indietro</strong>
+							</button>
+						</div>
+						<div class="col-md-3">
+							<button class="btn  btn-block btn-primary"
+								(click)="EseguiRevoca()">
+								<strong>Conferma revoca</strong>
+							</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row besitorevfine rigagrigianobordo">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"></div>
+						<div class="col-md-1"></div>
+						<div class="col-md-4">
+
+							<button class="btn btn-block btn-dettaglio pageleese"
+								id="bottone" type="button" (click)="ApriElencoEse()">
+								<strong>Torna alla home</strong>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+		</div>
+
+
+		<div class="visese rigagrigianobordo">
+
+				<div class="col-md-12 rigabiancafontnero fonttitolibold larghezza-max">Visualizza Esenzione</div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+			<div class="row rigagrigianobordo fonttitolibold">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"
+							style="color: black; padding-left: 0px; padding-right: 0px;">Esenzione</div>
+						<div class="col-md-6"
+							style="color: black; padding-left: 0px; padding-right: 0px;">Beneficiario</div>
+					</div>
+				</div>
+			</div>
+			<div class="row rigagrigianobordo">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"
+							style="padding-left: 0px; padding-right: 5px;">
+							<div class="rigaesenzione tondo ombragenerale"
+								style="padding-left: 15px; padding-right: 0px;">
+
+								<div class="row" style="padding-top: 5px;">Codice
+									Esenzione:</div>
+								<div class="row">
+									<strong><label id="codesevis"></label></strong>
+
+								</div>
+								<br>
+								<div class="row">Descrizione esenzione:</div>
+								<div class="row">
+									<strong><label id="descesevis"></label></strong>
+
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-6" style="padding-left: 0px;">Inizio
+										validit&agrave;:</div>
+									<div class="col-md-6">Scadenza:</div>
+
+
+								</div>
+								<div class="row">
+									<div class="col-md-6" style="padding-left: 0px;">
+										<strong><label id="datainivis"></label></strong>
+									</div>
+									<div class="col-md-6">
+										<strong><label id="datascadvis"></label></strong>
+									</div>
+
+								</div>
+
+
+							</div>
+
+					
+					<div class="row rigagrigianobordo fonttitolibold sititolarevis">
+					<div class="row">
+							<div style="color: black;">Titolare</div>	
+						</div>		
+				</div>
+					<div class="col-md-12 rigabiancafontnero tondo ombragenerale sititolarevis" style="padding-left: 15px; padding-right: 0px">
+					
+					<div class="row" style="padding-top: 5px;">Codice fiscale:</div>
+					<div class="row">
+						<strong><label id="codfiscvist"></label></strong>
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Cognome:</div>
+						<div class="col-md-6">Nome:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="cognomevist"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="nomevist"></label></strong>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Sesso:</div>
+						<div class="col-md-6">Data di nascita:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="sessovist"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="datanasvist"></label></strong>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">Comune o
+							Stato estero di nascita:</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">
+							<strong><label id="comunenasvist"></label></strong>
+						</div>
+					</div>
+					</div>
+
+							
+						</div>
+
+						<div class="col-md-6"
+							style="padding-left: 15px; padding-right: 0px">
+					<div class="col-md-12 rigabiancafontnero tondo ombragenerale"
+								style="padding-left: 15px; padding-right: 0px">
+							<div class="row" style="padding-top: 5px;">Codice fiscale:</div>
+							<div class="row">
+								<strong><label id="codfiscvis"></label></strong>
+							</div>
+							<br>
+
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">Cognome:</div>
+								<div class="col-md-6">Nome:</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">
+									<strong><label id="cognomevis"></label></strong>
+								</div>
+								<div class="col-md-6">
+									<strong><label id="nomevis"></label></strong>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">Sesso:</div>
+								<div class="col-md-6">Data di nascita:</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-6" style="padding-left: 0px;">
+									<strong><label id="sessovis"></label></strong>
+								</div>
+								<div class="col-md-6">
+									<strong><label id="datanasvis"></label></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding-left: 0px;">Comune o
+									Stato estero di nascita:</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding-left: 0px;">
+									<strong><label id="comunenasvis"></label></strong>
+								</div>
+							</div>
+							</div>
+							
+
+					
+					<div class="row rigagrigianobordo fonttitolibold sidichiarantevis">
+					<div class="row">
+							<div style="color: black;">Dichiarante</div>	
+						</div>		
+				</div>
+					<div class="col-md-12 rigabiancafontnero tondo ombragenerale sidichiarantevis" style="padding-left: 15px; padding-right: 0px">
+					
+					<div class="row" style="padding-top: 5px;">Codice fiscale:</div>
+					<div class="row">
+						<strong><label id="codfiscvisd"></label></strong>
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Cognome:</div>
+						<div class="col-md-6">Nome:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="cognomevisd"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="nomevisd"></label></strong>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">Sesso:</div>
+						<div class="col-md-6">Data di nascita:</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="padding-left: 0px;">
+							<strong><label id="sessovisd"></label></strong>
+						</div>
+						<div class="col-md-6">
+							<strong><label id="datanasvisd"></label></strong>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">Comune o
+							Stato estero di nascita:</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding-left: 0px;">
+							<strong><label id="comunenasvisd"></label></strong>
+						</div>
+					</div>
+					</div>
+	
+						</div>
+					</div>
+				</div>
+			</div>
+
+					<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+			
+
+											<div class="row rigagrigianobordo motrevno" style="padding-bottom: 15px;">
+										<div class="col-md-12 larghezza-max"
+											style="padding-left: 0px; padding-right: 0px;">
+											<div class="row rigabiancafontnero tondo ombragenerale"
+												style="padding: 15px;">
+												<div class="col-md-2">
+													Motivo della revoca
+												</div>
+												<div class="col-md-10">
+													<textarea class="form-control" rows="3" id="notaintvis"
+														disabled="disabled"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+			<div class="row besitovis rigagrigianobordo" id="besitovis">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+
+						<div class="col-md-9"></div>
+						<div class="col-md-3">
+							<button class="btn btn-block btn-dettaglio pageleese"
+								id="bottone" type="button" (click)="ApriElencoEse()">
+								<strong>Indietro</strong>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+		</div>
+
+
+
+		<div class="viseserev rigagrigianobordo">
+
+				<div class="col-md-12 rigabiancafontnero fonttitolibold larghezza-max" id="titolarevocate"></div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+<div class="row esitorevocatot rigagrigianobordo">
+				<div class="row rigagrigianobordo">
+					<p></p>
+				</div>
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+
+					<div
+							class="col-md-12 rigagen bordo-esitogenerico esitorevocatotgenerico"
+							style="padding-top: 15px; padding-bottom: 15px;">
+
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/generico.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocatotgenerico"></p></strong>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 rigako bordo-esitoko esitorevocatotko"
+							style="padding-top: 15px; padding-bottom: 15px;">
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocatotko"></p></strong>
+								</div>
+							</div>
+						</div>
+						 <div class="col-md-12 rigaok bordo-esitook esitorevocatotok"
+							style="padding-top: 15px; padding-bottom: 15px;">
+							<div class="row">
+								<div class="col-md-1" style="padding-right: 0px;">
+									<img class="img-fluid" src="assets/img/user/imgok.jpg">
+								</div>
+								<div class="col-md-11" style="padding-left: 0px;">
+									<strong><p id="messaggiorevocatotok"></p></strong>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="row numerotrovatetot" style="color:black;">
+				Risultati trovati: <label id="numesentionitrovaterev"></label>
+			</div>
+			<div class="table-responsive tabellarictot">
+				<table id="ricercarevtot" class="table table-bordered" style="width: 100%">
+					<thead class="rigagrigiafontnero" style="font-size: 12px;text-align: center;">
+						<tr>
+							<th width="10%" nohref style="cursor: pointer; max-width: 100px"
+								(click)="sort1('idEsenzione')">N. Protocollo <span
+								class="fa fa-2x" *ngIf="key =='idEsenzione'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort1('cognomeBeneficiario')">Beneficiario<span
+								class="fa fa-2x" *ngIf="key =='cognomeBeneficiario'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;" nohref
+								style="cursor:pointer;" (click)="sort1('cognomeDichiarante')">Dichiarante<span
+								class="fa fa-2x" *ngIf="key =='cognomeDichiarante'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('codEsenzione')">Codice esenzione <span
+								class="fa fa-2x" *ngIf="key =='codEsenzione'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="9%" nohref style="cursor: pointer;"
+								(click)="sort1('dataRichiesta')">Data Richiesta <span
+								class="fa fa-2x" *ngIf="key =='dataRichiesta'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('inizioValidita')">Inizio Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='inizioValidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+							<th width="10%" nohref style="cursor: pointer;"
+								(click)="sort1('fineValidita')">Fine Validit&agrave; <span
+								class="fa fa-2x" *ngIf="key =='fineValidita'"
+								[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody class="rigabiancafontnero"
+						style="font-size: 12px; text-align: center">
+
+						<tr
+							*ngFor="let esenzioneoperatore of listaEsenzioneOperatoreRevoca | orderBy: key : reverse ; let i = index">
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='R'">
+							{{esenzioneoperatore.attestato}}
+							<div style="color:blue;font-size: 10px;">
+							Revocata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.numProtocolloSogei!=null && esenzioneoperatore.numProtocolloSogei!='' && esenzioneoperatore.numProtocolloSogei!='null' && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							<div style="color:red;font-size: 10px;">
+							Autocertificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="(esenzioneoperatore.numProtocolloSogei==null || esenzioneoperatore.numProtocolloSogei=='' || esenzioneoperatore.numProtocolloSogei=='null') && esenzioneoperatore.codStato!='R' && esenzioneoperatore.codStato!='N'">
+							{{esenzioneoperatore.attestato==0 ? null : esenzioneoperatore.attestato==0}}
+							<div style="color:green;font-size: 10px;">
+							Certificata
+							</div>
+							</th>
+							<th scope="row" *ngIf="esenzioneoperatore.codStato=='N'">
+							{{esenzioneoperatore.numProtocolloSogei}}
+							</th>
+							<td>{{esenzioneoperatore.nomeBeneficiario}}
+								{{esenzioneoperatore.cognomeBeneficiario}}<br>{{esenzioneoperatore.codFiscaleBeneficiario}}
+							</td>
+							<td>{{esenzioneoperatore.nomeRichiedente}}
+								{{esenzioneoperatore.cognomeRichiedente}}<br>{{esenzioneoperatore.codFiscaleRichiedente}}
+							</td>
+							<td>{{esenzioneoperatore.codEsenzione}}</td>
+							<td>{{esenzioneoperatore.dataRichiesta}}</td>
+							<td>{{esenzioneoperatore.inizioValidita}}</td>
+							<td>{{esenzioneoperatore.fineValidita}}</td>
+							<label hidden id="codfiscstampa">{{esenzioneoperatore.codFiscaleBeneficiario}}</label>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		
+		<div class="row rigagrigianobordo idmotrevtot" style="padding-bottom: 15px;">
+
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row rigabiancafontnero tondo ombragenerale"
+						style="padding: 15px;">
+						<div class="col-md-2">
+							Motivo della revoca<br>(obbligatorio)
+						</div>
+						<div class="col-md-10">
+							<textarea class="form-control" rows="3" id="motrevtot"
+								placeholder="Inserire il motivo della revoca"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row besitorevtot rigagrigianobordo" id="besitorevtot">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+
+						<div class="col-md-6"></div>
+						<div class="col-md-3">
+							<button class="btn btn-block btn-dettaglio pageleese"
+								id="bottone" type="button" (click)="ApriElencoEse()">
+								<strong>Indietro</strong>
+							</button>
+						</div>
+						<div class="col-md-3">
+							<button class="btn  btn-block btn-primary"
+								(click)="EseguiRevocaTotale()">
+								<strong>Conferma revoca</strong>
+							</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row besitorevtotfine rigagrigianobordo">
+				<div class="col-md-12 larghezza-max"
+					style="padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-md-6"></div>
+						<div class="col-md-1"></div>
+						<div class="col-md-4">
+
+							<button class="btn btn-block btn-dettaglio pageleese"
+								id="bottone" type="button" (click)="ApriElencoEse()">
+								<strong>Torna alla home</strong>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row rigagrigianobordo">
+				<p></p>
+			</div>
+
+		</div>
+
+
+
+
+
+
+		<div class="row">
+			<div class="col-xl-12"></div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<br>
+
+
+
+<div class="modal fade beneficiario" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" tabindex="-1" role="document">
+		<div class="modal-content rigabiancafontnero">
+			<div class="modal-header bordo-top" style="border: 0px">
+				<button class="close" id="chiudimodalricerca" type="button"
+					data-dismiss="modal" aria-label="Close">
+					<span>&times;</span>
+				</button>
+			</div>
+
+			<div class="tabellaricerca">
+				<div class="row" style="width: 100%; padding: 15px">
+					<div class="bs-callout bs-callout-primary"
+						style="width: 100%; padding: 15px; font-size: 12px">
+						<strong>Sono stati trovati <label id="numtrovati"></label>
+							assistiti con le caratteristiche impostate.
+						</strong><br> Seleziona l'utente che intendi inserire nella richiesta
+					</div>
+				</div>
+
+				<div class="table-responsive">
+
+					<table id="ricerca" class="table"
+						style="font-size: 12px; border: 0;">
+						<thead class="rigagrigiafontnero" style="font-weight: bold">
+							<tr style="border: 0px">
+								<th scope="col" style="border: 0px">Codice Fiscale</th>
+								<th scope="col" style="border: 0px">Cognome</th>
+								<th scope="col" style="border: 0px">Nome</th>
+								<th scope="col" style="border: 0px">Sesso</th>
+								<th scope="col" style="border: 0px">Data di nascita</th>
+								<th scope="col" style="border: 0px">Comune o Stato estero
+									di nascita</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr *ngFor="let assistito of assistito; let i=index">
+								<th class="celleTab" scope="row">{{assistito.codFiscale}}</th>
+								<td class="celleTab">{{assistito.cognome}}</td>
+								<td class="celleTab">{{assistito.nome}}</td>
+								<td class="celleTab">{{assistito.codSesso}}</td>
+								<td class="celleTab">{{assistito.dataNascita}}</td>
+								<td class="celleTab">{{assistito.comuneNascita}}</td>
+								<td class="celleTab">
+									<button type="button" class="btn btn-outline-primary"
+										(click)="ScegliCittadino(i)">Scegli</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+
+
+			<br>
+
+			<div class="modal-body table-responsive tabellaricercames">
+				<div class=row>
+
+					<div class="col-md-12">
+						<table id="ricerca">
+							<tbody>
+								<tr>
+									<th><label class="messaggiokoricerca"
+										id="messaggioricercatabella"></label></th>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div id="sbloccoModal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document" style="color: black;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Sblocco Esenzione</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>
+					Rimuovendo il blocco all'esenzione, l'utente sara' nuovamente
+					abilitato a utilizzare il servizio on line per creare nuove
+					esenzioni.<br> Sei sicuro di voler continuare?
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary"
+					(click)="sbloccaEsenzione()" data-dismiss="modal">Sblocca</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade dettagliomodal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content rigagrscuro">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">Esenzione</h4>
+			</div>
+			<div class="modal-body table-responsive">
+				<div class="row">
+					<div class="col-md-4">
+						<p>Codice</p>
+					</div>
+					<div class="col-md-8">
+						<p id="codesedettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Descrizione</p>
+					</div>
+					<div class="col-md-8">
+						<p style="word-wrap: break-word;" id="descesedettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Data Richiesta</p>
+					</div>
+					<div class="col-md-8">
+						<p id="dataricdettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Inizio Validit&agrave;</p>
+					</div>
+					<div class="col-md-8">
+						<p id="datavaldettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Scadenza</p>
+					</div>
+					<div class="col-md-8">
+						<p id="datascaddettaglio"></p>
+					</div>
+				</div>
+				<div class="row bordo-top"></div>
+
+				<p class="h4 modal-title" id="myModalLabel">Beneficiario</p>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Codice fiscale</p>
+					</div>
+					<div class="col-md-8">
+						<p id="codfiscdettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Cognome</p>
+					</div>
+					<div class="col-md-8">
+						<p style="word-wrap: break-word;" id="cognomevaldettaglio"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Nome</p>
+					</div>
+					<div class="col-md-8">
+						<p style="word-wrap: break-word;" id="nomevaldettaglio"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-header bordo-top">
+				<img data-dismiss="modal" class="img-fluid"
+					src="assets/img/user/frecciaind.jpg" alt="frecciaind">
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade NotainternaModal container">
+	<div class="modal-dialog rigabiancafontnero">
+		<div>
+			<div style="padding-right: 20px; padding-top: 20px;">
+
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<img class="img-fluid"
+						style="cursor: pointer; text-decoration: underline"
+						src="assets/img/user/x_20.jpg">
+				</button>
+				<a nohref style="cursor: pointer;"> </a>
+			</div>
+			<div class="modal-title"
+				style="padding-left: 15px; padding-top: 30px;">
+				<strong>Nota ad uso interno</strong>
+			</div>
+			<div class="modal-body">
+				<label id="notaintmes"></label>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+				<button type="button" class="btn btn-block btn-primary"
+					data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<br>
+	</div>
+</div>
+
+<div class="modal fade HelpTitModal container">
+	<div class="modal-dialog modal-lg rigabiancafontnero">
+		<div>
+			<div style="padding-right: 20px; padding-top: 20px;">
+
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<img class="img-fluid"
+						style="cursor: pointer; text-decoration: underline"
+						src="assets/img/user/x_20.jpg">
+				</button>
+				<a nohref style="cursor: pointer;"> </a>
+			</div>
+			<div class="fonttitolimedium"
+				style="padding-left: 15px; padding-top: 30px;">Titolare esenzioni per reddito</div>
+			<div class="modal-body">
+				<ng-container *ngFor="let parametro of listaParametri">
+				<p *ngIf="parametro.codParametro === 'HELPTITOLARE'" [innerHTML]="parametro.valoreParametro"></p>
+				</ng-container>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+				<button type="button" class="btn btn-block btn-primary"
+					data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<br>
+	</div>
+</div>
+
+

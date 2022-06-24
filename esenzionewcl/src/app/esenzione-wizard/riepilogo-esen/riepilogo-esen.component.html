@@ -1,0 +1,218 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px;">
+		
+		<div class="row col-md-12"  style="margin-bottom: 15px;">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<span>Riepilogo dati esenzione</span>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+			
+				<div class="row col-md-12" style="padding-top: 15px;">
+					<div class="col-md-11">
+						<span>Dati beneficiario</span>
+					</div>
+					<div class="col-md-1">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<!-- <img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToBeneficiario()"> -->
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Nome</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.nome }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Cognome</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.cognome }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Data di nascita</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.dataNascita }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Codice fiscale</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.codFiscale }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px; padding-bottom: 15px;">
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Comune di nascita</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.comuneNascita }}</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row" >
+							<span>Sesso</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ assistito.codSesso }}</span>
+						</div>
+					</div>
+				</div>				
+			</div>	
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+				<div class="row col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
+					<div class="col-md-11">
+						<div class="row" >
+							<span>Tipo esenzione</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ esenFormDataService.getGruppoEsenzione().gruppoEsenzione }}</span>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToGruppoEsenzione()">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+				<div class="row col-md-12" style="padding-top: 15px;">
+					<div class="col-md-11">
+						<div class="row" >
+							<span *ngIf="esenFormDataService.getGruppoEsenzione().gruppoEsenzione!='IN'">Patologia</span>
+							<span *ngIf="esenFormDataService.getGruppoEsenzione().gruppoEsenzione=='IN'">Invalidit&agrave;</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ esenFormDataService.getTipologiaEsen().diagnosi.codice_diagnosi }} - {{ esenFormDataService.getTipologiaEsen().diagnosi.descrizione_diagnosi }}</span>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToDiagnosi()">
+						</div>
+					</div>					
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px;" *ngIf="esenFormDataService.getGruppoEsenzione().gruppoEsenzione!='IN'">
+					<div class="col-md-12">
+						<div class="row" >
+							<span>Codice Esenzione</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<span>{{ esenFormDataService.getTipologiaEsen().esenzione.codice_esenzione }} - {{ esenFormDataService.getTipologiaEsen().esenzione.descrizione_esenzione }}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row col-md-12" style="padding-top: 30px; padding-bottom: 15px;">
+					<div class="col-md-12">
+						<div class="row" >
+							<span>Prestazioni esenti</span>
+						</div>
+						<div class="row" style="font-weight: normal;">
+							<pre class="prestazioni-esenti">{{prestazioniEsenti}}</pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-bottom:15px">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px">	
+				<div class="row col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
+					<div class="col-md-11">
+						<div class="row" style="padding-bottom:15px" >
+							<span>Documentazione allegata</span>
+						</div>
+						
+						<div class="table-responsive">
+							<table id="ricerca" class="table table-bordered" style="width: 100%">
+								<tr>
+									<th>Nome Documento</th>
+									<th>Tipo Documento</th>
+									<th>Data Rilascio</th>
+									<th>Data Validit&agrave;</th>
+								</tr>
+		
+								<tr *ngFor="let documento of lista_documenti; let i = index">
+									<td>{{documento.filename}}</td>
+									<td>{{documento.descrizione}}</td>
+									<td>{{documento.dataRilascio}}</td>
+									<td>{{documento.dataFineValidita}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+					<div class="col-md-1">
+						<div class="col-auto" style="padding-top: 5px; padding-right: 0px;">
+							<img id="imgHelp" class="img-fluid" src="assets/img/user/edit.png"
+								style="float: right; cursor: pointer;" alt="Edit"
+								(click)="goToDocumenti()">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row col-md-12">
+			<div class="row rigabiancafontnero eleese col-md-12" style="font-size:13px; padding-top: 15px; padding-bottom: 15px;">	
+				<div class="row col-md-11">
+					<label>Note servizio</label>
+					<textarea class="form-control" id="noteServizio" name="noteServizio" [(ngModel)]="noteServizio" rows="3"></textarea>
+				</div>
+			
+				<div class="row col-md-11" style="padding-bottom: 15px; padding-top: 15px;">
+					<label>Note interne</label>
+					<textarea class="form-control" id="noteInterne" name="noteInterne" [(ngModel)]="noteInterne" rows="3"></textarea>
+				</div>
+			</div>
+		</div>	
+					
+		<div class="row" style="padding-top:15px; padding-bottom: 15px">
+			<div class="col-md-7"></div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block" style="float: right" (click)="goToBack()">Indietro</button>
+			</div>
+			<div class="col-md-2">				
+				<button type="button" class="btn btn-primary btn-block" style="float: right" (click)="submit()">Conferma</button>
+			</div>
+		</div>
+</div>
+	

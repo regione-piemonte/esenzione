@@ -1,0 +1,67 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">
+	<form #tipoCertForm="ngForm" class="editForm" novalidate>
+		
+		<div class="row rigabiancafontnero eleese">	
+			<div class="row col-md-12">	
+				<div class="col-md-1"></div>	
+				<div class="col-md-8">
+					<div class="form-group">
+						<br>
+						<label>Diagnosi</label>
+						<ng-container>
+							<ngx-select-dropdown name="field_diagnosi" id="field_diagnosi" class="form-control form-control-sm combo-diagnosi-esenzioni" 
+								#diagnosi="ngModel" [config]="configDiagnosi" [options]="lista_diagnosi"
+								[(ngModel)]="tipologiaCert.diagnosi" (ngModelChange)="onDiagnosiSelected($event)" required>
+							</ngx-select-dropdown>
+							
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row col-md-12" style="padding-bottom:15px">	
+				<div class="col-md-1"></div>	
+				<div class="col-md-8">
+					<div class="form-group">
+						<label>Esenzione</label>
+						<ng-container>
+							<ngx-select-dropdown name="field_esenzione" id="field_esenzione" class="form-control form-control-sm combo-diagnosi-esenzioni"
+								#esenzione="ngModel" [config]="configEsenzioni" [options]="lista_esen"
+								[(ngModel)]="tipologiaCert.esenzione" (ngModelChange)="onEsenzioneSelected($event)" required>
+							</ngx-select-dropdown>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row rigabiancafontnero eleese" style="padding-top: 15px;">	
+			<div class="row col-md-12" style="padding-top: 15px; padding-bottom:15px">	
+				<div class="col-md-1"></div>	
+				<div class="col-md-8">
+					<label>&Egrave; affetto dalla seguente patologia</label>
+					<textarea class="form-control" id="patologia" name="patologia" rows="3" [(ngModel)]="tipologiaCert.patologia"></textarea>
+				</div>
+			</div>
+		</div>
+					
+		<div class="row" style="padding-top:15px; padding-bottom: 15px;">
+			<div class="col-md-7"></div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block"
+					style="float: right" (click)="goToBack()">Indietro</button>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block" 
+					style="float: right" (click)="goToNext(tipoCertForm)" 
+					[disabled]="!tipoCertForm.valid">Conferma</button>
+			</div>
+		</div>
+		
+	</form>
+</div>
+<script type='text/javascript' src="assets/js/ngx-select-dropdown.component.js"></script>

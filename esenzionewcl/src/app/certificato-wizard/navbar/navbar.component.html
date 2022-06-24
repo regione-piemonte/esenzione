@@ -1,0 +1,20 @@
+<div class="md-stepper-horizontal" *ngIf="!workflowService.isFromEsenzioni()">
+    <div class="md-step" [ngClass]="{'active': workflowService.getCurrentStep() >= 1, 'done': workflowService.getCurrentStep() > 1, 'editable': workflowService.getCurrentStep() === 1}">
+      <div class="md-step-circle"><span>1</span></div>
+      <div class="md-step-title">Scelta esenzione</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" [ngClass]="{'active': workflowService.getCurrentStep() >= 2, 'done': workflowService.getCurrentStep() > 2, 'editable': workflowService.getCurrentStep() === 2}">
+      <div class="md-step-circle"><span>2</span></div>
+      <div class="md-step-title">Inserisci tipologia</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" [ngClass]="{'active editable': workflowService.getCurrentStep() === 3}">
+      <div class="md-step-circle"><span>3</span></div>
+      <div class="md-step-title">Riepilogo</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+</div>

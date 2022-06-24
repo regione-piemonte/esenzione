@@ -1,0 +1,44 @@
+<div class="row rigabiancafontnero eleese">
+
+	<div class="col-md-12 rigakoblocco bordo-esitokoblocco esitokoblocco infoRicercaAssistito"
+		[hidden]="errorHandler.hidden" id="esitoControllo" style="margin-bottom: 15px;">
+		<br>
+		<div class="row">
+			<div class="col-md-11" style="padding-left: 0px;">{{errorHandler.errorMessage}}</div>
+		</div>
+		<br>
+	</div>
+	<br />
+
+	<div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">	
+		<div class="row col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<a nohref style="cursor: pointer; color: DodgerBlue; font-size: 14px;"
+					*ngIf="workflowService.getCurrentStep() < 5" (click)="return()"> 
+						<svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
+							<path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+							<path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+						</svg>
+						<u>{{ workflowService.getCurrentStep() === 1 ? 'indietro' : 
+							workflowService.getCurrentStep() === 2 ? 'scelta esenzione' : 
+							workflowService.getCurrentStep() === 3 ? 'Inserisci tipologia' : 'carica documenti' }}</u>
+				</a>	
+				<div class="col-md-8">Nuova esenzione Beneficiario: {{ nome }} {{ cognome }}</div>
+				
+				<app-esen-navbar *ngIf="workflowService.getCurrentStep() < 5"></app-esen-navbar>
+					
+				<app-gruppo-esenzione-esen *ngIf="workflowService.getCurrentStep() === 1"></app-gruppo-esenzione-esen>
+		
+				<app-tipologia-esen *ngIf="workflowService.getCurrentStep() === 2"></app-tipologia-esen>
+		
+				<app-documenti-esen *ngIf="workflowService.getCurrentStep() === 3"></app-documenti-esen>
+		
+				<app-riepilogo-esen *ngIf="workflowService.getCurrentStep() === 4"></app-riepilogo-esen>
+				
+				<app-esen-creata *ngIf="workflowService.getCurrentStep() === 5"></app-esen-creata>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</div>

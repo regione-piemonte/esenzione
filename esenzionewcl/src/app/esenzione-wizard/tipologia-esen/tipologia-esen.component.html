@@ -1,0 +1,79 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">
+	<form #tipoEsenForm="ngForm" class="editForm" novalidate>
+
+		<div class="row rigabiancafontnero eleese">
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-1"></div>
+				<div class="col-md-8">
+					<div class="form-group">
+						<br>
+
+            			<label>Diagnosi</label>
+						<ng-container>
+							<ngx-select-dropdown name="field_diagnosi" id="field_diagnosi" class="form-control form-control-sm combo-diagnosi-esenzioni"
+								#diagnosi="ngModel" [config]="configDiagnosi" [options]="lista_diagnosi"
+								[(ngModel)]="tipologiaEsen.diagnosi" (ngModelChange)="onDiagnosiSelected($event)" required>
+							</ngx-select-dropdown>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px">
+				<div class="col-md-1"></div>
+				<div class="col-md-8">
+					<div class="form-group">
+						<label>Esenzione</label>
+						<ng-container>
+							<ngx-select-dropdown name="field_esenzione" id="field_esenzione" class="form-control form-control-sm combo-diagnosi-esenzioni"
+								#esenzione="ngModel" [config]="configEsenzioni" [options]="lista_esen"
+								[(ngModel)]="tipologiaEsen.esenzione" (ngModelChange)="onEsenzioneSelected($event)" required>
+							</ngx-select-dropdown>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+
+			<div class="row col-md-12" style="padding-bottom:15px"
+				*ngIf="esenFormDataService.getGruppoEsenzione().gruppoEsenzione=='MR'" >
+				<div class="row col-md-12" style="padding-bottom:15px">
+					<div class="col-md-1"></div>
+					<div class="col-md-8 form-group">
+						<label>Iscrizione al registro interregionale delle malattie rare</label><br>
+						<input id="registro_interregionale" name="registro_interregionale" value="SI"
+							type="checkbox" [(ngModel)] ="tipologiaEsen.registro_interregionale" style="padding-left: 15px;margin-left: 20px;" required>
+					</div>
+				</div>
+
+				<div class="row col-md-12" style="padding-bottom:15px">
+					<div class="col-md-1"></div>
+					<div class="col-md-8 form-group">
+						<label>Consenso al trattamento dei dati</label><br>
+						<input id="trattamento_dati" name="trattamento_dati" value="SI"
+							type="checkbox" [(ngModel)] ="tipologiaEsen.trattamento_dati" style="padding-left: 15px;margin-left: 20px;" required>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="padding-top:15px">
+			<div class="col-md-7"></div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block"
+					style="float: right" (click)="goToBack()">Indietro</button>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary btn-block"
+					style="float: right" (click)="goToNext(tipoEsenForm)"
+					[disabled]="!tipoEsenForm.valid">Conferma</button>
+			</div>
+		</div>
+
+		<br>
+
+	</form>
+</div>

@@ -1,0 +1,300 @@
+<div class="container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+<div class="row cardDemo7 noese"
+	style="background: white; padding-top: 5px; padding-bottom: 5px">
+	<div class="col-md-1"></div>
+		<div class="col-md-10 larghezza-max">
+		<div class="col-md-12 rigakoblocco bordo-esitokoblocco esitokoblocco infoRicercaAssistito"
+			[hidden]="hideError" id="esitoControllo" style="margin-bottom: 15px;">
+			<br>
+			<div class="row">
+				<div class="col-md-11" style="padding-left: 0px;">{{errorMessage}}</div>
+			</div>
+			<br>
+		</div>
+		<br />
+		
+		<div class="row cardDemo7 noese rigabiancafontnero"
+			style="background: white; padding-top: 5px; padding-bottom: 5px; border: none;">		
+			<a nohref style="cursor: pointer; color: DodgerBlue; font-size: 14px;"
+					*ngIf="!(submitted && numBeneficiari===1)" (click)="returnHome()"> 
+						<svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
+							<path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+							<path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+						</svg>
+						<u>Home</u>
+			        </a>	
+			<div class="row infoRicercaAssistito" [hidden]="!(submitted && numBeneficiari===1)">
+			    <div class="col">
+					
+			        <a nohref style="cursor: pointer; color: DodgerBlue; font-size: 14px;"
+					(click)="resetCercaBeneficiario()"> 
+						<svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
+							<path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+							<path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+						</svg>
+						<u>Ricerca Beneficiario</u>
+			        </a>
+			    </div>
+			
+			</div>
+			
+			<div class="row col-md-12 infoRicercaAssistito">
+			
+			    <div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">
+				    <div class="row">
+				        <div class="col" [hidden]="submitted && numBeneficiari===1">
+				            {{scope + "ricerca beneficiario"}}
+				        </div>
+				
+				        <div class="col" [hidden]="!(submitted && numBeneficiari===1)">
+				            Beneficiario: {{ assistitoBen }}
+				        </div>
+				    </div>
+				
+				
+				    <form (ngSubmit)="onSubmit()" #RicercaAssistitoForm="ngForm" [hidden]="submitted && numBeneficiari===1">
+				        <br>
+				        <br>
+				        <div class="row">
+				            <div class="col-md-4">
+				                <div class="form-group">
+				                    <label for="cognomeben">Cognome Beneficiario</label>
+				                    <input type="text" class="form-control" id="cognomeben" name="cognomeben" #cognomeben
+				                        style="text-transform: uppercase;">
+				                </div>
+				            </div>
+				            <div class="col-md-4">
+				                <div class="form-group">
+				                    <label for="nomeben">Nome Beneficiario</label>
+				                    <input type="text" class="form-control" id="nomeben" name="nomeben" #nomeben
+				                        style="text-transform: uppercase;">
+				                </div>
+				            </div>
+				            <div class="col-md-4">
+				                <div class="form-group">
+				                    <label for="codfiscben">Codice fiscale Beneficiario</label>
+				                    <input type="text" class="form-control" id="codfiscben" name="codfiscben" #codfiscben
+				                        style="text-transform: uppercase;">
+				                </div>
+				            </div>
+				        </div>
+				        <br />
+				        <div class="row" style="margin-bottom: 15px;">
+				            <div class="col-md-8">
+				                <p id="gdprDisclaimer">
+				                    Ai sensi del GDPR i tuoi accessi verranno tracciati e comunicati eventualmente al cittadino
+				                </p>
+				            </div>
+				            
+				            <div class="col-md-4">
+				                <button type="submit" class="btn btn-primary btn-block" style="float: right"
+				                    (click)="cercaAssistito()">
+				                    Cerca
+				                </button>
+				            </div>
+				        </div>
+				        <br>
+				    </form>
+				
+				
+				    <div *ngIf="submitted && numBeneficiari != 0 && hideError; then showResult"></div>
+				
+				
+				    <ng-template #showResult>
+				        <div *ngIf="numBeneficiari === 1; then unicoBen else multiBen"></div>
+				        <!-- Più beneficiari trovati -->
+				        <ng-template #multiBen>
+				            <div class="row">
+				                <div class="col-md-1"></div>
+				                <div class="col-md-10">
+				                    <div class="row">
+				                        <div class="col-md-8">
+				                            <p style="color: DodgerBlue;">Hai cercato: {{ assistitoBen }}</p>
+				                        </div>
+				
+				                        <div class="col-md-4">
+				                            <a nohref style="cursor: pointer; color: DodgerBlue;"
+				                                (click)="resetCercaBeneficiario()">
+				                                Annulla ricerca X
+				                            </a>
+				                        </div>
+				                    </div>
+				                    <div class="row" style="color: DodgerBlue;">
+				                        <div class="col-md-4">Risultati trovati: {{ numBeneficiari }}</div>
+				                        <div class="col-md-6">Scegli un nominativo e seleziona conferma</div>
+				                        <div class="col-md-2"></div>
+				                    </div>
+				                    <div class="table-responsive">
+				                        <table id="ricercaAssistitoTable" class="table table-bordered">
+				                            <thead>
+				                                <tr>
+				                                    <th scope="col">Cognome</th>
+				                                    <th scope="col">Nome</th>
+				                                    <th scope="col">Codice Fiscale</th>
+				                                    <th scope="col">Sesso</th>
+				                                    <th scope="col">Data di nascita</th>
+				                                    <th scope="col">Comune di nascita</th>
+				                                </tr>
+				                            </thead>
+				                            <tbody style="font-weight: normal;">
+				                                <tr *ngFor="let ben of ricerca.elenco_assistiti; let i=index"
+				                                    (click)="selectBeneficiario(i)" [class.active]="i == selectedBeneficiario" style="cursor: pointer;">
+				                                    <td>{{ben.cognome}}</td>
+				                                    <td>{{ben.nome}}</td>
+				                                    <td>{{ben.codFiscale}}</td>
+				                                    <td>{{ben.codSesso}}</td>
+				                                    <td>{{ben.dataNascita}}</td>
+				                                    <td>{{ben.comuneNascita}}</td>
+				                                </tr>
+				
+				                            </tbody>
+				                        </table>
+				                    </div>
+				                </div>
+				                <div class="col-md-1"> </div>
+				            </div>
+				            <div class="row">
+				                <div class="col-md-4"></div>
+				                <div class="col-md-4"></div>
+				                <div class="col-md-4">
+				                    <button type="button" class="btn btn-primary btn-block" style="float: right"
+				                        (click)="confermaBeneficiarioSelezionato()" [disabled]="selectedBeneficiario === null">Conferma</button>
+				                        <br>
+				                </div>
+				                <br><br>
+				            </div>
+				        </ng-template>
+				
+				        <!-- Singolo beneficiario trovato-->
+				        <ng-template #unicoBen>
+				            <br>
+				            <br>
+				
+				            <div class="row rigabiancafontnero eleese" >
+				                <br>
+				
+				                <div class="col-md-12">
+				                    <br>
+				                    <div class="row">
+				                        <div class="col-md-1"></div>
+				                        <div class="col-md-5">Nome: <strong>{{ricerca.assistito.nome}}</strong></div>
+				                        <div class="col-md-5">Cognome: <strong>{{ricerca.assistito.cognome}}</strong></div>
+				                        <div class="col-md-1"></div>
+				                    </div>
+				                    <br>
+				                    <div class="row">
+				                        <div class="col-md-1"></div>
+				                        <div class="col-md-5">Data di nascita: <strong>{{ricerca.assistito.dataNascita}}</strong>
+				                        </div>
+				                        <div class="col-md-4">Codice fiscale: <strong>{{ricerca.assistito.codFiscale}}</strong>
+				                        </div>
+				                        <div class="col-md-1"></div>
+				                    </div>
+				                    
+				
+				                <div class="row" *ngIf=" ricerca.lista_certificati != null &&  ricerca.lista_certificati.length > 0">
+				                    <div class="col"></div>
+				                    <div class="col-md-9">
+				                        <br>
+				                        <label for="tabellaCertificati">Certificati riferiti a {{assistitoBen}}</label>
+				                        <div class="table-responsive">
+				                            <table id="tabellaCertificati" class="table table-bordered">
+				                                <thead>
+				                                    <tr>
+				                                        <th scope="col">Diagnosi</th>
+				                                        <th scope="col">Esenzione</th>
+				                                        <th scope="col">Data Inserimento</th>
+				                                        <th scope="col">Medico Firmatario</th>
+				                                    </tr>
+				                                </thead>
+				                                <tbody style="font-weight: normal;">
+				                                    <tr *ngFor="let cert of ricerca.lista_certificati; let i=index">
+				                                        <td>{{cert.diagnosi}}</td>
+				                                        <td>{{cert.codice_esenzione}}</td>
+				                                        <td>{{cert.data_inserimento}}</td>
+				                                        <td>{{cert.medico_firmatario}}</td>
+				                                    </tr>
+				
+				                                </tbody>
+				                            </table>
+				                        </div>
+				                    </div>
+				                    <div class="col"></div>
+				                </div>
+				
+				                
+				
+				                <div class="row" *ngIf="listaEsenzioni != null &&  listaEsenzioni.length > 0">
+				                    <div class="col"></div>
+				                    <div class="col">
+				                        <br>
+				                        <label for="tabellaEsenzioni">Pratiche riferite a {{assistitoBen}}</label>
+				                        <div class="table-responsive">
+				                            <table id="tabellaEsenzioni" class="table table-bordered">
+				                                <thead>
+				                                    <tr>
+				                                        <th scope="col">N. Pratica</th>
+				                                        <th scope="col">ASL</th>
+				                                        <th scope="col">Beneficiario</th>
+				                                        <th scope="col">Compilatore</th>
+				                                        <th scope="col">Codice</th>
+				                                        <th scope="col">Stato pratica</th>
+				                                        <th scope="col">Data richiesta</th>
+				                                        <th scope="col">Esenzione valida dal</th>
+				                                        <th scope="col">Data scadenza</th>
+				                                    </tr>
+				                                </thead>
+				                                <tbody style="font-weight: normal;">
+				                                    <tr *ngFor="let esen of listaEsenzioni; let i=index">
+				                                        <td class="record12px">{{esen.numero_pratica}}</td>
+				                                        <td>{{esen.asl}}</td>
+				                                        <td>
+				                                            <p class="record12px">
+				                                                {{esen.beneficiario.nome + " " + esen.beneficiario.cognome}}</p>
+				                                            {{esen.beneficiario.codice_fiscale}}
+				                                        </td>
+				                                        <td>{{esen.compilatore}}</td>
+				                                        <td>{{esen.codice_esenzione}}</td>
+				                                        <td>{{esen.stato_pratica}}</td>
+				                                        <td>{{esen.data_richiesta}}</td>
+				                                        <td>{{esen.valida_dal}}</td>
+				                                        <td>{{esen.data_scadenza}}</td>
+				                                    </tr>
+				
+				                                </tbody>
+				                            </table>
+				                        </div>
+				                    </div>
+				                    <div class="col"></div>
+				                </div>
+				
+				                <div class="row">
+				                    <div class="col-md-4"></div>
+				                    <div class="col-md-4"></div>
+				                    <div class="col-md-4">
+				                        <button type="button" class="btn btn-primary btn-block" style="float: right"
+				                            (click)="confermaAssistito()">Conferma</button>
+				                            <br>
+				                    </div>
+				                    <br>
+				                </div>
+				                <br>
+				            </div>
+				            <br>
+				        </div>
+				            <br>
+				            <br>
+				
+				
+				        </ng-template>
+				
+				    </ng-template>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>

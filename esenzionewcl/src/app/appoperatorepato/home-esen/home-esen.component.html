@@ -1,0 +1,983 @@
+<div class="container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px',fullScreenBackdrop: true}"></ngx-loading>
+</div>
+
+
+<div class="row rigagrigianobordo" style="padding-top: 0px; padding-bottom: 0px">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max" style="padding-left: 5px; padding-right: 5px">
+		<div class="row">
+			<div class="col" id="mediaHeader" style="color: black; padding-left: 0px;"></div>
+			<div id="filtriSM" class="col-auto" style="padding-right: 0px;">
+				<button class="btn btn-cerca btn-circle fa fa-search aprifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important; display: none"
+					(click)="ApriFiltroOp()"></button>
+				<button class="btn btn-cerca btn-circle fa fa-close chiudifiltroOp"
+					style="cursor: pointer; color: #006cb4; margin: 0px; padding: 0px; border: 0px; box-shadow: none !important;"
+					(click)="ChiudiFiltroOp()"></button>
+				<button type="button" style="float: right; width: 150px; font-size: 12px;"
+					class="btn btn-default btn-circle fa fa-plus-circle fa-lg operatore" href="#"
+					style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;"
+					*ngIf="tabActive==='daFare'"
+					(click)="navigateToRicerca()"></button>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-1"></div>
+</div>
+
+<div class="row rigagrigianobordo" id="home-id" style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 larghezza-max">
+		<div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigaok bordo-esitook esitoricercaok"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/imgok.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong>
+								<p id="messaggioesitoricercaok"></p>
+							</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigako bordo-esitoko esitoricercako"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong>
+								<p id="messaggioesitoricercako"></p>
+							</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 larghezza-max" style="padding-left: 0px; padding-right: 0px;">
+			<div class="row">
+				<div class="col-md-12 rigagen bordo-esitogenerico esitoricercagenerico"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/generico.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+
+								<p id="messaggioesitoricercagenerico"></p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row rigabiancafontnero eleese">
+
+			<div class="col-md-12 divFiltri" style="padding-top: 15px; font-weight: bold">
+
+				<br>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Stato</label>
+
+							<ng-container *ngIf="tabActive==='daFare'">
+								<select name="statofiltro" id="statofiltro"
+									class="form-control form-control-sm comboese">
+									<option>TUTTE</option>
+									<option *ngFor="let statoPratica of statodocumentoStoreService.listaStatoPraticaDaFare"
+										value="{{statoPratica.descStato}}">
+										{{statoPratica.descStato}}
+									</option>
+
+								</select>
+							</ng-container>
+
+							<ng-container *ngIf="tabActive==='tutteLePratiche'">
+								<select name="statofiltro" id="statofiltro"
+									class="form-control form-control-sm comboese">
+									<option>TUTTE</option>
+									<option *ngFor="let statoPratica of statodocumentoStoreService.listaStatoPraticaTutteLePratiche"
+										value="{{statoPratica.descStato}}">
+										{{statoPratica.descStato}}
+									</option>
+
+								</select>
+							</ng-container>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Codice esenzione patologia/malattia rara</label>
+							<ngx-select-dropdown 
+								name="codEsenzionePatologiafiltro"
+								id="codEsenzionePatologiafiltro" 
+								class="form-control form-control-sm combo-patologia-home"
+								[(ngModel)] = "selectedPatologia"
+								[config]="configPatologia" [options]="esenzioneStoreService.listacodiceesenzionepatologia">
+							</ngx-select-dropdown>
+							
+
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label>Data creazione da</label>
+						<div class="input-group input-append date" id="startdateda" name="startdateda"
+							data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text" class="form-control"
+								name="validada" id="validada" placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+
+					</div>
+					<div class="col-md-2">
+
+						<label>Data creazione a</label>
+						<div class="input-group input-append date" id="startdatea" name="startdatea"
+							data-provide="datepicker">
+							<span class="input-group-addon add-on"></span> <input type="text" class="form-control"
+								name="validaa" id="validaa" placeholder="gg/mm/aaaa"
+								style="background: url('assets/img/user/calendario.png') no-repeat; border-right-width: 1px; padding-right: 12px; background-position: right 10px center;">
+						</div>
+
+					</div>
+
+
+				</div>
+				<br>
+
+
+
+				<div class="row">
+					<div class="col-md-3">
+	
+						<input class="form-control" type="text" hidden name="idassistitobenric" id="idassistitobenric">
+						<div class="form-group">
+							<label>Cognome Beneficiario</label> <input class="form-control" type="text"
+								name="cognomebenfiltro" id="cognomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Nome Beneficiario</label> <input class="form-control" type="text"
+								name="nomebenfiltro" id="nomebenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Codice fiscale Beneficiario</label> <input class="form-control" type="text"
+								name="codfiscbenfiltro" id="codfiscbenfiltro" style="text-transform: uppercase;">
+						</div>
+					</div>
+
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-md-8">
+						<p id="gdprDisclaimer">
+							Ai sensi del GDPR i tuoi accessi verranno tracciati e comunicati eventualmente al cittadino
+						</p>
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2" style="padding-left: 0px; padding-right: 0px position: absolute; bottom: 0;">
+						<button id="cerca" class='cerca' type="button" class="btn btn-primary btn-block"
+							style="float: right" href="#" (click)="Cerca()">
+							Cerca
+						</button>
+					</div>
+				</div>
+
+				<br>
+
+				<br>
+				<div class="card-content mesric">
+					<label class="messaggiokoricerca" id="messaggioricerca"></label>
+				</div>
+			</div>
+		</div>
+
+		<div class="eleassistiti" style="color: black; padding-top: 30px" id="tuttoRicercaAssititi">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					<strong>
+						<p style="color: DodgerBlue;">Hai cercato: <label id="datiassistito"></label></p>
+					</strong>
+				</div>
+
+				<div class="col-md-4">
+					<a nohref style="cursor: pointer; color: DodgerBlue;" (click)="resetCercaBeneficiario()">
+						<strong>Annulla ricerca</strong>
+						<i class="fa fa-close"></i>
+					</a>
+				</div>
+
+			</div>
+			<div class="row" style="color: DodgerBlue;padding-bottom:15px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-4"><strong>Risultati trovati: <label id="numtrovati"></label></strong></div>
+				<div class="col-md-6">Scegli un nominativo e seleziona conferma</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 rigabiancafontnero" style="padding-top: 15px;">
+
+					<div class="table-responsive">
+						<table id="ricercaAssistitoTable" class="table table-bordered">
+							<thead>
+								<tr>
+									<th scope="col">Cognome</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Codice Fiscale</th>
+									<th scope="col">Sesso</th>
+									<th scope="col">Data di nascita</th>
+									<th scope="col">Comune di nascita</th>
+								</tr>
+							</thead>
+							<tbody style="font-weight: normal;">
+								<tr *ngFor="let assistito of assistito; let i=index" (click)="selectBeneficiario(i)"
+									[class.active]="i == selectedBeneficiario" style="cursor: pointer;">
+									<td>{{assistito.cognome}}</td>
+									<td>{{assistito.nome}}</td>
+									<td>{{assistito.codFiscale}}</td>
+									<td>{{assistito.codSesso}}</td>
+									<td>{{assistito.dataNascita}}</td>
+									<td>{{assistito.comuneNascita}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<button type="button" class="btn btn-primary btn-block" style="float: right"
+								(click)="ScegliCittadino()" [disabled]="selectedBeneficiario === null">Conferma</button>
+							<br>
+						</div>
+						<br><br>
+					</div>
+				</div>
+				<div class="col-md-1"> </div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<div class="tab-content">
+	<div class="tab-pane fade show active rigabiancafontnero" id="daFare" role="tabpanel">
+		<div class="row rigagrigianobordo" style="padding-top: 15px; padding-bottom: 15px;">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="eledafareris" style="color: black; padding-top: 30px" id="tuttoRicerca">
+					<div class="row">
+						<div class="col" style="padding-left: 0px;color: DodgerBlue;">
+							<strong><label id="componitesto"></label></strong>
+						</div>
+
+						<div class="row col-auto" style="color: DodgerBlue; padding-top: 15px; cursor: pointer;">
+							<a (click)="AnnullaRicerca()"><strong>Annulla Ricerca </strong><i
+									class="fa fa-close"></i></a>
+						</div>
+					</div>
+					<div class="row" style="color: DodgerBlue;">
+						<strong>Risultati trovati: <label id="numpratichedafare"></label></strong>
+					</div>
+					<ng-container>
+						<div class="table-responsive">
+							<div *ngIf="lunghezzaarray!=1; then piupagina else unapagina"></div>
+							<ng-template #unapagina>
+								<table class="table table-bordered tabella-pratiche" id="tabPraticheDaFareUnaPagina"
+								style="background-color: white; font-size: 12px;">
+									<thead style="font-size: 14px; text-align: center;">
+										<tr>
+											<th scope="col">
+												<p style="text-align: left;">
+													<input id="checker" (click)="checkAll()" [(ngModel)]="selezionaTutti" name="checker" type="checkbox">
+													<label for="checker" style="font-size: 12px;font-weight: normal;">Tutte</label>
+												</p>
+												<span (click)="sort1('numero_pratica')" style="cursor: pointer;">N. Pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='numero_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('asl_denominazione')">ASL <span
+												class="fa fa-2x" [style.visibility] = "key =='asl_denominazione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('distretto')">Distretto <span
+												class="fa fa-2x" [style.visibility] = "key =='distretto' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('beneficiario.cognome')">Beneficiario <span
+												class="fa fa-2x" [style.visibility] = "key =='beneficiario.cognome' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<!--TODO orderby-->
+											<th scope="col">Compilatore <span
+												class="fa fa-2x" [style.visibility] = "key =='Compilatore' ? 'hidden' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}" hidden></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('codice_esenzione')">Codice <span
+												class="fa fa-2x" [style.visibility] = "key =='codice_esenzione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('stato_pratica')">Stato pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='stato_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('data_richiesta')">Data Richiesta <span
+												class="fa fa-2x" [style.visibility] = "key =='data_richiesta' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('valida_dal')">Esenzione valida dal <span
+												class="fa fa-2x" [style.visibility] = "key =='valida_dal' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort1('data_scadenza')">Data scadenza <span
+												class="fa fa-2x" [style.visibility] = "key =='data_scadenza' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col">Azioni</th>
+										</tr>
+									</thead>
+									<tbody style="font-weight: normal; text-align: center;">
+										<tr *ngFor="let pratica of listaPratiche ; let i = index">
+											<td> <input *ngIf="pratica.stato_pratica==='Da validare'" id=checknum{{((pagina-1)*numerovaloriperpagina)+i}}
+												[checked] ="isDaValidare(pratica.sk_pratica_esenzione)"
+												type="checkbox"
+												(change)="aggiungiDaValidare(pratica)"> {{pratica.numero_pratica}}</td>
+											<td>{{pratica.asl_denominazione}}</td>
+											<td>{{pratica.distretto}}</td>
+											<td>
+												<p class="record12px">
+													{{pratica.beneficiario.nome + " " + pratica.beneficiario.cognome}}
+												</p>
+												{{pratica.beneficiario.codice_fiscale}}
+											</td>
+											<td>{{pratica.compilatore}}</td>
+											<td>{{pratica.codice_esenzione}}</td>
+											<td>
+												<a role="button"
+													(click)="getDettaglioEsenzione(i)"
+													style="color:dodgerblue; cursor: pointer; font-weight: bold;">
+													{{pratica.stato_pratica}}
+												</a>
+											</td>
+											<td>{{pratica.data_richiesta}}</td>
+											<td>{{pratica.valida_dal}}</td>
+											<td>{{pratica.data_scadenza}}</td>
+											<td>
+												<img src="assets/img/user/cronologia.png" alt="cronologia" title="Visualizza cronologia" *ngIf="pratica.sk_pratica_esenzione != null"
+												(click)="getCronologia(i)" data-target=".cronologia" data-toggle="modal"
+												style="cursor: pointer;" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-template>
+							<ng-template #piupagina>
+								<table class="table table-bordered tabella-pratiche" id="tabPraticheDaFarepiuPagine"
+								style="background-color: white; font-size: 12px;">
+									<thead style="font-size: 14px; text-align: center;">
+										<tr>
+											<th scope="col">
+												<p style="text-align: left;">
+													<input id="checker" (click)="checkAll()" [(ngModel)]="selezionaTutti" name="checker" type="checkbox">
+													<label for="checker" style="font-size: 12px;font-weight: normal;">Tutte</label>
+												</p>
+												<span (click)="sort('numero_pratica')" style="cursor: pointer;">N. Pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='numero_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('asl_denominazione')">ASL <span
+												class="fa fa-2x" [style.visibility] = "key =='asl_denominazione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('distretto')">Distretto <span
+												class="fa fa-2x" [style.visibility] = "key =='distretto' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('beneficiario.cognome')">Beneficiario <span
+												class="fa fa-2x" [style.visibility] = "key =='beneficiario.cognome' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<!--TODO orderby-->
+											<th scope="col">Compilatore <span
+												class="fa fa-2x" [style.visibility] = "key =='Compilatore' ? 'hidden' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}" hidden></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('codice_esenzione')">Codice <span
+												class="fa fa-2x" [style.visibility] = "key =='codice_esenzione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('stato_pratica')">Stato pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='stato_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('data_richiesta')">Data Richiesta <span
+												class="fa fa-2x" [style.visibility] = "key =='data_richiesta' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('valida_dal')">Esenzione valida dal <span
+												class="fa fa-2x" [style.visibility] = "key =='valida_dal' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('data_scadenza')">Data scadenza <span
+												class="fa fa-2x" [style.visibility] = "key =='data_scadenza' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col">Azioni</th>
+										</tr>
+									</thead>
+									<tbody style="font-weight: normal; text-align: center;">
+										<tr *ngFor="let pratica of listaPratiche ; let i = index">
+											<td> <input *ngIf="pratica.stato_pratica==='Da validare'" id=checknum{{((pagina-1)*numerovaloriperpagina)+i}}
+												[checked] ="isDaValidare(pratica.sk_pratica_esenzione)"
+												type="checkbox"
+												(change)="aggiungiDaValidare(pratica)"> {{pratica.numero_pratica}}</td>
+											<td>{{pratica.asl_denominazione}}</td>
+											<td>{{pratica.distretto}}</td>
+											<td>
+												<p class="record12px">
+													{{pratica.beneficiario.nome + " " + pratica.beneficiario.cognome}}
+												</p>
+												{{pratica.beneficiario.codice_fiscale}}
+											</td>
+											<td>{{pratica.compilatore}}</td>
+											<td>{{pratica.codice_esenzione}}</td>
+											<td>
+												<a role="button"
+													(click)="getDettaglioEsenzione(i)"
+													style="color:dodgerblue; cursor: pointer; font-weight: bold;">
+													{{pratica.stato_pratica}}
+												</a>
+											</td>
+											<td>{{pratica.data_richiesta}}</td>
+											<td>{{pratica.valida_dal}}</td>
+											<td>{{pratica.data_scadenza}}</td>
+											<td>
+												<img src="assets/img/user/cronologia.png" alt="cronologia" title="Visualizza cronologia" *ngIf="pratica.sk_pratica_esenzione != null"
+												(click)="getCronologia(i)" data-target=".cronologia" data-toggle="modal"
+												style="cursor: pointer;" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-template>
+						</div>
+					</ng-container>
+					<hr>
+					<div style="justify-content: center; display: flex;">
+						<ul class="nav nav-pills">
+							<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+								[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+									*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)" class="nav-link"
+									href="" (click)="SetPage(i,$event)"
+									[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+									*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col" style="float: right;">
+							<button class="btn btn-primary" style="float: right" href="#"
+								(click)="ValidaSelezionate()" [disabled]="listadavalidarepratica.length<=0">
+								Valida selezionate
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	<div class="tab-pane fade rigabiancafontnero" id="tutteLePratiche" role="tabpanel">
+		<div class="row rigagrigianobordo" style="padding-top: 15px; padding-bottom: 15px;">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="eletuttelepraticheris" style="color: black; padding-top: 30px" id="tuttoRicerca">
+					<div class="row">
+						<div class="col" style="padding-left: 0px;color: DodgerBlue;">
+							<strong><label id="componitesto"></label></strong>
+						</div>
+
+						<div class="row col-auto" style="color: DodgerBlue; padding-top: 15px; cursor: pointer;">
+							<a (click)="AnnullaRicerca()"><strong>Annulla Ricerca </strong>
+								<i class="fa fa-close"></i>
+							</a>
+						</div>
+					</div>
+					<div class="row" style="color: DodgerBlue;">
+						<strong>Risultati trovati: <label id="numtuttelepratiche"></label></strong>
+					</div>
+					<ng-container>
+						<div class="table-responsive">
+							<div *ngIf="lunghezzaarray!=1; then piupaginatutte else unapaginatutte"></div>
+							<ng-template #unapaginatutte>
+								<table class="table table-bordered tabella-pratiche" id="tabPraticheTutteLePraticheUnaPagina"
+								style="background-color: white; font-size: 12px;">
+									<thead style="font-size: 14px; text-align: center;">
+										<tr>
+										<th scope="col">
+											<p style="text-align: left;"></p>
+											<span (click)="sort1('numero_pratica')" style="cursor: pointer;">N. Pratica <span
+											class="fa fa-2x" [style.visibility] = "key =='numero_pratica' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('asl_denominazione')">ASL <span
+											class="fa fa-2x" [style.visibility] = "key =='asl_denominazione' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('distretto')">Distretto <span
+											class="fa fa-2x" [style.visibility] = "key =='distretto' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('beneficiario.cognome')">Beneficiario <span
+											class="fa fa-2x" [style.visibility] = "key =='beneficiario.cognome' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<!--TODO orderby-->
+										<th scope="col">Compilatore <span
+											class="fa fa-2x" [style.visibility] = "key =='Compilatore' ? 'hidden' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}" hidden></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('codice_esenzione')">Codice <span
+											class="fa fa-2x" [style.visibility] = "key =='codice_esenzione' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('stato_pratica')">Stato pratica <span
+											class="fa fa-2x" [style.visibility] = "key =='stato_pratica' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('data_richiesta')">Data Richiesta <span
+											class="fa fa-2x" [style.visibility] = "key =='data_richiesta' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('valida_dal')">Esenzione valida dal <span
+											class="fa fa-2x" [style.visibility] = "key =='valida_dal' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col" style="cursor: pointer;"
+										(click)="sort1('data_scadenza')">Data scadenza <span
+											class="fa fa-2x" [style.visibility] = "key =='data_scadenza' ? 'visible' : 'hidden'"
+											[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+										</th>
+										<th scope="col">Azioni</th>
+									</tr>
+									</thead>
+									<tbody style="font-weight: normal; text-align: center;">
+										<tr *ngFor="let pratica of listaPratiche ; let i = index">
+											<td>{{pratica.numero_pratica}}</td>
+											<td>{{pratica.asl_denominazione}}</td>
+											<td>{{pratica.distretto}}</td>
+											<td>
+												<p class="record12px">
+													{{pratica.beneficiario.nome + " " + pratica.beneficiario.cognome}}
+												</p>
+												{{pratica.beneficiario.codice_fiscale}}
+											</td>
+											<td>{{pratica.compilatore}}</td>
+											<td>{{pratica.codice_esenzione}}</td>
+											<td>
+												<a role="button"
+													(click)="getDettaglioEsenzione(i)"
+													style="color:dodgerblue; cursor: pointer; font-weight: bold;">
+													{{pratica.stato_pratica}}
+												</a>
+											</td>
+											<td>{{pratica.data_richiesta}}</td>
+											<td>{{pratica.valida_dal}}</td>
+											<td>{{pratica.data_scadenza}}</td>
+											<td>
+												<img src="assets/img/user/scarica_attestato.png" alt="scarica-attestato" title="Scarica attestato di esenzione"  (click)="scaricaAttestato(i)" style="cursor: pointer; height: 30px; width: 23px; margin-right: 10px;" />
+												<img src="assets/img/user/cronologia.png" alt="cronologia" title="Visualizza cronologia" *ngIf="pratica.sk_pratica_esenzione != null"
+												(click)="getCronologia(i)" data-target=".cronologia" data-toggle="modal"
+												style="cursor: pointer;" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-template>
+							<ng-template #piupaginatutte>
+								<table class="table table-bordered tabella-pratiche" id="tabPraticheTutteLePratichePiuPagine"
+								style="background-color: white; font-size: 12px;">
+									<thead style="font-size: 14px; text-align: center;">
+										<tr>
+											<th scope="col">
+												<p style="text-align: left;"></p>
+												<span (click)="sort1('numero_pratica')" style="cursor: pointer;">N. Pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='numero_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('asl_denominazione')">ASL <span
+												class="fa fa-2x" [style.visibility] = "key =='asl_denominazione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('distretto')">Distretto <span
+												class="fa fa-2x" [style.visibility] = "key =='distretto' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('beneficiario.cognome')">Beneficiario <span
+												class="fa fa-2x" [style.visibility] = "key =='beneficiario.cognome' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<!--TODO orderby-->
+											<th scope="col">Compilatore <span
+												class="fa fa-2x" [style.visibility] = "key =='Compilatore' ? 'hidden' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}" hidden></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('codice_esenzione')">Codice <span
+												class="fa fa-2x" [style.visibility] = "key =='codice_esenzione' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('stato_pratica')">Stato pratica <span
+												class="fa fa-2x" [style.visibility] = "key =='stato_pratica' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('data_richiesta')">Data Richiesta <span
+												class="fa fa-2x" [style.visibility] = "key =='data_richiesta' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('valida_dal')">Esenzione valida dal <span
+												class="fa fa-2x" [style.visibility] = "key =='valida_dal' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col" style="cursor: pointer;"
+											(click)="sort('data_scadenza')">Data scadenza <span
+												class="fa fa-2x" [style.visibility] = "key =='data_scadenza' ? 'visible' : 'hidden'"
+												[ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></span>
+											</th>
+											<th scope="col">Azioni</th>
+										</tr>
+									</thead>
+									<tbody style="font-weight: normal; text-align: center;">
+										<tr *ngFor="let pratica of listaPratiche ; let i = index">
+											<td>{{pratica.numero_pratica}}</td>
+											<td>{{pratica.asl_denominazione}}</td>
+											<td>{{pratica.distretto}}</td>
+											<td>
+												<p class="record12px">
+													{{pratica.beneficiario.nome + " " + pratica.beneficiario.cognome}}
+												</p>
+												{{pratica.beneficiario.codice_fiscale}}
+											</td>
+											<td>{{pratica.compilatore}}</td>
+											<td>{{pratica.codice_esenzione}}</td>
+											<td>
+												<a role="button"
+													(click)="getDettaglioEsenzione(i)"
+													style="color:dodgerblue; cursor: pointer; font-weight: bold;">
+													{{pratica.stato_pratica}}
+												</a>
+											</td>
+											<td>{{pratica.data_richiesta}}</td>
+											<td>{{pratica.valida_dal}}</td>
+											<td>{{pratica.data_scadenza}}</td>
+											<td>
+												<img src="assets/img/user/scarica_attestato.png" alt="scarica-attestato" title="Scarica attestato di esenzione" (click)="scaricaAttestato(i)" style="cursor: pointer; height: 30px; width: 23px; margin-right: 10px;" />
+												<img src="assets/img/user/cronologia.png" alt="cronologia" title="Visualizza cronologia" *ngIf="pratica.sk_pratica_esenzione != null"
+												(click)="getCronologia(i)" data-target=".cronologia" data-toggle="modal"
+												style="cursor: pointer;" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-template>
+						</div>
+					</ng-container>
+					<hr>
+					<div style="justify-content: center; display: flex;">
+						<ul class="nav nav-pills">
+							<li class="nav-item" *ngFor="let p of numerototpagine;let i=index"
+								[ngClass]="{'number':this.numerototpagine[i] ==(-1)}"><a
+									*ngIf="numerototpagine.length!=1 && numerototpagine[i] != (-2)" class="nav-link"
+									href="" (click)="SetPage(i,$event)"
+									[ngClass]="{'active':i==pagina}">{{numerototpagine[i]}}</a> <a
+									*ngIf="numerototpagine[i] == (-2)" class="nav-link">...</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Beneficiario-->
+<div class="modal fade beneficiario" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" tabindex="-1" role="document">
+		<div class="modal-content rigabiancafontnero">
+			<div class="modal-header bordo-top" style="border: 0px">
+				<button class="close" id="chiudimodalricerca" type="button" data-dismiss="modal" aria-label="Close">
+					<span>&times;</span>
+				</button>
+			</div>
+
+			<div class="tabellaricerca">
+				<div class="row" style="width: 100%; padding: 15px">
+					<div class="bs-callout bs-callout-primary" style="width: 100%; padding: 15px; font-size: 12px">
+						<strong>Sono stati trovati <label id="numtrovati"></label>
+							assistiti con le caratteristiche impostate.
+						</strong><br> Seleziona l'utente che intendi inserire nella richiesta
+					</div>
+				</div>
+
+				<div class="table-responsive">
+
+					<table id="ricerca" class="table" style="font-size: 12px; border: 0;">
+						<thead class="rigagrigiafontnero" style="font-weight: bold">
+							<tr style="border: 0px">
+								<th scope="col" style="border: 0px">Codice Fiscale</th>
+								<th scope="col" style="border: 0px">Cognome</th>
+								<th scope="col" style="border: 0px">Nome</th>
+								<th scope="col" style="border: 0px">Sesso</th>
+								<th scope="col" style="border: 0px">Data di nascita</th>
+								<th scope="col" style="border: 0px">Comune o Stato estero
+									di nascita</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let assistito of assistito; let i=index">
+								<th class="celleTab" scope="row">{{assistito.codFiscale}}</th>
+								<td class="celleTab">{{assistito.cognome}}</td>
+								<td class="celleTab">{{assistito.nome}}</td>
+								<td class="celleTab">{{assistito.codSesso}}</td>
+								<td class="celleTab">{{assistito.dataNascita}}</td>
+								<td class="celleTab">{{assistito.comuneNascita}}</td>
+								<td class="celleTab">
+									<button type="button" class="btn btn-outline-primary"
+										(click)="ScegliCittadino(i)">Scegli</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="modal-body table-responsive tabellaricercames">
+				<div class=row>
+					<div class="col-md-12">
+						<table id="ricerca">
+							<tbody>
+								<tr>
+									<th><label class="messaggiokoricerca" id="messaggioricercatabella"></label></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- modal cronologia-->
+<div class="modal fade cronologia" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" tabindex="-1" role="document">
+		<div class="modal-content rigabiancafontnero">
+      <div class="modal-header-cronologia">
+        <div class="row">
+          <div class="col-md-6 modal-title-cronologia">
+            CRONOLOGIA
+          </div>
+          <div class="col-md-6 modal-button-close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      </div>
+			<div class="tabellaricerca">
+				<div class="table-responsive">
+					<table id="ricercaCronologia" class="table"
+						style="font-size: 12px; border: 0;">
+						<thead class="rigagrigiafontnero" style="font-weight: bold">
+							<tr style="border: 0px">
+								<th scope="col" style="border: 0px">Data e ora</th>
+								<th scope="col" style="border: 0px">Utente</th>
+								<th scope="col" style="border: 0px">Stato pratica</th>
+								<th scope="col" style="border: 0px">Nota Beneficiario</th>
+								<th scope="col" style="border: 0px">Nota Operatori</th>
+								<th scope="col" style="border: 0px">Nota Interna</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let storico of storicoEsenzione; let i=index">
+								<th class="celleTab" scope="row">{{storico.data_creazione}}</th>
+								<td class="celleTab">{{storico.utente.nome}} {{storico.utente.cognome}}</td>
+								<td class="celleTab">{{storico.nuovo_stato.descrizione}}</td>
+                                <td class="celleTab">{{storico.notaBeneficiario}}</td>
+                                <td class="celleTab">{{storico.nota}}</td>
+                                <td class="celleTab">{{storico.notaInterna}}</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Valida-->
+<div class="modal fade validacertificato" id ="validacertificato" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+			style="max-width: 70%">
+		<div class="modal-content rigabiancafontblu ombramodal">
+		<div class="row"><p></p>
+	</div>
+
+			<div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-10 rigako bordo-esitoko esitoricercaselezionateko"
+					style="padding-top: 15px; padding-bottom: 15px; margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-md-1" style="padding-right: 0px;">
+							<img class="img-fluid" src="assets/img/user/negativoko.jpg">
+						</div>
+						<div class="col-md-11" style="padding-left: 0px;">
+							<strong>
+								<p id="messaggioesitoricercaselezionateko"></p>
+							</strong>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+		<div class="row" style="padding-top: 15px;padding-left: 0px;padding-right: 0px;font-size:1.2rem;">
+			<div class="col-md-1"></div>
+			<div class="col-md-2" style="padding-left: 0px;">
+			<strong><p id="statofasepratica"></p></strong>
+			</div>
+			<div class="col-md-7"></div>
+			<div class="col-md-1" style="padding-left: 35px;padding-right: 0px;">
+		<button type="button" class="btn btn-cerca btn-circle" (click)="ChiudiValida()" style="cursor: pointer;color: #006cb4;margin:0px;padding:0px;border:0px;box-shadow:none !important;">
+		<img class="img-fluid"
+		src="assets/img/user/u18.png"></button></div>
+		<div class="col-md-1"></div>
+
+
+		</div>
+		<div class="row"
+	style="padding-top: 15px; padding-bottom: 15px;">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 rigagrigiafontnero">
+	<div class="col-md-12">
+	<label id="idaurabeneficiario" hidden></label>
+	<label id="cfbeneficiario" hidden></label>
+			<div class="row" style="font-size:1.7rem;">
+			<label id="skpratica"></label>
+		</div>
+		</div>
+		<div class="col-md-12 nascondinota">
+			<div class="row" style="font-size:1.3rem;color: #1154a2 !important;">
+			<strong><p>
+			Nota
+			</p></strong>
+		</div>
+		</div>
+		<div class="col-md-12 nascondinotaben">
+			<div class="row" style="font-size:1.1rem;">
+			<div class="col-md-4">
+			<strong><label>Per Beneficiario</label></strong>
+		</div>
+		<div class="col-md-8" style="word-break: break-word;">
+			<label id="notabeneficiario"></label>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-12 nascondinotaser">
+			<div class="row" style="font-size:1.1rem;">
+			<div class="col-md-4">
+			<strong><label>Per Servizio</label></strong>
+		</div>
+		<div class="col-md-8" style="word-break: break-word;">
+			<label id="notaservizio"></label>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-12 nascondinotaint">
+			<div class="row" style="font-size:1.1rem;">
+			<div class="col-md-4">
+			<strong><label>Interne ASL/CAS</label></strong>
+		</div>
+		<div class="col-md-8" style="word-break: break-word;">
+			<label id="notainterna"></label>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-12" style="padding-top:15px;padding-bottom:15px;">
+			<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-3">
+		<button type="button" class="btn btn-block light"
+		(click)="ChiudiValida()">NO</button></div>
+		<div class="col-md-2"></div>
+		<div class="col-md-3">
+		<button type="button" class="btn btn-block btn-primary"
+		(click)="ProcediValidaSelezionate()">SI</button></div>
+		</div>
+		<div class="col-md-2">
+		</div>
+
+		</div>
+		<div class="col-md-1"></div>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
