@@ -1,4 +1,4 @@
-name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL;
+name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL
 axis-1.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
 axis2-ant-plugin-1.7.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
 axis2-xmlbeans-1.7.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
@@ -20,7 +20,7 @@ jackson-databind-2.1.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
 jasperreports-6.2.1.jar,"LGPL",-,-,-,Java,-,-,-
 jdom-1.1.3.jar,"Apache-2.0",-,-,-,Java,-,-,-
 jersey-common-2.17.jar,"Apache-2.0",-,-,-,Java,-,-,-
-jquery.js,"Apache-2.0";" MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+jquery.js,"Apache-2.0; MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
 log4j-1.2.14.jar,"Apache-2.0",-,-,-,Java,-,-,-
 lucene-queryparser-4.5.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
 pdfbox-2.0.19.jar,"Apache-2.0",-,-,-,Java,-,-,-
