@@ -1,5 +1,5 @@
 name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL
-activation-1.0.2.jar,"CDDL-1.0"",-,-,-,Java,-,-,-
+activation-1.0.2.jar,"CDDL-1.0",-,-,-,Java,-,-,-
 aopalliance-1.0.0.jar,"AOP",-,-,-,Java,-,-,-
 aspectjrt-1.7.2.jar,"EPL-1.0",-,-,-,Java,-,-,-
 aspectjweaver-1.9.4.jar,"Eclipse Public License",-,-,-,Java,-,-,-
