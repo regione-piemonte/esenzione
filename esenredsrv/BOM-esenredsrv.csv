@@ -12,9 +12,9 @@ commons-httpclient-2.0.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
 commons-io-2.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
 commons-lang-2.6.jar,"Apache-2.0",-,-,-,Java,-,-,-
 commons-logging-1.1.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
-csi-stadapter-1.4.6.jar,"Apache-2.0";" MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+csi-stadapter-1.4.6.jar,"Apache-2.0; MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
 ejb-2.1.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
-esenredsrv-common.jar,"Apache-2.0";" MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+esenredsrv-common.jar,"Apache-2.0; MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
 hibernate-commons-annotations-4.0.4.Final.jar,"GNU",-,-,-,Java,-,-,-
 hibernate-core-4.3.5.Final.jar,"GNU",-,-,-,Java,-,-,-
 hibernate-jpa-2.1-api-1.0.0.Final.jar,"GNU",-,-,-,Java,-,-,-
