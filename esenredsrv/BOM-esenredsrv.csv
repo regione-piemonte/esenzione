@@ -1,0 +1,44 @@
+name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL;
+activation-1.0.2.jar,"CDDL-1.0"",-,-,-,Java,-,-,-";
+aopalliance-1.0.0.jar,"AOP",-,-,-,Java,-,-,-
+aspectjrt-1.7.2.jar,"EPL-1.0",-,-,-,Java,-,-,-
+aspectjweaver-1.9.4.jar,"Eclipse Public License",-,-,-,Java,-,-,-
+axis-1.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+bcprov-jdk15on-151.jar,"BouncyCastle License",-,-,-,Java,-,-,-
+commons-collections-3.2.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-digester-2.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-discovery-0.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-httpclient-2.0.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-io-2.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-lang-2.6.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-logging-1.1.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+csi-stadapter-1.4.6.jar,"Apache-2.0";" MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+ejb-2.1.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+esenredsrv-common.jar,"Apache-2.0";" MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+hibernate-commons-annotations-4.0.4.Final.jar,"GNU",-,-,-,Java,-,-,-
+hibernate-core-4.3.5.Final.jar,"GNU",-,-,-,Java,-,-,-
+hibernate-jpa-2.1-api-1.0.0.Final.jar,"GNU",-,-,-,Java,-,-,-
+jaas-1.0.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+jaxp-1.1.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+jms-1.0.2b.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+jndi-1.2.1.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+jsr311-api-1.1.1.jar,"CDDL-1.0",-,-,-,Java,-,-,-
+log4j-1.2.14.jar,"Apache-2.0",-,-,-,Java,-,-,-
+mail-1.2.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+postgresql-9.4-1201.jdbc4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+resolver-2.6.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+resteasy-jaxrs-2.3.10.Final-redhat-1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+saaj-1.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+servlet-2.4.jar,"CDDL-GPL2.0",-,-,-,Java,-,-,-
+servlet-api-2.5.jar,"CDDL-GPL2.0",-,-,-,Java,-,-,-
+soap-2.3.1.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+spring-core-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-expression-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-tx-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-web-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+weblogic-client-3.0.0.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+wsdl4j-1.5.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+xercesImpl-2.6.2.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+xml-apis-2.6.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+xmlParserAPIs-2.6.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+

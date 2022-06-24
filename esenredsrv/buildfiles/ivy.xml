@@ -1,0 +1,89 @@
+<ivy-module version="1.0">
+	<info organisation="csipiemonte" module="starissrv" />
+	<dependencies>
+	
+		<dependency org="apache" name="commons-logging" rev="1.1.1">
+			<artifact name="commons-logging-1.1.1" type="jar" />
+		</dependency>
+		
+		<dependency org="apache" name="log4j" rev="1.2.14">
+			<artifact name="log4j-1.2.14" type="jar" />
+		</dependency>
+		
+		<dependency org="apache" name="commons-lang" rev="2.6">
+			 <artifact name="commons-lang-2.6" type="jar" />
+		</dependency>
+		
+		<dependency org="apache" name="axis" rev="1.4">
+			<artifact name="axis-1.4" type="jar" />
+		</dependency>
+		
+		<dependency org="apache" name="commons-collections" rev="3.2.1">
+			<artifact name="commons-collections-3.2.1" type="jar" />
+		</dependency>
+
+		<dependency org="apache" name="commons-digester" rev="2.1">
+			<artifact name="commons-digester-2.1" type="jar" />
+		</dependency>
+
+		<dependency org="csipiemonte" name="csi" rev="1.4.6">
+			<artifact name="csi-stadapter-1.4.6" type="jar" />
+		</dependency>
+		
+		<dependency org="others" name="hibernate-jpa-2.1-api" rev="1.0.0.Final">
+			<artifact name="hibernate-jpa-2.1-api-1.0.0.Final" type="jar" />
+		</dependency>
+
+		<dependency org="others" name="hibernate" rev="4.3.5.Final">
+			<artifact name="hibernate-entitymanager-4.3.5.Final" type="jar" />
+			<artifact name="hibernate-core-4.3.5.Final" type="jar" />
+		</dependency>
+		
+		<dependency org="others" name="hibernate-commons" rev="4.0.4.Final">
+			<artifact name="hibernate-commons-annotations-4.0.4.Final" type="jar" />
+		</dependency>
+		
+		<dependency org="postgresql" name="postgresql-jdbc" rev="9.4-1201.jdbc4">
+			<artifact name="postgresql-9.4-1201.jdbc4" type="jar" />
+		</dependency>
+		
+		<dependency org="redhat" name="resteasy-jaxrs" rev="2.3.10.Final-redhat-1">
+			<artifact name="resteasy-jaxrs-2.3.10.Final-redhat-1" type="jar" />
+		</dependency>
+				 	
+		<dependency org="sun" name="servlet-api" rev="2.5">
+			<artifact name="servlet-api-2.5" type="jar" />
+		</dependency>
+
+	    <dependency org="others" name="spring" rev="3.1.1.RELEASE" transitive="false" >
+	      <artifact name="spring-aop-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-asm-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-beans-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-context-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-core-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-expression-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-jdbc-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-orm-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-tx-3.1.1.RELEASE" type="jar" />
+	      <artifact name="spring-web-3.1.1.RELEASE" type="jar" />
+	    </dependency>
+	    
+		<dependency org="others" name="jsr311" rev="1.1.1">
+			<artifact name="jsr311-api-1.1.1" type="jar" />
+		</dependency>
+		
+		<dependency org="apache" name="commons-io" rev="2.5">
+			<artifact name="commons-io-2.5" type="jar" />
+		</dependency>
+		
+		<dependency org="others" name="aopalliance" rev="1.0.0" >
+			<artifact name="aopalliance-1.0.0" type="jar" />
+		</dependency> 
+		
+		<dependency org="others" name="aspectj" rev="1.7.2">
+			<artifact name="aspectjrt-1.7.2" type="jar" />
+			<artifact name="aspectjweaver-1.7.2" type="jar" />
+		</dependency>
+	
+	</dependencies>
+</ivy-module>
