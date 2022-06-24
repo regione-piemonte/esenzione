@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Esenpat-EsenzioneTemplate1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee377c77-13cf-4cf1-b34b-a2144b1b7cce">
+	<property name="ireport.zoom" value="1.6105100000000048"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DOC_TYPE" class="java.lang.String"/>
+	<parameter name="NUM_PRATICA" class="java.lang.String"/>
+	<parameter name="BEN_NOME" class="java.lang.String"/>
+	<parameter name="BEN_COGNOME" class="java.lang.String"/>
+	<parameter name="BEN_CF" class="java.lang.String"/>
+	<parameter name="DEL_NOME" class="java.lang.String"/>
+	<parameter name="DEL_COGNOME" class="java.lang.String"/>
+	<parameter name="DEL_CF" class="java.lang.String"/>
+	<parameter name="DATA_COMP" class="java.lang.String"/>
+	<parameter name="COD_RUOLO_OPERATORE" class="java.lang.String"/>
+	<variable name="data" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="orario" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("HH:mm").format(new java.util.Date())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="36" y="23" width="469" height="31" uuid="0b02553d-e6bb-4be6-86f4-ba0b88382cec"/>
+				<imageExpression><![CDATA["report//header.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="35" uuid="ac51ecfc-60de-4c13-9709-e4ccc82f3f33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Richiesta di " + $P{DOC_TYPE}.toUpperCase() + " n° " + $P{NUM_PRATICA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="82" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="16" width="469" height="26" uuid="2ba7847c-176a-4035-b626-7ea094c6bf18"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La richiesta di " + $P{DOC_TYPE}.toUpperCase() + " per il beneficiario " + $P{BEN_NOME}.toUpperCase() + " " + $P{BEN_COGNOME}.toUpperCase() + ", Codice Fiscale n°: " + $P{BEN_CF}.toUpperCase() + " è stata compilata correttamente in data " + $P{DATA_COMP}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="55" width="469" height="27" uuid="284960f0-ed23-4b69-9377-56b61eff1c2c">
+					<printWhenExpression><![CDATA[$P{DEL_NOME}.length() != 0 && $P{DEL_COGNOME}.length() != 0 && $P{DEL_CF}.length() != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La pratica è stata inserita da " + $P{DEL_NOME}.toUpperCase() + " " + $P{DEL_COGNOME}.toUpperCase() +", Codice Fiscale n°: " + $P{DEL_CF}.toUpperCase() + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="202" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="86" width="345" height="20" uuid="d0a82ba6-ce5c-4966-bed4-63c25f5d84df"/>
+				<textElement>
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data " + $V{data} + " ore " + $V{orario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="157" width="469" height="45" uuid="f465ab3b-14a9-49c5-ad45-4dd545582876"/>
+				<textElement>
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Hai bisogno di aiuto? Scrivi a xyz specificando: il tuo recapito telefonico, il tuo codice fiscale, il problema che hai rilevato.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="0" width="469" height="20" uuid="a2dec65f-918b-4c26-92ce-482829e07e05">
+					<printWhenExpression><![CDATA[$P{COD_RUOLO_OPERATORE}.length() != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La pratica è stata inserita da " + $P{COD_RUOLO_OPERATORE}.toUpperCase() + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="34" width="130" height="20" uuid="0f0ca3f0-3a5a-43b5-9f03-f521abb88637"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[MOD. REV. 1 23/10/2019]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

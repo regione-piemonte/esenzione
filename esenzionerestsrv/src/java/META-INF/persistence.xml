@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="esenzioni" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredDAziendasanitaria</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDAzione</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDiagnosi</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDistrettoSocioSanitario</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDocumentoGruppoEsenzioni</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDocumentoGruppoEsenzioniPK</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDocumentoStato</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDocumentoTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDDurataTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDEsenzione</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDEsenzioneAuraTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDGruppoEsenzioni</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDGruppoUtenti</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDInvaliditaTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDMotivazioneTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDNotificaTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDPraticaStato</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDPrestazioneSpecialistica</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRAzioniGruppoUtenti</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRDestinatarioTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRDiagnosiPrestazione</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRDiagnosiPrestazionePK</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRGruppoEsenzioniEsenzioneAuraTipo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRGruppoEsenzioniEsenzioneAuraTipoPK</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRMotivazionePraticaStato</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRMotivazionePraticaStatoPK</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRPraticaEsenzioneDocumento</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRPraticaEsenzioneDocumentoPK</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneSDocumento</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneSPraticaEsenzione</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTCittadino</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTDocumento</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTMetadatiDocumento</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTPraticaEsenzione</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTProgressivo</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneTRepositoryDocumentale</class>
+		<class>it.csi.esenred.esenredweb.business.entity.CsiLogAudit</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredCComuni</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredCMatriceEsenzioni</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredCMessaggi</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredCParametri</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredCTitoloDichiarante</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredDTipiEsenzioniReddito</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredTAslOperatore</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredTEsenzioniReddito</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenredWNotifiche</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneRAzioniPraticaStato</class>
+		<class>it.csi.esenred.esenredweb.business.entity.EsenzioneDEsenzioneAuraArchivio</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.default_schema" value="@@@schema@@@" />
+			<property name="jboss.as.jpa.managed" value="false" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+			
+			<property name="hibernate.id.new_generator_mappings" value="false" />
+			
+		</properties>
+	</persistence-unit>
+</persistence>

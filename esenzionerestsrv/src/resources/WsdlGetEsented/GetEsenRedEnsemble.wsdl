@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns2="http://ws.sanitxint.sanitx.csi.it/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://GetEsenRed.central.services.auraws.aura.csi.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://GetEsenRed.central.services.auraws.aura.csi.it">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://GetEsenRed.central.services.auraws.aura.csi.it">
+            <s:import namespace="http://ws.sanitxint.sanitx.csi.it/"/>
+            <s:element name="GetEsenRed">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="idAURA" type="s:long"/>
+                        <s:element minOccurs="0" name="tipoUser" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetEsenRedResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="GetEsenRedResult" type="s0:GetEsenRedRes"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetEsenRedRes">
+                <s:sequence>
+                    <s:element minOccurs="0" name="header" type="s0:GetEsenRedHeader"/>
+                    <s:element minOccurs="0" name="body" type="s0:GetEsenRedBody"/>
+                    <s:element minOccurs="0" name="footer" type="s0:GetEsenRedFooter"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="GetEsenRedHeader">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codiceRitorno" type="s:long"/>
+                    <s:element minOccurs="0" name="requestDateTime" type="s:dateTime"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="GetEsenRedBody">
+                <s:sequence>
+                    <s:element minOccurs="0" name="idAura" type="s:long"/>
+                    <s:element minOccurs="0" name="infoAnag" type="ns2:infoAnagraficheGetEsenredVO"/>
+                    <s:element minOccurs="0" name="infoAnagResidenza" type="ns2:infoAnagraficheResidenzaGetEsenredVO"/>
+                    <s:element minOccurs="0" name="infoAnagDomicilio" type="ns2:infoAnagraficheDomicilioGetEsenredVO"/>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="infoEsenzione" nillable="true" type="ns2:infoEsenzioneGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfinfoEsenzioneGetEsenredVO">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="infoEsenzioneGetEsenredVO" nillable="true" type="ns2:infoEsenzioneGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="GetEsenRedFooter">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="messages" nillable="true" type="ns2:messagesGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfmessagesGetEsenredVO">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="messagesGetEsenredVO" nillable="true" type="ns2:messagesGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+        <s:schema targetNamespace="http://ws.sanitxint.sanitx.csi.it/">
+            <s:complexType name="infoAnagraficheGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="cognome" type="s:string"/>
+                    <s:element minOccurs="0" name="nome" type="s:string"/>
+                    <s:element minOccurs="0" name="sesso" type="s:string"/>
+                    <s:element minOccurs="0" name="dataNascita" type="s:string"/>
+                    <s:element minOccurs="0" name="codComuneNascita" type="s:string"/>
+                    <s:element minOccurs="0" name="descComuneNascita" type="s:string"/>
+                    <s:element minOccurs="0" name="siglaProvNascita" type="s:string"/>
+                    <s:element minOccurs="0" name="codStatoNascita" type="s:string"/>
+                    <s:element minOccurs="0" name="codCittadinanza" type="s:string"/>
+                    <s:element minOccurs="0" name="descCittadinanza" type="s:string"/>
+                    <s:element minOccurs="0" name="dataDecesso" type="s:dateTime"/>
+                    <s:element minOccurs="0" name="codiceFiscale" type="s:string"/>
+                    <s:element minOccurs="0" name="statoCodiceFiscale" type="s:string"/>
+                    <s:element minOccurs="0" name="statoProfiloAnagrafico" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="infoAnagraficheResidenzaGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codComune" type="s:string"/>
+                    <s:element minOccurs="0" name="descComune" type="s:string"/>
+                    <s:element minOccurs="0" name="codStato" type="s:string"/>
+                    <s:element minOccurs="0" name="descStato" type="s:string"/>
+                    <s:element minOccurs="0" name="indirizzo" type="s:string"/>
+                    <s:element minOccurs="0" name="numCivico" type="s:string"/>
+                    <s:element minOccurs="0" name="cap" type="s:string"/>
+                    <s:element minOccurs="0" name="telefono" type="s:string"/>
+                    <s:element minOccurs="0" name="statoResidenza" type="s:string"/>
+                    <s:element minOccurs="0" name="dataInizio" type="s:string"/>
+                    <s:element minOccurs="0" name="dataFine" type="s:string"/>
+                    <s:element minOccurs="0" name="aslResidenza" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="infoAnagraficheDomicilioGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codComune" type="s:string"/>
+                    <s:element minOccurs="0" name="descComune" type="s:string"/>
+                    <s:element minOccurs="0" name="codStato" type="s:string"/>
+                    <s:element minOccurs="0" name="descStato" type="s:string"/>
+                    <s:element minOccurs="0" name="indirizzo" type="s:string"/>
+                    <s:element minOccurs="0" name="numCivico" type="s:string"/>
+                    <s:element minOccurs="0" name="cap" type="s:string"/>
+                    <s:element minOccurs="0" name="aslDomicilio" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="infoEsenzioneGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codEsenzione" type="s:string"/>
+                    <s:element minOccurs="0" name="dataEmissione" type="s:string"/>
+                    <s:element minOccurs="0" name="dataScadenza" type="s:string"/>
+                    <s:element minOccurs="0" name="dataSospensione" type="s:string"/>
+                    <s:element minOccurs="0" name="codAttestato" type="s:string"/>
+                    <s:element minOccurs="0" name="protocollo" type="s:string"/>
+                    <s:element minOccurs="0" name="fonte" type="s:string"/>
+                    <s:element minOccurs="0" name="codiceFiscaleDichiarante" type="s:string"/>
+                    <s:element minOccurs="0" name="idAuraDichiarante" type="s:decimal"/>
+                    <s:element minOccurs="0" name="codiceFiscaleTitolare" type="s:string"/>
+                    <s:element minOccurs="0" name="idAuraTitolare" type="s:decimal"/>
+                    <s:element minOccurs="0" name="titoloDichiarante" type="s:string"/>
+                    <s:element minOccurs="0" name="descTitoloDichiarante" type="s:string"/>
+                    <s:element minOccurs="0" name="note" type="s:string"/>
+                    <s:element minOccurs="0" name="statoEsenzione" type="s:string"/>
+                    <s:element minOccurs="0" name="codiceContestazione" type="s:string"/>
+                    <s:element minOccurs="0" name="descrCodiceContestazione" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="messagesGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codice" type="s:string"/>
+                    <s:element minOccurs="0" name="descrizione" type="s:string"/>
+                    <s:element minOccurs="0" name="note" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </types>
+    <message name="GetEsenRedSoapIn">
+        <part name="parameters" element="s0:GetEsenRed"/>
+    </message>
+    <message name="GetEsenRedSoapOut">
+        <part name="parameters" element="s0:GetEsenRedResponse"/>
+    </message>
+    <portType name="GetEsenRedSoap">
+        <operation name="GetEsenRed">
+            <input message="s0:GetEsenRedSoapIn"/>
+            <output message="s0:GetEsenRedSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="GetEsenRedSoap" type="s0:GetEsenRedSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="GetEsenRed">
+            <soap:operation soapAction="http://GetEsenRed.central.services.auraws.aura.csi.it/AURA.WS.GetEsenRed.GetEsenRed" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="GetEsenRed">
+        <port name="GetEsenRedSoap" binding="s0:GetEsenRedSoap">
+            <soap:address location="http://XYZ/sanitxens/AURA.WS.GetEsenRed.cls"/>
+        </port>
+    </service>
+</definitions>

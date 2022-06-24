@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Esenpat-EsenzioneTemplate1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee377c77-13cf-4cf1-b34b-a2144b1b7cce">
+	<property name="ireport.zoom" value="1.771561000000011"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="0cbb75c2-d66a-4672-9acb-5d9270ba1199"/>
+	<subDataset name="Table Dataset 2" uuid="e69b37ef-9eda-40f9-a496-9c1ebd4f2cbe"/>
+	<parameter name="NUM_PRATICA" class="java.lang.String"/>
+	<parameter name="BEN_NOME" class="java.lang.String"/>
+	<parameter name="BEN_COGNOME" class="java.lang.String"/>
+	<parameter name="BEN_CF" class="java.lang.String"/>
+	<parameter name="DATA_NASCITA" class="java.lang.String"/>
+	<parameter name="COMUNE_RES" class="java.lang.String"/>
+	<parameter name="INDIRIZZO_RES" class="java.lang.String"/>
+	<parameter name="TESSERA_REGIONALE" class="java.lang.String"/>
+	<parameter name="DATA_INIZIO_VALIDITA" class="java.lang.String"/>
+	<parameter name="DATA_FINE_VALIDITA" class="java.lang.String"/>
+	<parameter name="COD_ESENZIONE" class="java.lang.String"/>
+	<parameter name="ID_AZIENDA" class="java.lang.String"/>
+	<parameter name="PRESTAZIONE" class="java.lang.String"/>
+	<variable name="data" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="orario" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("HH:mm").format(new java.util.Date())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="281" y="20" width="224" height="20" forecolor="#808080" uuid="32e16de0-56d1-4014-ae66-848946f15ae3"/>
+				<textElement markup="styled">
+					<font fontName="Times New Roman" size="6" isBold="true" isItalic="true" isUnderline="false" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Sede Legale – Via San Secondo 29 - 10128 Torino - Tel: 011.5661566 – 011.4393111
+PEC: <style isUnderline="true" isItalic="false" forecolor="#5588CC">protocollo@pec.aslcittaditorino.it </style> – Codice Fiscale/Partita Iva 11632570013
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="36" y="0" width="92" height="50" uuid="7cc8acce-5e94-4e90-a841-17b5d39b124e"/>
+				<imageExpression><![CDATA["report//logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="0" width="469" height="34" uuid="09aeb240-90d4-4c29-88c9-01d78ae165a1"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Modello Promemoria attestato]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="82" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="0" width="469" height="34" uuid="ac51ecfc-60de-4c13-9709-e4ccc82f3f33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PROMEMORIA ATTESTATO DI SINGOLA ESENZIONE PER PATOLOGIA n° " + $P{NUM_PRATICA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="34" width="469" height="20" uuid="24321b20-0af3-4c0c-8aad-efe3b0ea956a"/>
+				<textElement textAlignment="Center" markup="styled">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Attestazione <style isUnderline="true">singola</style> di esenzione della partecipazione al costo delle prestazioni di assistenza sanitaria]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="353" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="77" width="469" height="20" uuid="a2dec65f-918b-4c26-92ce-482829e07e05"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CF " +  $P{BEN_CF} + " Tessera regionale " + $P{TESSERA_REGIONALE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="50" width="469" height="27" uuid="284960f0-ed23-4b69-9377-56b61eff1c2c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Residente a " + $P{COMUNE_RES} + " in " + $P{INDIRIZZO_RES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="14" width="469" height="26" uuid="2ba7847c-176a-4035-b626-7ea094c6bf18"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Assistito/a " + $P{BEN_NOME}.toUpperCase() + " " + $P{BEN_COGNOME}.toUpperCase() + " nato/a il " + $P{DATA_NASCITA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="113" width="469" height="39" uuid="453d9756-1e5c-4fc8-bab2-c504d59bae11"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[In base alla documentazione prodotta, si attesta il diritto del cittadino sopraindicato a beneficiare delle seguenti esenzioni:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="36" y="152" width="117" height="18" uuid="116416ba-22a0-4c78-92cb-ad8794fb5acd"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="153" y="152" width="117" height="18" uuid="7ac22d2c-e225-4eb1-9956-142e3f9983e6"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="270" y="152" width="117" height="18" uuid="d2446a07-ae69-48a6-a985-4938dc54cf48"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="387" y="152" width="118" height="18" uuid="4a1d516a-e282-4f22-8b6b-b2961c3a2078"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="387" y="170" width="118" height="41" uuid="be2cd298-6cb1-4a9d-98f5-d0d6c674f550"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="153" y="170" width="117" height="41" uuid="d571da2a-1d81-45d6-922f-ac5e0ac6ad6f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="270" y="170" width="117" height="41" uuid="2a248c80-eb81-4ac5-9858-bc96a935f39f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="36" y="170" width="117" height="41" uuid="c1963f60-fe4b-4566-a3c1-11a93e809684"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="36" y="152" width="117" height="18" uuid="15008d77-565b-403e-ad55-582ea188fddb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[    Data emissione]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="152" width="117" height="18" uuid="011725ba-806b-4e63-8b44-6d5fc5544f6e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[    Codice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="152" width="118" height="18" uuid="6423ffb3-c5b3-481d-8fb0-05f9a1a93e75"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[    Scadenza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="152" width="118" height="18" uuid="b860af37-add1-4f29-a4f2-db65d8de462c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[    ASL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="170" width="118" height="41" uuid="2e1cd2ca-62bf-4af2-a193-b68eac4a81d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_INIZIO_VALIDITA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="170" width="118" height="41" uuid="2adcf54b-6955-4289-b724-2d665e2cdb0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COD_ESENZIONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="170" width="118" height="41" uuid="9b779d9e-cfba-4e71-a40a-9b040bcfce06"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_FINE_VALIDITA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="170" width="118" height="41" uuid="7af6fa1b-d963-472f-a409-7b8753f5d41e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ID_AZIENDA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="237" width="469" height="20" uuid="bbb8689b-70fc-43e9-a030-45ce9112ec97"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dettagli esenzioni]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="257" width="469" height="16" uuid="edbb8d17-5ae2-4ba7-9a0b-191440115cf9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Esenzione  " + $P{COD_ESENZIONE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="36" y="273" width="469" height="68" uuid="277fb5b7-f8d1-44b9-8c0a-b8b12d271cea"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Prestazioni Esenti: \n"
++ $P{PRESTAZIONE}
++ "\n\n"
++ "\n"
++ "Data emissione  " + $P{DATA_INIZIO_VALIDITA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="9" width="130" height="20" uuid="0f0ca3f0-3a5a-43b5-9f03-f521abb88637"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[A.E.P. REV. 1 01/04/2019]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,31 @@
+name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL
+axis-1.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+axis-jaxrpc-1.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+axis2-ant-plugin-1.7.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
+axis2-xmlbeans-1.7.7.jar"Apache-2.0",-,-,-,Java,-,-,-
+batik-css-1.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
+bsh-2.0b4.jar,"LGPL"",-,-,-,Java,-,-,-
+commons-beanutils-1.9.1.jar	,"Apache-2.0",-,-,-,Java,-,-,-
+commons-discovery-0.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-httpclient-3.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+commons-io-2.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
+groovy-all-2.4.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
+hibernate-core-4.3.5.Final.jar,"GNU",-,-,-,Java,-,-,-
+httpclient-4.3.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+iride2-fbi-intf-1.0.0.jar,"Apache-2.0",-,-,-,Java,-,-,-
+itext-2.1.7.jar,"AGPL3.0",-,-,-,Java,-,-,-
+jackson-core-2.1.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
+jackson-databind-2.1.5.jar,"Apache-2.0",-,-,-,Java,-,-,-
+jasperreports-6.2.1.jar,"LGPL",-,-,-,Java,-,-,-
+log4j-1.2.14.jar,"Apache-2.0",-,-,-,Java,-,-,-
+lucene-queryparser-4.5.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+poi-3.10.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
+postgresql-9.4-1201.jdbc4.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-core-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-expression-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-tx-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+spring-web-3.1.1.RELEASE.jar,"Apache-2.0",-,-,-,Java,-,-,-
+velocity-1.7-dep.jar,"Apache-2.0",-,-,-,Java,-,-,-
+velocity-1.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
+weblogic-client-3.0.0.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
+xmlbeans-2.5.0.jar,"Apache-2.0",-,-,-,Java,-,-,-

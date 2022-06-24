@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd"
+"http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
+<log4j:configuration>
+	<appender name="fileOut" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${logPath}/${logFile}.log" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy MM dd - hh:mm:ss,SSSS} %5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="it.csi.esenred">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<Logger name="org.springframework">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</Logger>
+
+	<logger name="org.hibernate.SQL">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+</log4j:configuration>
+
+
+
