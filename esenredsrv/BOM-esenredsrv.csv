@@ -1,5 +1,5 @@
-name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL;
-activation-1.0.2.jar,"CDDL-1.0"",-,-,-,Java,-,-,-";
+name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL
+activation-1.0.2.jar,"CDDL-1.0"",-,-,-,Java,-,-,-
 aopalliance-1.0.0.jar,"AOP",-,-,-,Java,-,-,-
 aspectjrt-1.7.2.jar,"EPL-1.0",-,-,-,Java,-,-,-
 aspectjweaver-1.9.4.jar,"Eclipse Public License",-,-,-,Java,-,-,-
@@ -41,4 +41,3 @@ wsdl4j-1.5.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
 xercesImpl-2.6.2.jar,"Libreria Java di Base",-,-,-,Java,-,-,-
 xml-apis-2.6.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
 xmlParserAPIs-2.6.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
-
