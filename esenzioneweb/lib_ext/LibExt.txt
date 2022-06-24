@@ -1,0 +1,24 @@
+aopalliance-repackaged-2.4.0-b10.jar
+commons-io-2.4.jar
+fontbox-2.0.19.jar
+fop-2.4.jar
+hk2-api-2.4.0-b10.jar
+hk2-locator-2.4.0-b10.jar
+hk2-utils-2.4.0-b10.jar (93.08 KiB) 
+itextpdf-5.1.2.jar 
+javassist-3.18.1-GA.jar 
+javax.annotation-api-1.2.jar
+javax.inject-2.4.0-b10.jar 
+javax.ws.rs-api-2.0.1.jar 
+jempbox-1.8.16.jar 
+jersey-common-2.17.jar
+jersey-guava-2.17.jar 
+jersey-server-2.7.jar 
+mimepull-1.9.3.jar 
+osgi-resource-locator-1.0.1.jar
+pdfbox-2.0.19.jar 
+pdfbox-tools-2.0.19.jar
+preflight-2.0.19.jar 
+resteasy-jaxrs-3.0.9.Final.jar
+validation-api-1.1.0.Final.jar
+xmpbox-2.0.19.jar
