@@ -1,0 +1,38 @@
+<fop version="2.4">
+  <accessibility>true</accessibility>
+  <renderers>
+    <renderer mime="application/pdf">
+         <fonts>
+      
+		
+
+            <font kerning="yes" embed-url="arial.ttf" embedding-mode="full">
+       		       <font-triplet name="Arial" style="normal" weight="normal"/>
+   				   <font-triplet name="ArialMT" style="normal" weight="normal"/>
+       		 </font>    
+
+       		   <font kerning="yes" embed-url="arialbd.ttf" embedding-mode="full">
+           		  <font-triplet name="Arial" style="normal" weight="bold"/>
+      			  <font-triplet name="ArialMT" style="normal" weight="bold"/>
+       		 </font>    
+
+            <!--    <font kerning="yes"  embed-url="file:///C:/template/arial.ttf">
+                      <font-triplet name="Arial" style="normal" weight="normal"/>
+                    </font>
+
+                    	<font kerning="yes" embed-url="/System/Library/Fonts/Arial.ttf" embedding-mode="subset">
+               <font-triplet name="Arial" style="normal" weight="normal"/>
+           </font>                     
+           -->
+
+         <!-- automatically detect operating system installed fonts
+         <auto-detect/> -->
+      </fonts>
+
+
+      <pdf-a-mode>PDF/A-2b</pdf-a-mode>
+      <version>1.7</version>
+    </renderer>
+  </renderers>
+</fop>
+

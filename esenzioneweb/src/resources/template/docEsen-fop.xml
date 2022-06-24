@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument>
+	<title>ATTESTATO DI ESENZIONE</title>
+	<asl></asl>
+	<author>
+		<family></family>
+		<given></given>
+		<id></id>		
+	</author>
+
+	<patient>		
+		
+	</patient>
+
+	<tableEsenzioni>
+		
+	</tableEsenzioni>
+
+	<components>
+
+	</components>
+</ClinicalDocument>
+
+
+
+	

@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="autocert" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c5a13d9-9269-4772-bdff-4654f76ab608">
+	<property name="ireport.zoom" value="1.6528925619834736"/>
+	<property name="ireport.x" value="22"/>
+	<property name="ireport.y" value="1287"/>
+	<property name="ireport.callouts" value="##Thu Jan 10 13:01:57 CET 2019"/>
+	<property name="ireport.background.image.properties" value="true,true,1.0,-8,-8,0,0,611,857"/>
+	<parameter name="ID_ESENZIONE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="D_NOME" class="java.lang.String"/>
+	<parameter name="D_COGNOME" class="java.lang.String"/>
+	<parameter name="D_DATANASCITA" class="java.lang.String"/>
+	<parameter name="D_COMUNENASCITA" class="java.lang.String"/>
+	<parameter name="D_PROVINCIANASCITA" class="java.lang.String"/>
+	<parameter name="D_CODFISCALE" class="java.lang.String"/>
+	<parameter name="B_NOME" class="java.lang.String"/>
+	<parameter name="B_COGNOME" class="java.lang.String"/>
+	<parameter name="B_DATANASCITA" class="java.lang.String"/>
+	<parameter name="B_COMUNENASCITA" class="java.lang.String"/>
+	<parameter name="B_PROVINCIANASCITA" class="java.lang.String"/>
+	<parameter name="B_CODFISCALE" class="java.lang.String"/>
+	<parameter name="T_NOME" class="java.lang.String"/>
+	<parameter name="T_COGNOME" class="java.lang.String"/>
+	<parameter name="T_DATANASCITA" class="java.lang.String"/>
+	<parameter name="T_COMUNENASCITA" class="java.lang.String"/>
+	<parameter name="T_PROVINCIANASCITA" class="java.lang.String"/>
+	<parameter name="T_CODFISCALE" class="java.lang.String"/>
+	<parameter name="PATH" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    ESENZIONI_CITTADINO."NUM_PROTOCOLLO_SOGEI" NUM_PROTOCOLLO,
+    ESENZIONI_CITTADINO."COD_NAZIONALE_ASL_RILASCIO" COD_ASL,
+    ASL."DENOMINAZIONE" DESC_ASL,
+    --DICHIARANTE."COGNOME" COGNOME_DICHIARANTE,
+    --DICHIARANTE."NOME" NOME_DICHIARANTE,
+    --TO_CHAR( DICHIARANTE."DATA_NASCITA", 'DD/MM/YYYY') DATA_NASCITA_DICHIARANTE,
+    --COMUNE_DICHIARANTE."DENOMINAZIONE" COMUNE_NASCITA_DICHIARANTE,
+    --COMUNE_DICHIARANTE."COD_PROVINCIA" PROVINCIA_NASCITA_DICHIARANTE,
+    --DICHIARANTE."COD_FISCALE" COD_FISCALE_DICHIARANTE,
+    TITOLO."DESCRIZIONE" DESC_TITOLO_DICHIARANTE,
+    --BENEFICIARIO."COGNOME" COGNOME_BENEFICIARIO,
+    --BENEFICIARIO."NOME" NOME_BENEFICIARIO,
+    --TO_CHAR(BENEFICIARIO."DATA_NASCITA", 'DD/MM/YYYY') DATA_NASCITA_BENEFICIARIO,
+    --COMUNE_BENEFICIARIO."DENOMINAZIONE" COMUNE_NASCITA_BENEFICIARIO,
+    --COMUNE_BENEFICIARIO."COD_PROVINCIA" PROVINCIA_NASCITA_BENEFICIARIO,
+    --BENEFICIARIO."COD_FISCALE" COD_FISCALE_BENEFICIARIO,
+    TO_CHAR(ESENZIONI_CITTADINO."DATA_INIZIO", 'DD/MM/YYYY') DATA_INIZIO,
+    TO_CHAR(ESENZIONI_CITTADINO."DATA_FINE", 'DD/MM/YYYY') DATA_FINE,
+    ESENZIONI."COD_ESENZIONE",
+    ESENZIONI."DESC_MOTIVO",
+    ESENZIONI_CITTADINO."NOTA",
+TO_CHAR(ESENZIONI_CITTADINO."DATA_RICHIESTA", 'DD/MM/YYYY') DATA_RICHIESTA
+
+FROM
+    "ESENRED_T_ESENZIONI_REDDITO" ESENZIONI_CITTADINO,
+    "ESENRED_D_TIPI_ESENZIONI_REDDITO" ESENZIONI,
+    "ESENRED_C_TITOLO_DICHIARANTE" TITOLO,
+    "ESENRED_D_AZIENDASANITARIA" ASL
+--    "ESENRED_T_CITTADINO" DICHIARANTE,
+--    "ESENRED_T_CITTADINO" BENEFICIARIO,
+--    "ESENRED_C_COMUNI" COMUNE_DICHIARANTE,
+--    "ESENRED_C_COMUNI" COMUNE_BENEFICIARIO
+WHERE
+    ESENZIONI."COD_ESENZIONE" = ESENZIONI_CITTADINO."COD_ESENZIONE"
+    AND ESENZIONI_CITTADINO."COD_NAZIONALE_ASL_RILASCIO" = ASL."ID_AZIENDA"
+    AND ((ESENZIONI_CITTADINO."DATA_INSERT" BETWEEN ASL."DATA_ATTIVAZIONE" AND ESENZIONI_CITTADINO."DATA_INSERT") OR  ESENZIONI_CITTADINO."DATA_INSERT" IS NULL )
+    AND TITOLO."COD_TITOLO" = ESENZIONI_CITTADINO."COD_TITOLO_DICHIARANTE"
+--    AND ESENZIONI_CITTADINO."ID_CITTADINO_DICHIARANTE" = DICHIARANTE."ID_AURA"
+--    AND ESENZIONI_CITTADINO."ID_CITTADINO_BENEFICIARIO" = BENEFICIARIO."ID_AURA"
+--    AND DICHIARANTE."COD_ISTAT" = COMUNE_DICHIARANTE."COD_ISTAT"
+--    AND BENEFICIARIO."COD_ISTAT" = COMUNE_BENEFICIARIO."COD_ISTAT"
+    AND ESENZIONI_CITTADINO."ID_ESENZIONE" = $P{ID_ESENZIONE}]]>
+	</queryString>
+	<field name="num_protocollo" class="java.lang.Long"/>
+	<field name="cod_asl" class="java.lang.String"/>
+	<field name="desc_asl" class="java.lang.String"/>
+	<field name="desc_titolo_dichiarante" class="java.lang.String"/>
+	<field name="data_inizio" class="java.lang.String"/>
+	<field name="data_fine" class="java.lang.String"/>
+	<field name="COD_ESENZIONE" class="java.lang.String"/>
+	<field name="DESC_MOTIVO" class="java.lang.String"/>
+	<field name="NOTA" class="java.lang.String"/>
+	<field name="data_richiesta" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="802" uuid="8b1835c3-733e-4d63-9952-d78955ce23b4">
+					<printWhenExpression><![CDATA[$P{PATH}.equals("Cittadino")]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["report//promemoria.gif"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="57" uuid="0511604a-82be-4529-a5f4-96c877f34493"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[AUTOCERTIFICAZIONE DI ESENZIONE DALLA PARTECIPAZIONE ALLA SPESA SANITARIA
+PER MOTIVI DI REDDITO
+(ai sensi dell'art.79 comma 1-sexies, lettera a) e b) del DL 112 del 25 giugno 2008, convertito, con modificazioni,
+dalla legge 133 del 6 agosto 2008 e del DM 11 dicembre 2009)
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="450" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="247" height="14" uuid="0a2f0f2e-0c97-44a6-a975-57cab8e21b2f"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[IL SOTTOSCRITTO (SOGGETTO DICHIARANTE)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="175" width="555" height="13" uuid="4c6b22cc-44ac-409b-a78e-82082fdd1c63"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DICHIARA CHE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="193" width="112" height="14" uuid="fd3b002b-67e3-44be-b869-d9a79a86217d"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L'ASSISTITO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="309" width="88" height="53" uuid="eac1443b-a708-4b86-bfbe-367201126250"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="88" y="309" width="467" height="53" uuid="a113a7ba-fc75-45a1-8d0c-8265eedb104d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="132" width="555" height="28" uuid="c0687f12-59a1-4fa0-8f56-56383ef3a050"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ai sensi del Decreto del Presidente della Repubblica n. 445/2000, consapevole della responsabilità penale, per le false
+dichiarazioni, la falsità negli atti o l'uso di atti falsi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="399" width="327" height="34" uuid="db4c8d62-7410-4f38-94f2-4475d8b244f6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E quindi ha diritto all’esenzione per motivi di reddito
+(legge n. 537/1993 e successive modificazioni ed integrazioni).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="215" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="1310c93c-85e4-4b34-92e0-301d121ae863"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="230" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="060e3325-914d-46d9-a578-3b0ba0d7a637"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COGNOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="245" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8d16679a-007d-436b-9992-2e4be5a0baac"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DATA DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="259" width="194" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="313cf408-b93a-41ac-8f9a-de121a81a5f5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COMUNE O STATO ESTERO DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="274" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a4d91bb3-ae18-4bca-85e5-0f59b2071b9c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CODICE FISCALE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="294" width="60" height="15" uuid="25a33c20-189a-481c-846c-4db31e6ba170"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_inizio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="294" width="60" height="15" uuid="af958338-3197-4927-88eb-081bdd32d71c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_fine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="309" width="88" height="53" uuid="70b28bf7-26ff-49db-87d7-b1a26b76d0b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_ESENZIONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="103" y="309" width="440" height="53" uuid="22188a9c-7427-4a55-b279-eacbfa72dc71"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESC_MOTIVO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="24" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9554fd2d-0e69-4c4f-93cf-71108eba7df5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{D_NOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="39" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="17a09d2c-304c-40d2-96a7-ec8cc865c0bb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{D_COGNOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="54" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="58711444-a9aa-472f-ae56-14c53fb595d2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{D_DATANASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="69" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="43655c36-7609-43e1-a7f5-8038b26d7cde"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{D_COMUNENASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="83" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="71b0dc72-a66a-446d-b58b-630660f283ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{D_CODFISCALE}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="215" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="930ccfda-68eb-44fd-a567-f706189dfe12"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_NOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="230" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6ecda928-4fed-4f3f-9b4c-fa216b749f80"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_COGNOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="245" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f1ae3e6c-49ef-43b4-ab7b-5048ea4c3df3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_DATANASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="259" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="1a16d111-18c9-4532-b5d9-41a037509ef2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_COMUNENASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="274" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="7009eb80-7a4e-4fa4-b8b2-9f54b7b19116"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_CODFISCALE}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="368" width="30" height="14" uuid="9f8bbb18-e815-4e60-a173-7f6554f6e7df">
+					<printWhenExpression><![CDATA[$P{PATH}.equals( "Operatore")]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nota :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="98" width="87" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="108fd546-b3aa-4141-94e6-b7265ec325c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[IN QUALITA' DI]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="98" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d6361818-b1ad-4387-91c9-d589d1a57762"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_titolo_dichiarante}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="24" width="31" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="85eb802e-2b3d-4ab2-9f5d-908d8b0e0264"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="69" width="194" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="856b2761-5e40-4a6e-950a-db5c6487a17a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COMUNE O STATO ESTERO DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="54" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="3928ff58-18cf-47c5-8433-1e6a33f6a479"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DATA DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="39" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2aaae7bc-f311-4d87-a007-911978c449a9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COGNOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="83" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9c7b5d6c-5317-472b-95eb-b224c9d5d9f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CODICE FISCALE]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="31" y="368" width="519" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="11f0d5ac-4548-48ba-961c-bf2db403eb51">
+					<printWhenExpression><![CDATA[$P{PATH}.equals( "Operatore") && !$F{NOTA}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOTA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="294" width="555" height="16" uuid="1cdfe185-8dcd-4e8e-a7f8-c3d4ec139e22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dal                             al                              appartiene alla seguente categoria]]></text>
+			</staticText>
+		</band>
+		<band height="97">
+			<printWhenExpression><![CDATA[!$P{T_CODFISCALE}.isEmpty()]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="15" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="bde6741b-0ad6-46a1-90ee-baf9e440c90b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T_NOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="74" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="196b7680-5930-4303-950f-fea188faec9b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T_CODFISCALE}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="59" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="3fc74bf9-85ff-4e75-9621-b87f26a2ba67"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T_COMUNENASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="30" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f6c6cf96-9181-44f6-876d-6d1ca13c1aff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T_COGNOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="209" y="45" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="74a62ae6-e5e3-4d97-96cb-139e84b3f971"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T_DATANASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="15" width="31" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9fd72986-1467-47dc-83a1-0770c1a67730"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="59" width="194" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b4faba46-3988-4225-93e5-22dd3d827d25"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COMUNE O STATO ESTERO DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="45" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6e87fcb0-77cf-45e3-ab8c-ab25c0ef9c59"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DATA DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="30" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d5f6838e-4a46-4247-8cc9-b6e7af01064e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COGNOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="74" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="15a2001b-3a7d-43c4-818e-e825afebe5d1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CODICE FISCALE]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="0" y="0" width="530" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0d4545e9-5687-48f3-8bf1-42e8e0a66d62"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{COD_ESENZIONE}.equals( "E02") ? "DATI DEL SOGGETTO TITOLARE DELLA CONDIZIONE DI DISOCCUPATO" :
+( $F{COD_ESENZIONE}.equals( "E03") ? "DATI DEL SOGGETTO TITOLARE DI PENSIONE SOCIALE" :
+( $F{COD_ESENZIONE}.equals( "E04") ? "DATI DEL SOGGETTO TITOLARE DI PENSIONE AL MINIMO CON PIU' DI 60 ANNI" :  "DATI DEL SOGGETTO TITOLARE" )))]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="86">
+			<staticText>
+				<reportElement x="3" y="62" width="520" height="20" uuid="bbd85e3f-4107-459e-b89e-a345b9b228e5"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[             La ASL attiverà il controllo della dichiarazione resa (D.M. 11/12/2009 Art.1, comma 7, lettera c)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="50" uuid="dabd70c9-9278-4a5d-87da-f7b0374306d0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informativa ai sensi della legge sulla tutela dei dati personali (art. 13-14 del GDPR 2016/679)
+I dati forniti dall'utente verranno trattati dall’amministrazione, anche in forma digitale, nella misura necessaria al raggiungimento dei fini istituzionali e comunque nel rispetto della suddetta legge. All’utente competono i diritti previsti dall’art. 13 della legge 675/96 ed agli art. 13-14 del GDPR 2016/679, in particolare il diritto di accedere ai propri dati, chiedendone la correzione, l’integrazione e, ricorrendo i presupposti previsti dalla vigente normativa, la cancellazione ed il blocco degli stessi.
+]]></text>
+			</staticText>
+		</band>
+		<band height="105">
+			<printWhenExpression><![CDATA[$P{PATH}.equals("Operatore")]]></printWhenExpression>
+			<rectangle>
+				<reportElement mode="Transparent" x="263" y="0" width="286" height="25" uuid="77f934a1-657c-416d-b53b-0c933f670a13"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="405" y="25" width="144" height="41" uuid="56424070-1e3e-4bba-9b3f-9e3c6a5107db"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="263" y="25" width="142" height="41" uuid="411e2cdb-12d1-4758-bfde-6e68f440d84b"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="132" y="25" width="131" height="41" uuid="ce7aecb3-b05f-4a94-82c9-6b59069cfde4"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="25" width="132" height="41" uuid="4df2cc0f-d328-45c2-bc64-17bff33f8e15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="263" height="25" uuid="7e30995e-5ede-4628-8179-a923f4a818b3"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="75" width="555" height="27" uuid="913d6df7-516f-4919-b982-a59262ff84da"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA: si evidenzia che è obbligatorio comunicare tempestivamente alla ASL, anche con la funzionalità telematica, l'eventuale perdita dei requisiti del diritto all'esenzione autocertificata e comunque di non avvalersi più di tale diritto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="29" width="28" height="14" uuid="a2a659f6-8f31-4bd9-b6ab-27f32a5c032b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="182" y="29" width="79" height="14" uuid="74445b00-8143-4322-a45f-b78d9ffbcb35"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_protocollo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="29" width="48" height="14" uuid="d6098fe0-11a9-46e7-9815-22db574f76f5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Protocollo:        ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="342" y="29" width="35" height="14" uuid="49d0a090-4bb1-4759-8a9d-f3e84f46412d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_asl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="264" y="29" width="77" height="15" uuid="e3182529-dd7d-4b37-b9c3-4c7d94fe396c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Rilasciato da Asl:                         ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy-HH:mm:ss">
+				<reportElement x="31" y="29" width="100" height="16" uuid="75554d91-b374-4a05-a405-386c944981c7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="416" y="29" width="92" height="14" uuid="65d49492-ee51-4ce5-921f-126f404b63cc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[ (Timbro dell' A.S.L.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="2" width="548" height="19" uuid="c48df83a-6ca6-49b6-980f-56fc3e1326c3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Firma dichiarante .............................................                                  Operatore ..................................................................]]></text>
+			</staticText>
+		</band>
+		<band height="81">
+			<printWhenExpression><![CDATA[$P{PATH}.equals("Cittadino")]]></printWhenExpression>
+			<rectangle>
+				<reportElement mode="Transparent" x="1" y="15" width="131" height="25" uuid="9833201d-6890-40c9-a44f-5af470764afc"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="263" y="15" width="292" height="25" uuid="8687391f-0766-4693-a682-f223370b5363"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="132" y="15" width="131" height="25" uuid="c865e579-e2d2-415a-b7ad-51d7832bb905"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="48" width="552" height="27" uuid="425b7dc9-775a-4c18-a6e4-3e5b146bd094"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA: si evidenzia che è obbligatorio comunicare tempestivamente alla ASL, anche con la funzionalità telematica, l'eventuale perdita dei requisiti del diritto all'esenzione autocertificata e comunque di non avvalersi più di tale diritto]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="377" y="20" width="172" height="14" uuid="1730d9e2-6aed-4075-b4d6-712f1ab2be66"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_asl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="20" width="35" height="14" uuid="0afd0221-27d8-436e-a0d5-078fdd4527ca"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_asl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="20" width="79" height="14" uuid="035f34aa-3e22-4075-827a-158d3d99302a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_protocollo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy-HH:mm:ss">
+				<reportElement x="31" y="20" width="100" height="16" uuid="b4f476d4-6669-44f0-9631-1fc29c1bb848"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="20" width="28" height="14" uuid="a307de7e-a3c8-4f9c-a112-eef0bf155435"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="20" width="48" height="14" uuid="ca290e0f-80ad-460a-b05b-728475e9efae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Protocollo:        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="20" width="77" height="15" uuid="9a84ae21-9e6e-44a3-adcb-6b72c00244e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Rilasciato da Asl:                         ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="424" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{PATH}.equals("Operatore")]]></printWhenExpression>
+			<textField>
+				<reportElement x="0" y="10" width="554" height="23" uuid="cfd2d15d-2e74-4c05-9844-6fe221e11c7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CERTIFICATO DI ESENZIONE DALLA PARTECIPAZIONE ALLA SPESA SANITARIA PER MOTIVI DI REDDITO\n RILASCIATO DALLA REGIONE Piemonte "  + $F{cod_asl}.toString().substring(3,6) + " - " + $F{desc_asl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="33" width="554" height="24" uuid="5af8d495-68a7-466b-bc5f-704cbb5bdc71"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="7"/>
+				</textElement>
+				<text><![CDATA[(ai sensi dell'art.79 comma 1-sexies, lettera a) e b) del DL 112 del 25 giugno 2008, convertito, con modificazioni,
+dalla legge 133 del 6 agosto 2008 e del DM 11 dicembre 2009)
+]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="210" y="193" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="4020969c-9888-4d56-bd66-7f16aa72af4f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_COMUNENASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="164" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="111d1fe1-53eb-44a1-88c2-66b0856aaddc"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COGNOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="179" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a9d275e4-a3de-47e5-ad80-41f0ade686ef"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DATA DI NASCITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="127" width="112" height="14" uuid="0de697f1-ef61-45eb-bec4-8e249635d66e"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L'ASSISTITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="149" width="53" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f588a64d-271c-40df-aa74-8efe4e5c1bdd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="210" y="149" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="76106236-c4a4-41bf-aaab-d28bf225cfcb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_NOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="210" y="179" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="033240c2-4175-48b4-a15f-12b78a2ce664"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_DATANASCITA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="210" y="208" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ebe3a44a-3fe9-4789-9d46-6a5999418165"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_CODFISCALE}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="193" width="194" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2ae3a9e1-8da7-48b7-b896-d23e4d0556d5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COMUNE O STATO ESTERO DI NASCITA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="210" y="164" width="345" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a41922a1-b365-4a0e-ad15-7c4aa25c3fd3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{B_COGNOME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="208" width="90" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8440442c-9a34-4d00-885d-c938574ae7b0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CODICE FISCALE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="68" width="555" height="16" uuid="6014d142-a7f3-4615-887e-99bdd59d7a83"/>
+				<textElement textAlignment="Left" markup="none">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VALIDA DAL " + $F{data_inizio} + " AL " + $F{data_fine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="96" width="555" height="16" uuid="80be2fb9-7ac9-4ea5-af8e-c1c15248ed43"/>
+				<textElement textAlignment="Left" markup="none">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DATA PROTOCOLLO " + $F{data_richiesta} + " - " + $F{num_protocollo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="369" width="303" height="32" uuid="3cd3d6de-d033-431d-a408-d75235d4b70e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA: Si evidenzia che, qualora vengano meno i requisiti del diritto  all'esenzione attestata, tale certificato perde validità.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="266" width="88" height="53" uuid="4558e993-61bf-4743-b0f0-f24c71d542fd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="88" y="266" width="467" height="53" uuid="77896c7a-8df4-406a-8a52-dfd01883edcd"/>
+			</rectangle>
+			<textField>
+				<reportElement x="1" y="266" width="88" height="53" uuid="b3566145-7220-4d68-b599-a874d8062ec8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_ESENZIONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="266" width="455" height="53" uuid="a1c812a6-d307-4344-9675-02e17ff6f87a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESC_MOTIVO}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="405" y="347" width="83" height="75" uuid="509f0a25-b308-41e0-8dbc-9336aa848644"/>
+			</rectangle>
+			<textField>
+				<reportElement x="416" y="369" width="64" height="23" uuid="ffbcd193-2223-4f2e-98bb-adea3c7a5faf"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Timbro e firma\n"  + $F{desc_asl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="230" width="327" height="34" uuid="c705a0b0-2a51-4ebd-ac7b-8f361aa3a721"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E quindi ha diritto all’esenzione per motivi di reddito
+(legge n. 537/1993 e successive modificazioni ed integrazioni).]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

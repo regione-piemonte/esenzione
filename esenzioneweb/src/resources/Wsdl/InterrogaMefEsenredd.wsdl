@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://InterrogaMefEsenredd.central.services.auraws.aura.csi.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://InterrogaMefEsenredd.central.services.auraws.aura.csi.it">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://InterrogaMefEsenredd.central.services.auraws.aura.csi.it">
+            <s:element name="InterrogaMefEsenredd">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="CF" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="InterrogaMefEsenreddResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="InterrogaMefEsenreddResult" type="s0:InterrogaMefEsenreddRes"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="InterrogaMefEsenreddRes">
+                <s:sequence>
+                    <s:element minOccurs="0" name="errorCode" type="s:long"/>
+                    <s:element minOccurs="0" name="esitomef" type="s:string"/>
+                    <s:element minOccurs="0" name="body" type="s0:InterrogaMefEsenreddResponseBody"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="InterrogaMefEsenreddResponseBody">
+                <s:sequence>
+                    <s:element minOccurs="0" name="capResidenza" type="s:string"/>
+                    <s:element minOccurs="0" name="codicefiscale" type="s:string"/>
+                    <s:element minOccurs="0" name="cognome" type="s:string"/>
+                    <s:element minOccurs="0" name="comuneResidenza" type="s:string"/>
+                    <s:element minOccurs="0" name="comunenasc" type="s:string"/>
+                    <s:element minOccurs="0" name="datadecesso" type="s:string"/>
+                    <s:element minOccurs="0" name="datanascita" type="s:string"/>
+                    <s:element minOccurs="0" name="findType" type="s:string"/>
+                    <s:element minOccurs="0" name="idComunenascita" type="s:string"/>
+                    <s:element minOccurs="0" name="idStatonascita" type="s:string"/>
+                    <s:element minOccurs="0" name="indirizzoResidenza" type="s:string"/>
+                    <s:element minOccurs="0" name="nazionenasc" type="s:string"/>
+                    <s:element minOccurs="0" name="nome" type="s:string"/>
+                    <s:element minOccurs="0" name="provinciaResidenza" type="s:string"/>
+                    <s:element minOccurs="0" name="provincianasc" type="s:string"/>
+                    <s:element minOccurs="0" name="provnasc" type="s:string"/>
+                    <s:element minOccurs="0" name="sceltaInDeroga" type="s:string"/>
+                    <s:element minOccurs="0" name="sesso" type="s:string"/>
+                    <s:element minOccurs="0" name="privacy" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </types>
+    <message name="InterrogaMefEsenreddSoapIn">
+        <part name="parameters" element="s0:InterrogaMefEsenredd"/>
+    </message>
+    <message name="InterrogaMefEsenreddSoapOut">
+        <part name="parameters" element="s0:InterrogaMefEsenreddResponse"/>
+    </message>
+    <portType name="InterrogaMefEsenreddSoap">
+        <operation name="InterrogaMefEsenredd">
+            <input message="s0:InterrogaMefEsenreddSoapIn"/>
+            <output message="s0:InterrogaMefEsenreddSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="InterrogaMefEsenreddSoap" type="s0:InterrogaMefEsenreddSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="InterrogaMefEsenredd">
+            <soap:operation soapAction="http://InterrogaMefEsenredd.central.services.auraws.aura.csi.it/AURA.WS.InterrogaMefEsenredd.InterrogaMefEsenredd" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="InterrogaMefEsenredd">
+        <port name="InterrogaMefEsenreddSoap" binding="s0:InterrogaMefEsenreddSoap">
+            <soap:address location="http://xyz/xyz/AURA.WS.InterrogaMefEsenredd.cls"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns2="http://ws.sanitxint.sanitx.csi.it/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://EsenzionePatologia.central.services.auraws.aura.csi.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://EsenzionePatologia.central.services.auraws.aura.csi.it">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://EsenzionePatologia.central.services.auraws.aura.csi.it">
+            <s:import namespace="http://ws.sanitxint.sanitx.csi.it/"/>
+            <s:element name="esenzionePatologia">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="codiceFiscaleChiamante" type="s:string"/>
+                        <s:element minOccurs="0" name="codiceFiscaleAssistito" type="s:string"/>
+                        <s:element minOccurs="0" name="codiceEsenzione" type="s:string"/>
+                        <s:element minOccurs="0" name="dataInizioValidita" type="s:string"/>
+                        <s:element minOccurs="0" name="dataFineValidita" type="s:string"/>
+                        <s:element minOccurs="0" name="dataAnnullamento" type="s:string"/>
+                        <s:element minOccurs="0" name="listaDiagnosi" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="esenzionePatologiaResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="esenzionePatologiaResult" type="s0:EsenzionePatologiaRes"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="EsenzionePatologiaRes">
+                <s:sequence>
+                    <s:element minOccurs="0" name="header" type="s0:EsenzionePatologiaHeader"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="EsenzionePatologiaHeader">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codiceRitorno" type="s:string"/>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="listaMessaggi" nillable="true" type="ns2:messagesGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfmessagesGetEsenredVO">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="messagesGetEsenredVO" nillable="true" type="ns2:messagesGetEsenredVO"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+        <s:schema targetNamespace="http://ws.sanitxint.sanitx.csi.it/">
+            <s:complexType name="messagesGetEsenredVO">
+                <s:sequence>
+                    <s:element minOccurs="0" name="codice" type="s:string"/>
+                    <s:element minOccurs="0" name="descrizione" type="s:string"/>
+                    <s:element minOccurs="0" name="note" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </types>
+    <message name="esenzionePatologiaSoapIn">
+        <part name="parameters" element="s0:esenzionePatologia"/>
+    </message>
+    <message name="esenzionePatologiaSoapOut">
+        <part name="parameters" element="s0:esenzionePatologiaResponse"/>
+    </message>
+    <portType name="EsenzionePatologiaSoap">
+        <operation name="esenzionePatologia">
+            <input message="s0:esenzionePatologiaSoapIn"/>
+            <output message="s0:esenzionePatologiaSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="EsenzionePatologiaSoap" type="s0:EsenzionePatologiaSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="esenzionePatologia">
+            <soap:operation soapAction="http://EsenzionePatologia.central.services.auraws.aura.csi.it/AURA.WS.EsenzionePatologia.esenzionePatologia" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EsenzionePatologia">
+        <port name="EsenzionePatologiaSoap" binding="s0:EsenzionePatologiaSoap">
+            <soap:address location="http://xyz/xyz/AURA.WS.EenzionePatologia.cls"/>
+        </port>
+    </service>
+</definitions>
