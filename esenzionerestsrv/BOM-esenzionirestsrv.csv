@@ -4,7 +4,7 @@ axis-jaxrpc-1.4.jar,"Apache-2.0",-,-,-,Java,-,-,-
 axis2-ant-plugin-1.7.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
 axis2-xmlbeans-1.7.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
 batik-css-1.7.jar,"Apache-2.0",-,-,-,Java,-,-,-
-bsh-2.0b4.jar,"LGPL"",-,-,-,Java,-,-,-
+bsh-2.0b4.jar,"LGPL",-,-,-,Java,-,-,-
 commons-beanutils-1.9.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
 commons-discovery-0.2.jar,"Apache-2.0",-,-,-,Java,-,-,-
 commons-httpclient-3.1.jar,"Apache-2.0",-,-,-,Java,-,-,-
