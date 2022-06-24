@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+	<info organisation="csipiemonte" module="tnr" revision="1.0.0"/>
+	<publications>
+		<artifact name="tnr-1.0.0" type="jar"/>
+	</publications>
+</ivy-module>	

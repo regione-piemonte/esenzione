@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    
+     <context:property-placeholder location="classpath*:esenredweb.properties" />
+     
+     <context:annotation-config/>
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <aop:aspectj-autoproxy/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="emf"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="esenzioni"/>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+    
+	   
+    <bean
+            class="it.csi.esenred.esenredweb.business.SpringApplicationContext"></bean>
+
+    <bean id="messaggio" class="it.csi.esenred.esenredweb.business.model.impl.MessaggioImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="notifica" class="it.csi.esenred.esenredweb.business.model.impl.NotificaImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="esenzioneCittadino" class="it.csi.esenred.esenredweb.business.model.impl.EsenzioneCittadinoImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="parametro" class="it.csi.esenred.esenredweb.business.model.impl.ParametroImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="esenzione" class="it.csi.esenred.esenredweb.business.model.impl.EsenzioneImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="titoloDichiarante" class="it.csi.esenred.esenredweb.business.model.impl.TitoloDichiaranteImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean id="matriceEsenzioni" class="it.csi.esenred.esenredweb.business.model.impl.MatriceEsenzioniCittadinoImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+    
+    <bean id="comune" class="it.csi.esenred.esenredweb.business.model.impl.ComuneImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+    
+    <bean id="report" class="it.csi.esenred.esenredweb.business.model.impl.ReportImpl">
+        <property name="dataDao" ref="dataDao"/>
+    </bean>
+
+    <bean name="dataDao" class="it.csi.esenred.esenredweb.business.dao.impl.DataDaoImpl"/>
+    <bean name="dataDaoPatologia" class="it.csi.esenred.esenredweb.business.dao.impl.DataDaoPatologiaImpl"/>
+
+    <bean name="integrationClient" class="it.csi.esenred.esenredweb.business.model.impl.IntegrationClientImpl" />
+  	
+  	<bean id="audit" class="it.csi.esenred.esenredweb.business.model.impl.AuditImpl">
+        <property name="dataDao" ref="dataDao"/>
+        <property name="dataDaoPatologia" ref="dataDaoPatologia"/>
+    </bean>
+
+	<bean id="esenzioniFacade" class="it.csi.esenred.esenpatweb.business.facade.EsenzioniFacade">
+        <property name="dataDao" ref="dataDaoPatologia"/>
+	</bean>
+	
+	<bean id="cittadinoFacade" class="it.csi.esenred.esenpatweb.business.facade.CittadinoFacade">
+        <property name="dataDao" ref="dataDaoPatologia"/>
+	</bean>
+	
+	<bean id="certificatiFacade" class="it.csi.esenred.esenpatweb.business.facade.CertificatiFacade">
+        <property name="dataDao" ref="dataDaoPatologia"/>
+	</bean>
+
+	<bean id="notificatoreFacade" class="it.csi.esenred.esenpatweb.business.facade.NotificatoreFacade">
+		<property name="dataDao" ref="dataDaoPatologia" />
+		<property name="notificatoreUtil" ref="notificatoreUtil" />
+	</bean>
+
+	<bean id="notificatoreUtil" class="it.csi.esenred.esenredweb.util.NotificatoreUtil" />
+</beans>
