@@ -1,0 +1,28 @@
+{
+   "beServer": "https://xyz.csi.it",
+   "shibbolethSSOLogoutURL": "http://xyz/Shibboleth.sso/Logout",
+    "onAppExitURLOperatore": "https://xyz.csi.it/xyz/Shibboleth.sso/Logout",
+   "onAppExitURLCittadino": "https://xyz.csi.it/xyz/logout.do",
+   "onAppExitURL": "http://xyz/Shibboleth.sso/Logout",
+   "contextRestBeServer": "/esenzioniweb/rest/services",
+   "publicPath": "/esenzioniweb",
+   "ticket": "https://xyz/xyz/RichiestaAuth.xml?servizio=ticket",
+	"salute": "https://xyz/xyz/xyz/",
+	"referti": "https://xyz/xyz/directServiceIndex.jsp?servizio=referti_da_scaricare",
+	"fascicolos": "https://xyz/xyz/home_fascicolo.do?servizio=fas-sanitario",
+	"taccuino": "https://xyz/xyz/directServiceIndex.jsp?servizio=taccuino",
+	"fascicolof": "https://xyz/xyz/xyz/fascicolofinanziario.php?servizio=fas-finanziario",
+	"screening": "https://xyz/xyz/xyz/index.php?servizio=screening",
+	"documenti": "https://xyz/xyz/directServiceIndex.jsp?servizio=uc",
+	"cambiomedico": "https://xyz/xyz/xyz/visualizza.php?servizio=medico",
+	"profilo": "https://xyz/xyz/lamiasalute/profilo.php?servizio=profilo",
+	"trova" : "https://xyz/xyz/xyz/mappa.php?servizio=trova",
+	"prenotazioni" : "https://xyz/xyz/prenotazioni",
+	"valuta": "https://xyz.csi.it/it/xyz/customer-esenzione-ticket",
+	"mailassistenza": "xyz",
+    "mailassistenzapa": "xyz",
+    "deleghe": "https://xyz.csi.it/xyz/#/deleghe/piemonte/delegati"
+}
+
+    
+	
