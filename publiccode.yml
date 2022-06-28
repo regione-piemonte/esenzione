@@ -1,0 +1,149 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: Regione Piemonte Sistema Informativo Lavoro
+categories:
+  - erp
+dependsOn:
+  proprietary:
+    - name: Apache httpd
+      optional: false
+      version: 2.4.53
+      versionMax: ''
+      versionMin: ''
+    - name: PostgreSQL
+      optional: false
+      version: 9.6.10
+      versionMax: ''
+      versionMin: ''
+    - name: RedHat JBoss EAP
+      optional: false
+      version: 6.4.5
+      versionMax: ''
+      versionMin: ''
+description:
+  it:
+    features:
+      - |-
+        Le API esposte da ESENZIONE facilitano la fruibilità dei servizi
+        sanitari al cittadino.
+    genericName: Esenzione
+    localisedName: Esenzione
+    longDescription: |
+      Dal 2014, in Regione Piemonte è disponibile ed utilizzata la piattaforma
+      di FSE, ovvero l’insieme degli strumenti informatico-informativi che
+      rendono possibile fornire servizi e informazioni ai cittadini e agli
+      operatori sanitari. 
+
+
+      Le esenzioni dal pagamento del ticket sanitario sono determinate da età e
+      reddito, da un’invalidità o patologia, oppure sono destinate a tutti i
+      cittadini regionali in particolari fasi della loro vita (screening
+      oncologici, gravidanza). L’acceleratore “Esenzioni per patologia” ha lo
+      scopo di dare:
+
+
+      la possibilità per un cittadino di inserire a nome proprio o di un altro
+      cittadino la richiesta di rilascio dell’esenzione per patologia;
+
+
+      la possibilità per un cittadino di rinnovare a nome proprio o di un altro
+      cittadino l’esenzione per patologia già rilasciata;
+
+
+      la possibilità di scaricare e stampare l’esenzione per patologia
+      rilasciata/rinnovata dalla ASL.
+
+
+      La pratica richiesta dal cittadino viene completata dagli amministrativi
+      delle ASL sulla base della documentazione presentata. L’amministrativo
+      dell’ASL inoltre può inserire la richiesta per conto di un
+      cittadino/assistito, nel caso questo si rivolga allo sportello dell’ASR
+      per presentare la richiesta di esenzione per patologia.
+
+
+      Premesso quanto sopra esposto, si può dedurre che un cittadino di un’ASL
+      piemontese possa inserire una richiesta di esenzione per patologia e
+      richiedere il rinnovo di una esenzione già presente, a nome proprio o a
+      nome di un soggetto adulto delegante. La pratica verrà esaminata e
+      approvata da un operatore dell’ASL che rilascerà il documento con il
+      numero di esenzione. Il cittadino potrà quindi scaricare e stampare il
+      documento di esenzione.
+
+
+      Il cittadino interagisce con il sistema di “Esenzioni per patologia” in
+      più momenti:
+
+
+      inserimento di una nuova richiesta di “esenzioni per patologia”;
+
+
+      consultazione dello stato delle esenzioni presenti (inserite, in
+      lavorazione, approvate, scadute, rinnovate, ecc.);
+
+
+      stampa del documento di esenzione;
+
+
+      inserimento di una richiesta di rinnovo di una esenzione per patologia già
+      approvata;
+
+
+      annullamento di una richiesta inserita;
+
+
+      inserimento di una comunicazione di intervento risolutivo.
+
+
+      La validità della documentazione clinica fornita dal cittadino, ai fini
+      del rilascio della esenzione per patologia, è definita a livello di
+      Regione o dalle singole ASL e configurata nel sistema in apposite tabelle
+      dove sono elencati i parametri generali per ogni servizio della Regione
+      Piemonte e, se presenti, quelli più restrittivi delle singole aziende
+      sanitarie regionali con i relativi dettagli/parametri per ogni servizio.
+    shortDescription: Servizi di gestione delle esenzioni per patologia della Regione.
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+  scope:
+    - healthcare
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: false
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+  riuso:
+    codiceIPA: r_piemon
+landingURL: 'https://github.com/regione-piemonte/esenzione.git'
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Regione PIemonte
+  repoOwner: Regione PIemonte
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: maurizio.chiappo@csi.it
+      name: Maurizio Chiappo
+  type: internal
+name: Esenzione
+platforms:
+  - web
+releaseDate: '2022-06-28'
+softwareType: standalone/backend
+softwareVersion: 1.0.0
+url: 'https://github.com/regione-piemonte/esenzione.git'
+usedBy:
+  - Regione PIemonte
