@@ -126,6 +126,7 @@ it:
     codiceIPA: r_piemon
 landingURL: 'https://github.com/regione-piemonte/esenzione.git'
 legal:
+  authorsFile: COPYRIGHTS.md
   license: EUPL-1.2
   mainCopyrightOwner: Regione PIemonte
   repoOwner: Regione PIemonte
